@@ -1,3 +1,14 @@
+.NavBox {
+	background-color: grey;
+	height: 50px;
+	margin: 0;
+}
+
 .NavBar {
 	text-decoration: none;
+	list-style: none;
+	color: white;
+	text-align: center;
+	display: flex;
+	justify-content: space-evenly;
 }

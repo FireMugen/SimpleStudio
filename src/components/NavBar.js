@@ -6,12 +6,12 @@ class NavBar extends Component {
 
 	render(){
 		return(
-			<div>
-				<nav className="NavBar">
-					<ul>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">Rooms</a></li>
-						<li><a href="#">Profile</a></li>
+			<div className="NavBox">
+				<nav>
+					<ul className="NavBar">
+						<a href="#">Home</a>
+						<a href="#">Rooms</a>
+						<a href="#">Profile</a>
 					</ul>
 				</nav>
 			</div>
