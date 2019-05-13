@@ -49,7 +49,7 @@ class Row extends Component {
       <div className="row-container">
         <div className="row-title"> {this.state.key} </div>
         {this.buildRow()}
-        <Music tone={this.state.tone} />
+        <Music tone={this.state.tone} key={this.state.key}/>
 
       </div>
     )
@@ -65,9 +65,15 @@ class Music extends Component {
     }
   }
 
+  // obj{
+  //   snare: linkToSnare
+  // }
+
   componentDidMount(){
     const drum = new Tone.Players({
       "clap" : process.env.PUBLIC_URL + 'assets/CL808.wav'
+
+      // {this.props.key} : process.env.PUBLIC_URL + {obj[this.props.key]}
     }, {
       "volume" : -2,
       "fadeOut" : "64n",
