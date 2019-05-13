@@ -12,7 +12,7 @@ class Row extends Component {
       tone: Array(16)
     };
     this._updateTile = this._updateTile.bind(this)
-
+    
   }
 
   componentDidMount(){
@@ -65,7 +65,7 @@ class Row extends Component {
 class Music extends Component {
   constructor(){
     super()
-    
+
   }
 
   componentDidMount(){
