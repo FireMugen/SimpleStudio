@@ -9,25 +9,19 @@ class Row extends Component {
     this.state = {
       id: this.props.rowID,
       key: '',
-      tone: Array(16)
+      tone: [] // new Array(16).fill()
     };
     this._updateTile = this._updateTile.bind(this)
-    
+
   }
 
   componentDidMount(){
     fire.firestore().collection('row').doc(this.state.id).onSnapshot( (snapshot) => {
-
+      // console.log(snapshot.data().tone)
       this.setState({
         key: snapshot.data().key,
         tone: snapshot.data().tone
       })
-
-
-    })
-
-
-    this.setState({
     })
   }
 
@@ -56,25 +50,64 @@ class Row extends Component {
       <div className="row-container">
         <div className="row-title"> {this.state.key} </div>
         {this.buildRow()}
-        <Music />
+        {this.state.tone.length > 0 ? <Music tone={this.state.tone} /> : ''}
+
       </div>
     )
   }
 }
 
+
 class Music extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props);
+
+    this.state = {
+      tonesToPlay: []
+    }
 
   }
 
   componentDidMount(){
-    const synth = new Tone.Synth().toMaster();
+    // console.log(this.props.tone);
+    // const synth = new Tone.Synth().toMaster();
+    // const drum = new Tone.MembraneSynth().toMaster();
+
+    const tempArr = [];
+    for (var i = 0; i < 16; i++) {
+
+      tempArr.push(this.props.tone[i] ? "clap" : null);
+    }
+
+    console.log(tempArr)
+
+    this.setState({
+      tonesToPlay: tempArr
+    })
+
+    // console.log(this.state.tonesToPlay)
+
+    // console.log(tonesToPlay);
+    const drum = new Tone.Players({
+      "clap" : process.env.PUBLIC_URL + 'assets/CL808.wav',
+    }, {
+      "volume" : -2,
+      "fadeOut" : "64n",
+      "autostart": true
+    }).toMaster();
+
+    // console.log(this.state.tonesToPlay);
+
     const loop = new Tone.Sequence(function(time, note){
-      synth.triggerAttackRelease(note, '8n', time);
-    }, ['C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4'], '8n')
+      // drum.triggerAttackRelease(note, '8n', time);
+      drum.get(note).start(time)
+    }, this.state.tonesToPlay, '8n')
 
     loop.start(0);
+
+  }
+
+  componentDidUpdate(prevProps){
 
   }
 
