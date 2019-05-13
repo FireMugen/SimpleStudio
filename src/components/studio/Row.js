@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../css/row.css'
 import fire from '../../config/Fire'
-
+import Tone from 'tone'
 
 class Row extends Component {
   constructor(props){
@@ -9,7 +9,7 @@ class Row extends Component {
     this.state = {
       id: this.props.rowID,
       key: '',
-      tone: Array(16)
+      tone: [] // new Array(16).fill()
     };
     this._updateTile = this._updateTile.bind(this)
 
@@ -17,17 +17,10 @@ class Row extends Component {
 
   componentDidMount(){
     fire.firestore().collection('row').doc(this.state.id).onSnapshot( (snapshot) => {
-
       this.setState({
         key: snapshot.data().key,
         tone: snapshot.data().tone
       })
-
-
-    })
-
-
-    this.setState({
     })
   }
 
@@ -56,7 +49,60 @@ class Row extends Component {
       <div className="row-container">
         <div className="row-title"> {this.state.key} </div>
         {this.buildRow()}
+        <Music tone={this.state.tone} />
+
       </div>
+    )
+  }
+}
+
+class Music extends Component {
+  constructor(props){
+    super(props);
+
+    this.state ={
+      loop: ""
+    }
+  }
+
+  componentDidMount(){
+    const drum = new Tone.Players({
+      "clap" : process.env.PUBLIC_URL + 'assets/CL808.wav'
+    }, {
+      "volume" : -2,
+      "fadeOut" : "64n",
+      "autostart": true
+    }).toMaster();
+
+
+    const loop = new Tone.Sequence(function(time, note){
+      drum.get(note).start(time)
+    }, new Array(16), '16n')
+
+    loop.start(0);
+
+    this.setState({
+      loop: loop
+    })
+
+  }
+
+  componentDidUpdate(prevProps){
+    if( prevProps.tone !== this.props.tone ) {
+      for (var i = 0; i < 16; i++) {
+        if (this.props.tone[i]){
+          this.state.loop.at(i, "clap");
+
+        }else{
+          this.state.loop.remove(i);
+        }
+      }
+    }
+  }
+
+  render(){
+    return(
+      <div />
     )
   }
 }

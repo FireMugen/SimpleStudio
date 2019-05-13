@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Row from './Row'
 import fire from '../../config/Fire'
+import Tone from 'tone'
 
 class Sequencer extends Component {
   constructor(props){
@@ -12,6 +13,9 @@ class Sequencer extends Component {
       name: "",
       rows: []
     }
+
+    this.createRows = this.createRows.bind(this);
+
   }
 //this is a lifestyle function called after constructor
   componentDidMount(){
@@ -22,9 +26,6 @@ class Sequencer extends Component {
         name: snapshot.data().name,
         rows: snapshot.data().rows
       })
-
-      this.createRows = this.createRows.bind(this);
-
     })
   }
 
@@ -37,11 +38,16 @@ class Sequencer extends Component {
     return rows;
   }
 
+  _playMusic(){
+    Tone.Transport.toggle();
+  }
+
   render(){
     return(
       <div>
         <h3>{this.state.name}</h3>
         {this.createRows()}
+        <button onClick={this._playMusic}>Play</button>
       </div>
     )
   }
