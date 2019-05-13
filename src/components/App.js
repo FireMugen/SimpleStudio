@@ -4,6 +4,7 @@ import fire from '../config/Fire';
 import Home from './Home';
 import Login from './Login';
 import Test from './Test';
+import Sequencer from './studio/Sequencer'
 
 
 class App extends Component {
@@ -34,8 +35,8 @@ class App extends Component {
   render() {
     return (
      <div className="App">
-	  <Test />
-	</div>
+	      <Sequencer />
+	   </div>
 
 	 );
  }
