@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import '../../css/row.css'
+import fire from '../../config/Fire'
+
 
 class Row extends Component {
   constructor(props){
     super(props);
     this.state = {
-      id: '',
+      id: this.props.rowID,
       key: '',
       tone: Array(16)
     };
@@ -14,14 +16,22 @@ class Row extends Component {
   }
 
   componentDidMount(){
+    fire.firestore().collection('row').doc(this.state.id).onSnapshot( (snapshot) => {
+
+      this.setState({
+        key: snapshot.data().key,
+        tone: snapshot.data().tone
+      })
+
+
+    })
+
+
     this.setState({
-      id: 'SAZSDASDAWE',
-      key: 'snare',
-      tone: [true, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false]
     })
   }
 
-
+  //helper function to build row for tone/instruments
   buildRow() {
     const row = [];
       for (let i = 0; i < 16; i++) {
@@ -33,13 +43,13 @@ class Row extends Component {
   _updateTile(e) {
     const changedTone = this.state.tone.slice()
     changedTone[e.target.id] = !changedTone[e.target.id]
-    this.setState({
+
+    //this pushes the change to firebase
+    fire.firestore().collection('row').doc(this.state.id).update({
       tone: changedTone
     })
-    console.log(e.target)
+
   }
-
-
 
   render(){
     return(
