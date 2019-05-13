@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../css/row.css'
 import fire from '../../config/Fire'
-
+import Tone from 'tone'
 
 class Row extends Component {
   constructor(props){
@@ -56,7 +56,31 @@ class Row extends Component {
       <div className="row-container">
         <div className="row-title"> {this.state.key} </div>
         {this.buildRow()}
+        <Music />
       </div>
+    )
+  }
+}
+
+class Music extends Component {
+  constructor(){
+    super()
+    
+  }
+
+  componentDidMount(){
+    const synth = new Tone.Synth().toMaster();
+    const loop = new Tone.Sequence(function(time, note){
+      synth.triggerAttackRelease(note, '8n', time);
+    }, ['C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4', 'C4'], '8n')
+
+    loop.start(0);
+
+  }
+
+  render(){
+    return(
+      <div />
     )
   }
 }
