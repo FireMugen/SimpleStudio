@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import fire from './config/Fire';
+import fire from '../config/Fire';
+import NavBar from './NavBar'
 
 class Home extends Component {
     constructor(props) {
@@ -15,6 +16,7 @@ class Home extends Component {
     render() {
         return (
 					<div>
+					<NavBar />
 					<h1>You are home</h1>
 					<button onClick={this.logout}>Logout</button>
 					</div>
