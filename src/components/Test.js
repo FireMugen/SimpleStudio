@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import fire from '../config/Fire.js'
-
 import roomLoad from '../config/fireutils.js'
 
 class Test extends Component{
@@ -13,16 +12,17 @@ class Test extends Component{
       other: 0
     }
 
+
     this._changeText = this._changeText.bind(this)
     this._changeNum = this._changeNum.bind(this)
 
     // fire.firestore().collection('room').get().then((snapshot) => {
-      // this.setState({
-        // id: snapshot.docs[0].id,
-        // sequence: snapshot.docs[0].data().sequence,
-        // other: snapshot.docs[0].data().other
-      // })
-
+    //   this.setState({
+    //     id: snapshot.docs[0].id,
+    //     sequence: snapshot.docs[0].data().sequence,
+    //     other: snapshot.docs[0].data().other
+    //   })
+    //
     // })
   }
 

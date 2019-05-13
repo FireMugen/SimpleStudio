@@ -3,7 +3,7 @@ import '../App.css';
 import fire from '../config/Fire';
 import Home from './Home';
 import Login from './Login';
-import Test from './components/Test';
+import Test from './Test';
 
 
 class App extends Component {
