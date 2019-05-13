@@ -17,7 +17,6 @@ class Row extends Component {
 
   componentDidMount(){
     fire.firestore().collection('row').doc(this.state.id).onSnapshot( (snapshot) => {
-      // console.log(snapshot.data().tone)
       this.setState({
         key: snapshot.data().key,
         tone: snapshot.data().tone
@@ -50,65 +49,55 @@ class Row extends Component {
       <div className="row-container">
         <div className="row-title"> {this.state.key} </div>
         {this.buildRow()}
-        {this.state.tone.length > 0 ? <Music tone={this.state.tone} /> : ''}
+        <Music tone={this.state.tone} />
 
       </div>
     )
   }
 }
 
-
 class Music extends Component {
   constructor(props){
     super(props);
 
-    this.state = {
-      tonesToPlay: []
+    this.state ={
+      loop: ""
     }
-
   }
 
   componentDidMount(){
-    // console.log(this.props.tone);
-    // const synth = new Tone.Synth().toMaster();
-    // const drum = new Tone.MembraneSynth().toMaster();
-
-    const tempArr = [];
-    for (var i = 0; i < 16; i++) {
-
-      tempArr.push(this.props.tone[i] ? "clap" : null);
-    }
-
-    console.log(tempArr)
-
-    this.setState({
-      tonesToPlay: tempArr
-    })
-
-    // console.log(this.state.tonesToPlay)
-
-    // console.log(tonesToPlay);
     const drum = new Tone.Players({
-      "clap" : process.env.PUBLIC_URL + 'assets/CL808.wav',
+      "clap" : process.env.PUBLIC_URL + 'assets/CL808.wav'
     }, {
       "volume" : -2,
       "fadeOut" : "64n",
       "autostart": true
     }).toMaster();
 
-    // console.log(this.state.tonesToPlay);
 
     const loop = new Tone.Sequence(function(time, note){
-      // drum.triggerAttackRelease(note, '8n', time);
       drum.get(note).start(time)
-    }, this.state.tonesToPlay, '8n')
+    }, new Array(16), '16n')
 
     loop.start(0);
+
+    this.setState({
+      loop: loop
+    })
 
   }
 
   componentDidUpdate(prevProps){
+    if( prevProps.tone !== this.props.tone ) {
+      for (var i = 0; i < 16; i++) {
+        if (this.props.tone[i]){
+          this.state.loop.at(i, "clap");
 
+        }else{
+          this.state.loop.remove(i);
+        }
+      }
+    }
   }
 
   render(){

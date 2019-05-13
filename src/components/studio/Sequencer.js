@@ -13,6 +13,9 @@ class Sequencer extends Component {
       name: "",
       rows: []
     }
+
+    this.createRows = this.createRows.bind(this);
+
   }
 //this is a lifestyle function called after constructor
   componentDidMount(){
@@ -23,9 +26,6 @@ class Sequencer extends Component {
         name: snapshot.data().name,
         rows: snapshot.data().rows
       })
-
-      this.createRows = this.createRows.bind(this);
-
     })
   }
 
