@@ -10,7 +10,7 @@ class NavBar extends Component {
 				<nav>
 					<ul className="NavBar">
 						<a href="#">Home</a>
-						<a href="#">Rooms</a>
+						<a href="/Room">Rooms</a>
 						<a href="#">Profile</a>
 					</ul>
 				</nav>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import fire from './config/Fire';
 import Room from './components/studio/Room';
+import Login from './components/Login'
+import Home from './components/Home'
 
 class App extends Component {
   constructor() {
@@ -31,7 +33,7 @@ class App extends Component {
   render() {
     return (
      <div className="App">
-		     <Room />
+		 	 	{this.state.user ? ( <Home />) : (<Login />)}
 		 </div>
 	 );
  }
