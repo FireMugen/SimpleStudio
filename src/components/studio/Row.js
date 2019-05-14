@@ -91,6 +91,7 @@ class Music extends Component {
   // }
 
   componentDidMount(){
+
     const drum = new Tone.Players({
       "clap" : process.env.PUBLIC_URL + 'assets/CL.mp3'
 
