@@ -69,7 +69,9 @@ class Row extends Component {
       <div className="row-container">
         <div className="row-title"> {this.state.instrument} </div>
         {this.buildRow()}
-        <Music tone={this.state.tone} instrument={this.state.instrument} activate={this.lightCol}/>
+        {
+          this.state.instrument ? <Music tone={this.state.tone} instrument={this.state.instrument} activate={this.lightCol}/> : ""
+        }
 
       </div>
     )
@@ -86,27 +88,18 @@ class Music extends Component {
     }
   }
 
-  // obj{
-  //   snare: linkToSnare
-  // }
 
   componentDidMount(){
 
+    const link = process.env.PUBLIC_URL + 'assets/' + this.props.instrument + '.mp3';
     const drum = new Tone.Players({
-      "clap" : process.env.PUBLIC_URL + 'assets/CL.mp3'
-
-      // {this.props.instrument} : process.env.PUBLIC_URL + {obj[this.props.instrument]}
-    }, {
-      "volume" : -2,
-      "fadeOut" : "64n",
-      "autostart": true
+      [this.props.instrument] : link
     }).toMaster()
 
     const loop = new Tone.Sequence( (time, col) => {
-
       if(this.props.tone[col]){
 
-        drum.get('clap').start(time)
+        drum.get(this.props.instrument).start(time)
 
       }
 
@@ -127,7 +120,9 @@ class Music extends Component {
 
   componentDidUpdate(prevProps){
     if( prevProps.tone !== this.props.tone ) {
+      this.setState({
 
+      })
     }
   }
 
