@@ -65,19 +65,15 @@ class Music extends Component {
     }
   }
 
-  // obj{
-  //   snare: linkToSnare
-  // }
 
   componentDidMount(){
-    const drum = new Tone.Players({
-      "clap" : process.env.PUBLIC_URL + 'assets/CL.mp3'
+    const instrument = this.props.instrument;
+    const instrumentLink = process.env.PUBLIC_URL + 'assets/' + this.props.instrument + '.mp3' ;
 
-      // {this.props.instrument} : process.env.PUBLIC_URL + {obj[this.props.instrument]}
-    }, {
-      "volume" : -2,
-      "fadeOut" : "64n",
-      "autostart": true
+    const drum = new Tone.Players({
+      // "clap" : process.env.PUBLIC_URL + 'assets/BD.mp3'
+      // this.props.instrument : process.env.PUBLIC_URL + this.props.instrument + '.mp3
+      instrument : instrumentLink
     }).toMaster()
 
 
