@@ -94,6 +94,9 @@ class Music extends Component {
     const link = process.env.PUBLIC_URL + 'assets/' + this.props.instrument + '.mp3';
     const drum = new Tone.Players({
       [this.props.instrument] : link
+    }, {
+      // 'volume': -2,
+      // 'fadeOut': 1
     }).toMaster()
 
     const loop = new Tone.Sequence( (time, col) => {
@@ -106,7 +109,6 @@ class Music extends Component {
       Tone.Draw.schedule( () => {
         this.props.activate(col);
       }, time);
-
 
     }, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], '16n');
 
