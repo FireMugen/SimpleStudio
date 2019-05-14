@@ -38,6 +38,7 @@ class App extends Component {
         <NavBar />
 		    <Room />
         <Chat />
+
 		 </div>
 	 );
  }

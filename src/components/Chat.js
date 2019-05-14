@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../config/Fire';
+import chatbar from '../css/chatbar.scss'
+
 
 class ChatRoom extends Component {
     constructor(props, context){
@@ -61,14 +63,16 @@ class ChatRoom extends Component {
       })
 
     return(
-      <form onSubmit={this.submitMessage}>
-        <ol>
-          {currentMessage}
-        </ol>
-        <input value={this.state.message} onChange={this.updateMessage} type="text" placeholder="Message" />
-        <br />
-        <button type="submit" > Submit Message </button>
-      </form>
+      <div>
+        <form onSubmit={this.submitMessage}>
+          <ol>
+            {currentMessage}
+          </ol>
+          <input value={this.state.message} onChange={this.updateMessage} type="text" placeholder="Message" />
+          <br />
+          <button type="submit" > Submit Message </button>
+        </form>
+      </div>
     )
   }
 }
