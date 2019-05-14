@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fire from '../config/Fire';
 
 class ChatRoom extends Component {
     constructor(props, context){
@@ -7,11 +8,25 @@ class ChatRoom extends Component {
       this.submitMessage = this.submitMessage.bind(this)
       this.state = {
         message: '',
-        messages: [
-
-        ]
+        messages: []
       }
     }
+
+    componentDidMount(){
+      console.log('chat mounted');
+
+      fire.database().ref('messages/').on('value', (snapshot) =>{
+
+        const currentMessages = snapshot.val()
+
+        if (currentMessages != null){
+          this.setState({
+            messages: currentMessages
+          })
+        }
+      })
+    }
+
     updateMessage(e){
       this.setState({
         message: e.target.value
@@ -19,16 +34,23 @@ class ChatRoom extends Component {
     }
     submitMessage(e){
       console.log('submit '+ this.state.message);
+      e.preventDefault()
+
+
       const nextMessage = {
         id: this.state.messages.length,
         text: this.state.message
       }
-      var list = Object.assign([], this.state.messages)
 
-      list.push(nextMessage)
-      this.setState({
-        messages: list
-      })
+      fire.database().ref('messages/'+nextMessage.id).set(nextMessage)
+
+      this.setState({message: ''})
+      // var list = Object.assign([], this.state.messages)
+      //
+      // list.push(nextMessage)
+      // this.setState({
+      //   messages: list
+      // })
     }
 
     render(){
@@ -39,14 +61,14 @@ class ChatRoom extends Component {
       })
 
     return(
-      <div>
+      <form onSubmit={this.submitMessage}>
         <ol>
           {currentMessage}
         </ol>
-        <input onChange={this.updateMessage} type="text" placeholder="Message" />
+        <input value={this.state.message} onChange={this.updateMessage} type="text" placeholder="Message" />
         <br />
-        <button onClick={this.submitMessage}> Submit Message </button>
-      </div>
+        <button type="submit" > Submit Message </button>
+      </form>
     )
   }
 }
