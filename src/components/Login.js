@@ -11,8 +11,10 @@ class Login extends Component {
 		this.signup = this.signup.bind(this);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+			userName: '',
     };
+
   }
 
   handleChange(e) {
@@ -34,6 +36,7 @@ class Login extends Component {
 			console.log(error);
 		})
 }
+
 
 
 render() {
@@ -58,7 +61,9 @@ render() {
 				    <div>
 						<form className="sign-form">
 								<div>
+									<label className="label-form">User Name</label>
 									<br/>
+									<input className="input-pop" value={this.state.user} onChange={this.handleChange} type="email" name="user" placeholder="Create a user name" />
 									<label className="label-form">Email address</label>
 									<br/>
 									<input className="input-pop" value={this.state.email} onChange={this.handleChange} type="email" name="email" placeholder="Enter email" />
