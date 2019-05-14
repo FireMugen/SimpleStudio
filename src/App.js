@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import './App.scss';
+import './App.css';
 import fire from './config/Fire';
 import Room from './components/studio/Room';
-import Chat from './components/Chat'
+import Login from './compnents/Login'
+import Home from './components/Home'
 
 class App extends Component {
   constructor() {
@@ -32,8 +33,7 @@ class App extends Component {
   render() {
     return (
      <div className="App">
-		     <Room />
-         <Chat />
+		 	 	{this.state.user ? ( <Home />) : (<Login />)}
 		 </div>
 	 );
  }

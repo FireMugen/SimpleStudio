@@ -14,7 +14,6 @@ class Login extends Component {
       password: '',
 			userName: '',
     };
-
   }
 
   handleChange(e) {
@@ -23,7 +22,7 @@ class Login extends Component {
 
   login(e) {
     e.preventDefault();
-    fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{
+    fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{console.log(u.user.uid)
     }).catch((error) => {
         console.log(error);
       });
@@ -31,12 +30,15 @@ class Login extends Component {
 
 	signup(e){
 	e.preventDefault();
-	fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+	fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{console.log(u)
+	})
+	fire.firestore().collection('user').doc(this.state.userName).update({
+		
+	})
 	.catch((error) => {
 			console.log(error);
 		})
-}
-
+	}
 
 
 render() {
@@ -63,7 +65,7 @@ render() {
 								<div>
 									<label className="label-form">User Name</label>
 									<br/>
-									<input className="input-pop" value={this.state.user} onChange={this.handleChange} type="email" name="user" placeholder="Create a user name" />
+									<input className="input-pop" value={this.state.userName} onChange={this.handleChange} type="name" name="userName" placeholder="Create a user name" />
 									<label className="label-form">Email address</label>
 									<br/>
 									<input className="input-pop" value={this.state.email} onChange={this.handleChange} type="email" name="email" placeholder="Enter email" />
