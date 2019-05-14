@@ -1,5 +1,5 @@
-* {
-  background: teal;
+body {
+  background: white;
 }
 
 .row-container {
@@ -10,12 +10,12 @@
 .row-title {
   border: 2px solid black;
   padding: 1em;
-
+  width: 5%;
 
 }
 
 .row-tile {
-  width: 3em;
+  width: 2%;
   border: 1px solid black;
   align-items: center;
   padding: 1em;

@@ -17,7 +17,7 @@ class Home extends Component {
         return (
 					<div>
 					<NavBar />
-					<h1>You are home</h1>
+					<h1>Simple Studio</h1>
 					<button onClick={this.logout}>Logout</button>
 					</div>
 				);

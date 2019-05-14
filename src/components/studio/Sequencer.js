@@ -8,11 +8,13 @@ class Sequencer extends Component {
     super(props);
 
     this.state = {
-      id: "BnQqI1e27jB1icxaI47G",
-      // this.props.id
+      id: this.props.seqID,
       name: "",
       rows: []
     }
+
+    this.createRows = this.createRows.bind(this);
+
   }
 //this is a lifestyle function called after constructor
   componentDidMount(){
@@ -23,9 +25,6 @@ class Sequencer extends Component {
         name: snapshot.data().name,
         rows: snapshot.data().rows
       })
-
-      this.createRows = this.createRows.bind(this);
-
     })
   }
 
@@ -38,16 +37,11 @@ class Sequencer extends Component {
     return rows;
   }
 
-  _playMusic(){
-    Tone.Transport.toggle();
-  }
-
   render(){
     return(
       <div>
         <h3>{this.state.name}</h3>
         {this.createRows()}
-        <button onClick={this._playMusic}>Play</button>
       </div>
     )
   }

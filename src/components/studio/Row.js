@@ -8,8 +8,8 @@ class Row extends Component {
     super(props);
     this.state = {
       id: this.props.rowID,
-      key: '',
-      tone: [] // new Array(16).fill(null)
+      instrument: '',
+      tone: [] // new Array(16).fill()
     };
     this._updateTile = this._updateTile.bind(this)
 
@@ -17,9 +17,8 @@ class Row extends Component {
 
   componentDidMount(){
     fire.firestore().collection('row').doc(this.state.id).onSnapshot( (snapshot) => {
-      // console.log(snapshot.data().tone)
       this.setState({
-        key: snapshot.data().key,
+        instrument: snapshot.data().instrument,
         tone: snapshot.data().tone
       })
     })
@@ -29,7 +28,7 @@ class Row extends Component {
   buildRow() {
     const row = [];
       for (let i = 0; i < 16; i++) {
-        row.push(<div onClick={this._updateTile} id={i} key={i} className={this.state.tone[i] ? "selected row-tile" : "row-tile"}> {this.state.tone[i] ? "true" : "false"}</div>)
+        row.push(<div onClick={this._updateTile} id={i} key={i} className={this.state.tone[i] ? "selected row-tile" : "row-tile"}></div>)
       }
     return row
   }
@@ -48,46 +47,33 @@ class Row extends Component {
   render(){
     return(
       <div className="row-container">
-        <div className="row-title"> {this.state.key} </div>
+        <div className="row-title"> {this.state.instrument} </div>
         {this.buildRow()}
-        {this.state.tone.length > 0 ? <Music tone={this.state.tone} /> : ''}
+        <Music tone={this.state.tone} instrument={this.state.instrument}/>
 
       </div>
     )
   }
 }
 
-
 class Music extends Component {
   constructor(props){
     super(props);
 
-    this.state = {
-      loop: Array(16).fill(null)
+    this.state ={
+      loop: ""
     }
-
   }
 
+  // obj{
+  //   snare: linkToSnare
+  // }
+
   componentDidMount(){
-    // console.log(this.props.tone);
-    // const synth = new Tone.Synth().toMaster();
-    // const drum = new Tone.MembraneSynth().toMaster();
-
-    let tempArr = [];
-    for (var i = 0; i < 16; i++) {
-      tempArr.push(this.props.tone[i] ? "clap" : null);
-    }
-
-    console.log(tempArr)
-
-    this.setState({
-      loop: tempArr
-    })
-
-    // console.log(this.state.tonesToPlay)
-
     const drum = new Tone.Players({
-      "clap" : process.env.PUBLIC_URL + 'assets/CL808.wav',
+      "clap" : process.env.PUBLIC_URL + 'assets/CL.mp3'
+
+      // {this.props.instrument} : process.env.PUBLIC_URL + {obj[this.props.instrument]}
     }, {
       "volume" : -2,
       "fadeOut" : "64n",
@@ -95,21 +81,30 @@ class Music extends Component {
     }).toMaster()
 
 
-    let loop = new Tone.Sequence(function(time, note){
-      // drum.triggerAttackRelease(note, '8n', time);
+    const loop = new Tone.Sequence(function(time, note){
       drum.get(note).start(time)
-    }, this.state.loop, '8n')
-    console.log(this.state.loop);
+    }, new Array(16), '16n')
+
     loop.start(0);
+
+    this.setState({
+      loop: loop
+    })
 
   }
 
   componentDidUpdate(prevProps){
-    // if( prevProps.tone !== this.props.tone ) {
-    //   for (var i = 0; i < 16; i++) {
-    //     this.state.loop.at(i, (this.props.tone[i] ? "clap" : null));
-    //   }
-    // }
+    if( prevProps.tone !== this.props.tone ) {
+      console.log("yeah")
+      for (var i = 0; i < 16; i++) {
+        if (this.props.tone[i]){
+          this.state.loop.at(i, "clap");
+
+        }else{
+          this.state.loop.remove(i);
+        }
+      }
+    }
   }
 
   render(){
