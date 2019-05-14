@@ -3,6 +3,7 @@ import './App.scss';
 import fire from './config/Fire';
 import Room from './components/studio/Room';
 import Chat from './components/Chat'
+import NavBar from './components/NavBar'
 
 class App extends Component {
   constructor() {
@@ -32,8 +33,9 @@ class App extends Component {
   render() {
     return (
      <div className="App">
-		     <Room />
-         <Chat />
+        <NavBar />
+		    <Room />
+        <Chat />
 		 </div>
 	 );
  }
