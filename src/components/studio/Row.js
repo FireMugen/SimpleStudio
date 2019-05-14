@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../css/row.css'
+import '../../css/row.scss'
 import fire from '../../config/Fire'
 import Tone from 'tone'
 
