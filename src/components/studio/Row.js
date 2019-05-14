@@ -9,10 +9,12 @@ class Row extends Component {
     this.state = {
       id: this.props.rowID,
       instrument: '',
-      tone: [] // new Array(16).fill()
+      tone: [],
+      activeCol: -1
     };
     this._updateTile = this._updateTile.bind(this)
-
+    this._getClassNames = this._getClassNames.bind(this)
+    this.lightCol = this.lightCol.bind(this)
   }
 
   componentDidMount(){
@@ -28,9 +30,21 @@ class Row extends Component {
   buildRow() {
     const row = [];
       for (let i = 0; i < 16; i++) {
-        row.push(<div onClick={this._updateTile} id={i} key={i} className={this.state.tone[i] ? "selected row-tile" : "row-tile"}></div>)
+        row.push(<div onClick={this._updateTile} id={i} key={i} className={this._getClassNames(i)}></div>)
       }
     return row
+  }
+
+  _getClassNames(i){
+    let result = "row-tile"
+    if (this.state.tone[i]){
+       result += " selected"
+    }
+
+    if (i === this.state.activeCol ){
+      result += " active"
+    }
+    return result
   }
 
   _updateTile(e) {
@@ -44,12 +58,18 @@ class Row extends Component {
 
   }
 
+  lightCol(i){
+    this.setState({
+      activeCol: i
+    })
+  }
+
   render(){
     return(
       <div className="row-container">
         <div className="row-title"> {this.state.instrument} </div>
         {this.buildRow()}
-        <Music tone={this.state.tone} instrument={this.state.instrument}/>
+        <Music tone={this.state.tone} instrument={this.state.instrument} activate={this.lightCol}/>
 
       </div>
     )
@@ -61,7 +81,8 @@ class Music extends Component {
     super(props);
 
     this.state ={
-      loop: ""
+      loop: "",
+      play: []
     }
   }
 
@@ -80,10 +101,20 @@ class Music extends Component {
       "autostart": true
     }).toMaster();
 
+    const loop = new Tone.Sequence( (time, col) => {
 
-    const loop = new Tone.Sequence(function(time, note){
-      drum.get(note).start(time)
-    }, new Array(16), '16n')
+      if(this.props.tone[col]){
+
+        drum.get('clap').start(time)
+
+      }
+
+      Tone.Draw.schedule( () => {
+        this.props.activate(col);
+      }, time);
+
+
+    }, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], '16n');
 
     loop.start(0);
 
@@ -95,15 +126,7 @@ class Music extends Component {
 
   componentDidUpdate(prevProps){
     if( prevProps.tone !== this.props.tone ) {
-      console.log("yeah")
-      for (var i = 0; i < 16; i++) {
-        if (this.props.tone[i]){
-          this.state.loop.at(i, "clap");
 
-        }else{
-          this.state.loop.remove(i);
-        }
-      }
     }
   }
 

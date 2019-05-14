@@ -32,7 +32,7 @@ class Sequencer extends Component {
   createRows(){
     const rows = [];
     for (let i = 0; i < this.state.rows.length; i++ ){
-      rows.push( <Row rowID={this.state.rows[i]} /> )
+      rows.push( <Row key={i} rowID={this.state.rows[i]} /> )
     }
     return rows;
   }
