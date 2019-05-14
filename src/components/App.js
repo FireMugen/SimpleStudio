@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../App.scss';
 import fire from '../config/Fire';
 import Home from './Home';
 import Test from './Test';
@@ -22,7 +22,6 @@ class App extends Component {
 
   authListener() {
     fire.auth().onAuthStateChanged((user) => {
-
       if (user) {
         this.setState({ user });
         localStorage.setItem('user', user.uid);
