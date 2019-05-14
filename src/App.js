@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import fire from './config/Fire';
 import Room from './components/studio/Room';
+import Chat from './components/Chat'
 
 class App extends Component {
   constructor() {
@@ -32,6 +33,7 @@ class App extends Component {
     return (
      <div className="App">
 		     <Room />
+         <Chat />
 		 </div>
 	 );
  }
