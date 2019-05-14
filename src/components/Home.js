@@ -8,7 +8,6 @@ class Home extends Component {
         this.logout = this.logout.bind(this);
     }
 
-
     logout() {
         fire.auth().signOut();
     }
@@ -23,7 +22,6 @@ class Home extends Component {
 				);
 
 		}
-
 }
 
 export default Home;
