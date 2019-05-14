@@ -9,7 +9,7 @@ class Row extends Component {
     this.state = {
       id: this.props.rowID,
       key: '',
-      tone: [] // new Array(16).fill()
+      tone: [] // new Array(16).fill(null)
     };
     this._updateTile = this._updateTile.bind(this)
 
@@ -63,7 +63,7 @@ class Music extends Component {
     super(props);
 
     this.state = {
-      tonesToPlay: []
+      loop: Array(16).fill(null)
     }
 
   }
@@ -73,42 +73,43 @@ class Music extends Component {
     // const synth = new Tone.Synth().toMaster();
     // const drum = new Tone.MembraneSynth().toMaster();
 
-    const tempArr = [];
+    let tempArr = [];
     for (var i = 0; i < 16; i++) {
-
       tempArr.push(this.props.tone[i] ? "clap" : null);
     }
 
     console.log(tempArr)
 
     this.setState({
-      tonesToPlay: tempArr
+      loop: tempArr
     })
 
     // console.log(this.state.tonesToPlay)
 
-    // console.log(tonesToPlay);
     const drum = new Tone.Players({
       "clap" : process.env.PUBLIC_URL + 'assets/CL808.wav',
     }, {
       "volume" : -2,
       "fadeOut" : "64n",
       "autostart": true
-    }).toMaster();
+    }).toMaster()
 
-    // console.log(this.state.tonesToPlay);
 
-    const loop = new Tone.Sequence(function(time, note){
+    let loop = new Tone.Sequence(function(time, note){
       // drum.triggerAttackRelease(note, '8n', time);
       drum.get(note).start(time)
-    }, this.state.tonesToPlay, '8n')
-
+    }, this.state.loop, '8n')
+    console.log(this.state.loop);
     loop.start(0);
 
   }
 
   componentDidUpdate(prevProps){
-
+    // if( prevProps.tone !== this.props.tone ) {
+    //   for (var i = 0; i < 16; i++) {
+    //     this.state.loop.at(i, (this.props.tone[i] ? "clap" : null));
+    //   }
+    // }
   }
 
   render(){
