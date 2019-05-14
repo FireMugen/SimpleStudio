@@ -92,14 +92,14 @@ class Music extends Component {
 
   componentDidMount(){
     const drum = new Tone.Players({
-      "clap" : process.env.PUBLIC_URL + 'assets/CL808.wav'
+      "clap" : process.env.PUBLIC_URL + 'assets/CL.mp3'
 
       // {this.props.instrument} : process.env.PUBLIC_URL + {obj[this.props.instrument]}
     }, {
       "volume" : -2,
       "fadeOut" : "64n",
       "autostart": true
-    }).toMaster();
+    }).toMaster()
 
     const loop = new Tone.Sequence( (time, col) => {
 
