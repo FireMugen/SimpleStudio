@@ -8,7 +8,7 @@ class Row extends Component {
     super(props);
     this.state = {
       id: this.props.rowID,
-      key: '',
+      instrument: '',
       tone: [] // new Array(16).fill()
     };
     this._updateTile = this._updateTile.bind(this)
@@ -18,7 +18,7 @@ class Row extends Component {
   componentDidMount(){
     fire.firestore().collection('row').doc(this.state.id).onSnapshot( (snapshot) => {
       this.setState({
-        key: snapshot.data().key,
+        instrument: snapshot.data().instrument,
         tone: snapshot.data().tone
       })
     })
@@ -28,7 +28,7 @@ class Row extends Component {
   buildRow() {
     const row = [];
       for (let i = 0; i < 16; i++) {
-        row.push(<div onClick={this._updateTile} id={i} key={i} className={this.state.tone[i] ? "selected row-tile" : "row-tile"}> {this.state.tone[i] ? "true" : "false"}</div>)
+        row.push(<div onClick={this._updateTile} id={i} key={i} className={this.state.tone[i] ? "selected row-tile" : "row-tile"}></div>)
       }
     return row
   }
@@ -47,9 +47,9 @@ class Row extends Component {
   render(){
     return(
       <div className="row-container">
-        <div className="row-title"> {this.state.key} </div>
+        <div className="row-title"> {this.state.instrument} </div>
         {this.buildRow()}
-        <Music tone={this.state.tone} />
+        <Music tone={this.state.tone} instrument={this.state.instrument}/>
 
       </div>
     )
@@ -65,9 +65,15 @@ class Music extends Component {
     }
   }
 
+  // obj{
+  //   snare: linkToSnare
+  // }
+
   componentDidMount(){
     const drum = new Tone.Players({
       "clap" : process.env.PUBLIC_URL + 'assets/CL808.wav'
+
+      // {this.props.instrument} : process.env.PUBLIC_URL + {obj[this.props.instrument]}
     }, {
       "volume" : -2,
       "fadeOut" : "64n",
@@ -89,6 +95,7 @@ class Music extends Component {
 
   componentDidUpdate(prevProps){
     if( prevProps.tone !== this.props.tone ) {
+      console.log("yeah")
       for (var i = 0; i < 16; i++) {
         if (this.props.tone[i]){
           this.state.loop.at(i, "clap");
