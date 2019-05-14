@@ -8,8 +8,7 @@ class Sequencer extends Component {
     super(props);
 
     this.state = {
-      id: "BnQqI1e27jB1icxaI47G",
-      // this.props.id
+      id: this.props.seqID,
       name: "",
       rows: []
     }
@@ -38,16 +37,11 @@ class Sequencer extends Component {
     return rows;
   }
 
-  _playMusic(){
-    Tone.Transport.toggle();
-  }
-
   render(){
     return(
       <div>
         <h3>{this.state.name}</h3>
         {this.createRows()}
-        <button onClick={this._playMusic}>Play</button>
       </div>
     )
   }
