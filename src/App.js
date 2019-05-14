@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import fire from './config/Fire';
 import Room from './components/studio/Room';
 import Chat from './components/Chat'
 import NavBar from './components/NavBar'
-import Login from './compnents/Login'
+import Login from './components/Login'
 import Home from './components/Home'
 
 class App extends Component {
@@ -38,7 +38,6 @@ class App extends Component {
         <NavBar />
 		    <Room />
         <Chat />
-		 	 	{this.state.user ? ( <Home />) : (<Login />)}
 		 </div>
 	 );
  }
