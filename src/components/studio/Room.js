@@ -9,9 +9,9 @@ class Room extends Component {
   constructor(props){
     super(props);
 
-    //this.props.match.params.room
+
     this.state = {
-      id: "uNq7WsGborkMcbU6mxow",
+      id: this.props.match.params.room,
       name: "",
       sequencers: [],
       transport: false,
@@ -83,6 +83,7 @@ class Room extends Component {
   render(){
     return(
       <div>
+        <NavBar />
         <div className="slidecontainer">
         <h1>{this.state.name}</h1>
           {
@@ -95,6 +96,7 @@ class Room extends Component {
         <div>
         </div>
         {this.createSequences()}
+        <Chat />
       </div>
     )
   }
