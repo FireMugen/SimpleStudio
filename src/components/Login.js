@@ -40,7 +40,6 @@ class Login extends Component {
 
 	signup(e){
 	e.preventDefault();
-<<<<<<< HEAD
 	fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(
   	(data)=>{
 			const { user } = data
@@ -49,15 +48,6 @@ class Login extends Component {
          displayName: this.state.userName
       }).then(function() {
 			console.log(user.displayName);
-=======
-	fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{console.log(u)
-	})
-	fire.firestore().collection('user').doc(this.state.userName).update({
-
-	})
-	.catch((error) => {
-			console.log(error);
->>>>>>> d4bf0944e47f629a3d37486e592b37e9039b8a14
 		})
     }
 }).catch((error) => {
@@ -68,11 +58,7 @@ class Login extends Component {
 
 render() {
 	return (
-<<<<<<< HEAD
 		<div className="background">
-=======
-		<div className="loginContainer">
->>>>>>> d4bf0944e47f629a3d37486e592b37e9039b8a14
 			<h1 className="title">Simple Studio</h1>
 		 	<form className="sign-form">
 				<div>
