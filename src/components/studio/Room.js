@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import fire from '../../config/Fire'
 import Tone from 'tone'
 import Sequencer from './Sequencer'
@@ -9,16 +10,15 @@ class Room extends Component {
   constructor(props){
     super(props);
 
-
     this.state = {
       id: this.props.match.params.room,
       name: "",
       sequencers: [],
       transport: false,
       tempo: '',
+      exists: true
     }
 
-    console.log(this.state.tempo);
     this.createSequences = this.createSequences.bind(this);
     this._playMusic = this._playMusic.bind(this);
     this._changeTempo = this._changeTempo.bind(this);
@@ -28,11 +28,21 @@ class Room extends Component {
   componentDidMount(){
     //gets database and returns as snapshot (only once, no need to update)
     fire.firestore().collection('room').doc(this.state.id).get().then( (snapshot) => {
-      this.setState({
-        name: snapshot.data().name,
-        sequencers: snapshot.data().sequencers,
-        tempo: snapshot.data().tempo
-      })
+      if(!snapshot.exists){
+        
+        this.setState({
+            exists: false
+        })
+
+      }else{
+
+        this.setState({
+          name: snapshot.data().name,
+          sequencers: snapshot.data().sequencers,
+          tempo: snapshot.data().tempo
+        })
+
+      }
     })
   }
 
@@ -81,6 +91,10 @@ class Room extends Component {
   }
 
   render(){
+    if(!this.state.exists){
+      return <Redirect to='/' />
+    }
+
     return(
       <div>
         <NavBar />
