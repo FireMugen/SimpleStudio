@@ -110,7 +110,7 @@ class Room extends Component {
         <div>
         </div>
         {this.createSequences()}
-        <Chat />
+        <Chat roomID={this.state.id}/>
       </div>
     )
   }

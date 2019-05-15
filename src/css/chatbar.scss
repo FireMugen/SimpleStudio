@@ -1,25 +1,22 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 .chat-bar {
   font-size: 18px;
   padding-bottom: 10px;
   position: fixed;
   right: 0;
   top: 0;
-  background-color: grey;
+  background-color: #DFE0DC;
   height: 100vw;
 }
 .main-chat {
   list-style-type: none;
   text-align: left;
-  margin-top: 5em;
-  list-style-type: none;
   display: none;
   width: 15vw;
+}
+
+.active {
+  display: block;
+  border: none;
 }
 
 .chat-input {
@@ -29,9 +26,10 @@
   margin: 0 auto;
   position: fixed;
   right: 10px;
-  bottom: 5px;
+  bottom:15px;
   color: black;
   text-align: left;
+  border-radius: 0.5em;
 }
 
 .chatbar-toggle {
@@ -41,19 +39,27 @@
   cursor: pointer;
   color: rgba(255,255,255,0.8);
   font-size: 24px;
+  z-index: 1;
 }
 
 ol {
 list-style-type: none;
 overflow-y: scroll;
-border: 1px solid rgba(5, 0, 0, 0.2);
-height: 85vh;
+// border: 1px solid rgba(5, 0, 0, 0.2);
+margin-top: 7vh;
+margin-bottom: 6vh;
+max-height: 80vh;
+position: fixed;
+right: 5px;
+padding-left: 0.5em;
+background: white;
+border-bottom: 1px solid black;
+border-top: 1px solid black;
+padding-bottom: 1em;
+width: 14vw;
 }
+
 
 .chat-messages {
   color: black;
-}
-
-.active {
-  display: block;
 }
