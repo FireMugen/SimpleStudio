@@ -19,11 +19,21 @@
   margin-top: 5em;
   list-style-type: none;
   display: none;
+  width: 15vw;
+  height: 100vw;
 }
+
+.chat-input {
+  text-align: center;
+  width: 13vw;
+  height: 5vw;
+  margin: 0 auto;
+}
+
 .chatbar-toggle {
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 36px;
+  right: 36px;
   cursor: pointer;
   color: rgba(255,255,255,0.8);
   font-size: 24px;
@@ -31,7 +41,6 @@
 
 ol {
 list-style-type: none;
-
 }
 
 .chat-messages {

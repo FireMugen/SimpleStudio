@@ -63,6 +63,13 @@ class ChatRoom extends Component {
       })
     }
 
+    handleOnKeyDown = (e) => {
+      if (e.key === 'Escape') {
+          console.log('hi');
+          e.preventDefault();
+      }
+    }
+
     render(){
       const currentMessage = this.state.messages.map((message, i) => {
         return (
@@ -74,15 +81,15 @@ class ChatRoom extends Component {
     return(
       <div className="chat-bar">
         <span class="chatbar-toggle" onClick={this.chatToggle}>
-            <div className="chat-bar-logo">##</div>
+          <div className="chat-bar-logo">##</div>
         </span>
         <form className={`main-chat ${menuVis}`} onSubmit={this.submitMessage}>
           <ol>
             <div className="chat-messages">{currentMessage}</div>
           </ol>
-          <input value={this.state.message} onChange={this.updateMessage} type="text" placeholder="Message" />
+          <input value={this.state.message} onChange={this.updateMessage} type="text" placeholder="Message" class="chat-input"/>
           <br />
-          <button type="submit" > Submit Message </button>
+          <button type="submit"> Submit Message </button>
         </form>
       </div>
     )
