@@ -15,7 +15,7 @@ class ChatRoom extends Component {
         messages: [],
         showMenu: false,
         userName: user.displayName
-        roomID: '2IFPaXO6yFMXaeP8TmkJ'
+        // roomID: '2IFPaXO6yFMXaeP8TmkJ'
 
         //a room state needs to be added.
       }
