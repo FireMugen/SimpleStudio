@@ -22,13 +22,12 @@ class Room extends Component {
     this.createSequences = this.createSequences.bind(this);
     this._playMusic = this._playMusic.bind(this);
     this._changeTempo = this._changeTempo.bind(this);
-    this._updateTempo = this._updateTempo.bind(this);
   }
+
   //this is a lifestyle function called after constructor
   componentDidMount(){
     //gets database and returns as snapshot (only once, no need to update)
     fire.firestore().collection('room').doc(this.state.id).get().then( (snapshot) => {
-
       this.setState({
         name: snapshot.data().name,
         sequencers: snapshot.data().sequencers,
@@ -55,10 +54,9 @@ class Room extends Component {
   }
 
   _changeTempo(e){
-    Tone.Transport.bpm.value = e.target.value;
+    Tone.Transport.bpm.value = this.state.tempo;
 
-    let newTempo = this.state.tempo;
-    newTempo = e.target.value;
+    let newTempo = e.target.value;
 
     this.setState({
       tempo: newTempo
@@ -66,41 +64,37 @@ class Room extends Component {
 
     console.log(e.target.value);
 
+    const updateTempo = () => {
+      fire.firestore().collection('room').doc(this.state.id).update({
+        tempo: this.state.tempo
+      })
+      // .then( (snapshot) => {
+      //   this.setState({
+      //     tempo: snapshot.data().tempo
+      //   })
+      // })
+    }
 
+    clearTimeout(this.time);
 
-  }
-
-  _updateTempo() {
-    console.log('tempo change');
-
-    // const changeTempo = this.state.tone.slice()
-
-    // changeTempo[e.target.tempo] = !changeTempo[e.target.tempo]
-    //
-    // //push tempo change to firebase
-    // fire.firestore().collection('room').doc(this.state.tempo).update({
-    //   tempo: changeTempo
-    // })
-
+    this.time = setTimeout(updateTempo, 1000);
   }
 
   render(){
     return(
-      <div className="roomBackground">
-        <NavBar />
-        <h1>{this.state.name}</h1>
-        {this.createSequences()}
+      <div>
         <div className="slidecontainer">
-          <input type="range" min="60" max="180" id='bpm' value={this.state.tempo} onChange={this._changeTempo} onKeyUp={this._updateTempo} className="slider"/>
-        </div>
-        <p>Tempo: {this.state.tempo}</p>
-        <div>
+        <h1>{this.state.name}</h1>
           {
             this.state.transport ?
             <button className="transport" onClick={this._playMusic}>◼</button> : <button className="transport" onClick={this._playMusic}>▶</button>
           }
+          <p className="tempo">Tempo: {this.state.tempo} bpm</p>
+          <input type="range" min="60" max="180" id='bpm' value={this.state.tempo} onChange={this._changeTempo} className="slider"/>
         </div>
-        <Chat />
+        <div>
+        </div>
+        {this.createSequences()}
       </div>
     )
   }
