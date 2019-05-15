@@ -10,7 +10,8 @@ class ChatRoom extends Component {
       this.submitMessage = this.submitMessage.bind(this)
       this.state = {
         message: '',
-        messages: []
+        messages: [],
+        showMenu: false
       }
     }
 
@@ -57,7 +58,9 @@ class ChatRoom extends Component {
     // });
 
     chatToggle = () => {
-      console.log("hi");
+      this.setState({
+        showMenu: !this.state.showMenu
+      })
     }
 
     render(){
@@ -66,13 +69,14 @@ class ChatRoom extends Component {
           <li key={message.id}>{message.text}</li>
         )
       })
+      const menuVis = this.state.showMenu ? 'active' : '';
 
     return(
       <div className="chat-bar">
-        <span class="chatbar-toggle" id="js-chatbar-toggle" onClick={this.chatToggle}>
+        <span class="chatbar-toggle" onClick={this.chatToggle}>
             <div className="chat-bar-logo">##</div>
         </span>
-        <form className="main-chat" onSubmit={this.submitMessage}>
+        <form className={`main-chat ${menuVis}`} onSubmit={this.submitMessage}>
           <ol>
             <div className="chat-messages">{currentMessage}</div>
           </ol>
