@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import fire from './config/Fire';
 import Room from './components/studio/Room';
-import Login from './compnents/Login'
+import Login from './components/Login'
 import Home from './components/Home'
 
 class App extends Component {
