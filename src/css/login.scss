@@ -1,3 +1,16 @@
+$backgroundcolour: #DFE0DC;
+
+body {
+	height: 100%;
+}
+
+//change the h1s in popup
+
+.background {
+	background-color: $backgroundcolour;
+	height: 700px;
+}
+
 .sign-form {
 	padding: 10px;
 }
@@ -6,24 +19,22 @@
 	padding: 10px;
 	margin: 5px;
 	width: 300px;
-}
-
-.loginContainer {
-	background-image: url('../assets/waveform.jpg');
-	background-size: cover;
-	background-size: cover;
+	color: black;
 }
 
 .input {
 	padding: 5px;
 	margin: 5px;
 	width: 300px;
+	color: black;
 }
 
 .button {
 	padding: 10px;
 	width: 100px;
 	margin: 5px;
+	background-color: darkgray;
+	border-radius: 10%;
 }
 
 .popup-box {
@@ -32,16 +43,20 @@
 }
 
 .title {
-	color: white;
+	color: black;
 }
 
 .popup-box-content{
 	width: 250px !important;
-	height: 235px !important;
+	height: 260px !important;
 }
 
 .input-pop {
 		padding: 5px;
 		margin: 5px;
 		width: 170px;
+}
+
+.mrow {
+	color: black;
 }
