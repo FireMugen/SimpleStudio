@@ -16,7 +16,7 @@ class Sequencer extends Component {
     this.createRows = this.createRows.bind(this);
 
   }
-//this is a lifestyle function called after constructor
+  //this is a lifestyle function called after constructor
   componentDidMount(){
     //gets database and returns as snapshot (only once, no need to update)
     fire.firestore().collection('sequencer').doc(this.state.id).get().then( (snapshot) => {
