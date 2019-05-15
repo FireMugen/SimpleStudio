@@ -10,7 +10,8 @@ class Sequencer extends Component {
     this.state = {
       id: this.props.seqID,
       name: "",
-      rows: []
+      rows: [],
+      synth: false
     }
 
     this.createRows = this.createRows.bind(this);
@@ -20,21 +21,44 @@ class Sequencer extends Component {
   componentDidMount(){
     //gets database and returns as snapshot (only once, no need to update)
     fire.firestore().collection('sequencer').doc(this.state.id).get().then( (snapshot) => {
-
-      this.setState({
-        name: snapshot.data().name,
-        rows: snapshot.data().rows
-      })
+      if( snapshot.present ){
+        this.setState({
+          name: snapshot.data().name,
+          rows: snapshot.data().rows,
+          isSynth: false
+        })
+      }else{
+        fire.firestore().collection('synthesiser').doc(this.state.id).get().then( (snapshot) => {
+          const data = snapshot.data();
+          this.setState({
+            name: data.name,
+            rows: [
+              data.row0,
+              data.row1,
+              data.row2,
+              data.row3,
+              data.row4,
+              data.row5,
+              data.row6
+            ],
+            isSynth: true
+          })
+        })
+      }
     })
   }
 
   //helper function to create the sequencer rows based off ID.
   createRows(){
-    const rows = [];
-    for (let i = 0; i < this.state.rows.length; i++ ){
-      rows.push( <Row key={i} rowID={this.state.rows[i]} /> )
+    if(this.state.isSynth){
+      return <Synthesiser synthID={this.state.id} rows={this.state.rows}/>
+    }else{
+      const rows = [];
+      for (let i = 0; i < this.state.rows.length; i++ ){
+        rows.push( <Row key={i} rowID={this.state.rows[i]} /> )
+      }
+      return rows;
     }
-    return rows;
   }
 
   render(){

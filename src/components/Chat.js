@@ -9,17 +9,21 @@ class ChatRoom extends Component {
       super(props, context);
       this.updateMessage = this.updateMessage.bind(this)
       this.submitMessage = this.submitMessage.bind(this)
+      const user = fire.auth().currentUser;
       this.state = {
         message: '',
         messages: [],
-        showMenu: false
+        showMenu: false,
+        userName: user.displayName,
+        //a room state needs to be added.
+        roomID: this.props.roomID
+
       }
     }
 
     componentDidMount(){
-      console.log('chat mounted');
-
-      fire.database().ref('messages/').on('value', (snapshot) =>{
+      //messages needs to be turned into a variable based off room name.
+      fire.database().ref(`${this.state.roomID}/`).on('value', (snapshot) =>{
 
         const currentMessages = snapshot.val()
 
@@ -38,26 +42,19 @@ class ChatRoom extends Component {
       })
     }
     submitMessage(e){
-      console.log('submit '+ this.state.message);
       e.preventDefault()
-
 
       const nextMessage = {
         id: this.state.messages.length,
-        text: this.state.message
+        text: this.state.message,
+        user: this.state.userName
       }
 
-      fire.database().ref('messages/'+nextMessage.id).set(nextMessage)
+      //messages needs to be updated to include room id ie room state
+      fire.database().ref(`${this.state.roomID}/`+nextMessage.id).set(nextMessage)
 
       this.setState({message: ''})
     }
-
-    // mainNav = document.getElementById('js-menu');
-    // navBarToggle = document.getElementById('js-navbar-toggle');
-    // navBarToggle.addEventListener('click', function () {
-    //
-    //   mainNav.classList.toggle('active');
-    // });
 
     chatToggle = () => {
       this.setState({
@@ -65,27 +62,20 @@ class ChatRoom extends Component {
       })
     }
 
-    handleOnKeyDown = (e) => {
-      if (e.key === 'Escape') {
-          console.log('hi');
-          e.preventDefault();
-      }
-    }
-
     render(){
-      const currentMessage = this.state.messages.map((message, i) => {
+      const currentMessage = this.state.messages.map((message, i, user) => {
         return (
-          <li key={message.id}>{message.text}</li>
+          <li key={message.id}>{message.user}: {message.text}</li>
         )
       })
-      const menuVis = this.state.showMenu ? 'active' : '';
+      const chatVis = this.state.showMenu ? 'active' : '';
 
     return(
       <div className="chat-bar">
         <span class="chatbar-toggle" onClick={this.chatToggle}>
           <div className="chat-bar-logo">💬</div>
         </span>
-        <form className={`main-chat ${menuVis}`} onSubmit={this.submitMessage}>
+        <form className={`main-chat ${chatVis}`} onSubmit={this.submitMessage}>
           <ol>
             <ScrollableFeed forceScroll='true'>
               {currentMessage}

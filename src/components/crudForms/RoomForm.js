@@ -42,7 +42,7 @@ class RoomForm extends Component {
     }
 
     const rows = [];
-    const userID = localStorage.getItem('user');
+    const userID = fire.auth().currentUser.uid;
     const password = this.getPassword();
     const roomName = this.state.roomName;
 
@@ -77,16 +77,28 @@ class RoomForm extends Component {
             sequencers: [result.id],
             password: password
 
+          }).then( (result) => {
+
+            const roomID = result.id;
+            fire.firestore().collection('user').doc(userID).get().then( (result) => {
+
+              const roomArr = result.data().rooms.slice();
+              roomArr.push( roomID );
+
+              fire.firestore().collection('user').doc(userID).update({
+                rooms: roomArr
+            })
           })
         })
       })
+
+    })
 
     this.setState({
       roomName: "",
       sequName: "",
       selectedRows: false
     })
-
   }
 
   render(){
