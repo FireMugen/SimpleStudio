@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Row from './Row'
 import fire from '../../config/Fire'
-import Tone from 'tone'
+// import Tone from 'tone'
 
 class Sequencer extends Component {
   constructor(props){
@@ -46,7 +46,5 @@ class Sequencer extends Component {
     )
   }
 };
-
-
 
 export default Sequencer;

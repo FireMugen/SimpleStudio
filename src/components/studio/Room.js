@@ -9,7 +9,6 @@ class Room extends Component {
   constructor(props){
     super(props);
 
-
     this.state = {
       id: this.props.match.params.room,
       name: "",
@@ -31,6 +30,11 @@ class Room extends Component {
       this.setState({
         name: snapshot.data().name,
         sequencers: snapshot.data().sequencers,
+        tempo: snapshot.data().tempo
+      })
+    })
+    fire.firestore().collection('room').doc(this.state.id).onSnapshot( (snapshot) => {
+      this.setState({
         tempo: snapshot.data().tempo
       })
     })
@@ -67,12 +71,7 @@ class Room extends Component {
     const updateTempo = () => {
       fire.firestore().collection('room').doc(this.state.id).update({
         tempo: this.state.tempo
-      })
-      // .then( (snapshot) => {
-      //   this.setState({
-      //     tempo: snapshot.data().tempo
-      //   })
-      // })
+      });
     }
 
     clearTimeout(this.time);

@@ -12,6 +12,7 @@
     "react-scripts": "3.0.1",
     "react-scrollable-feed": "^1.0.3",
     "reactjs-popup": "^1.4.0",
+    "tonal": "^2.2.2",
     "tone": "^13.4.9"
   },
   "scripts": {
