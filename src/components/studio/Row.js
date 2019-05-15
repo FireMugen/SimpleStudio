@@ -121,14 +121,6 @@ class Music extends Component {
 
   }
 
-  componentDidUpdate(prevProps){
-    if( prevProps.tone !== this.props.tone ) {
-      this.setState({
-
-      })
-    }
-  }
-
   render(){
     return(
       <div />
