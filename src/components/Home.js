@@ -34,6 +34,7 @@ class Home extends Component {
 					<button class="box-button">Spectate</button>
 					<br/>
 					<div><aside><RoomForm /></aside></div>
+					<div><aside><JoinRoom /></aside></div>
 					<button onClick={this.logout} className="button">Logout</button>
 					</div>
 

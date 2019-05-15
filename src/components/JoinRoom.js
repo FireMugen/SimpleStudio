@@ -3,17 +3,23 @@ import { Redirect } from 'react-router-dom'
 import fire from '../config/Fire';
 
 class JoinRoom extends Component{
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
+
+    const user = fire.auth().currentUser;
+
     this.state = {
       roomName : "",
       password: "",
-      redirectLink: ""
+      redirectLink: "",
+      uid: user.uid
     }
 
     this._handleName = this._handleName.bind(this);
     this._handlePassword = this._handlePassword.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
+    this.joinRoom = this.joinRoom.bind(this);
+
   }
 
   _handleName(e){
@@ -45,14 +51,14 @@ class JoinRoom extends Component{
   }
 
   joinRoom(id, collab){
-    const userID = localStorage.getItem('user');
+    const userID = this.state.uid
 
     if(collab.includes(userID)){
 
       this.setState({
         redirectLink: id
       });
-      
+
       return;
 
     }
@@ -64,9 +70,17 @@ class JoinRoom extends Component{
     fire.firestore().collection('room').doc(id).update({
       collaborators : newCollabs
     }).then( () => {
-      this.setState({
-        redirectLink: id
-      })
+
+        fire.firestore().collection('user').doc(userID).get().then( (result) => {
+
+          const roomArr = result.data().rooms.slice();
+          roomArr.push( id );
+
+          fire.firestore().collection('user').doc(userID).update({
+            rooms: roomArr
+          })
+        })
+
     })
   }
 
