@@ -96,7 +96,7 @@ class RoomForm extends Component {
             <input type="text" onChange={this._handleName} value={this.state.roomName}/>
             <label>Starting Sequencer</label>
             <SequencerForm sequenceSelect={this._handleSequ} />
-            <input type="submit" />
+            <input type="submit" value="Create Room"/>
           </form>
        </div>
     )

@@ -38,9 +38,15 @@ class Routes extends Component{
     return (
       <Router>
         <div>
-          <Route exact path='/' component={this.state.user ? Home : Login } />
-          <Route path='/:room' component={ Room } />
-
+          {
+            !this.state.user ? <Switch>
+              <Route exact path='/' component={ Login } />,
+              <Redirect from='/:room' to='/' />
+            </Switch> : <Switch>
+              <Route exact path='/' component={ Home } />,
+              <Route path='/:room' component={ Room } />
+            </Switch>
+          }
         </div>
       </Router>
    );
