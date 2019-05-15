@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../config/Fire';
+import chatbar from '../css/chatbar.scss'
+
 
 class ChatRoom extends Component {
     constructor(props, context){
@@ -8,7 +10,8 @@ class ChatRoom extends Component {
       this.submitMessage = this.submitMessage.bind(this)
       this.state = {
         message: '',
-        messages: []
+        messages: [],
+        showMenu: false
       }
     }
 
@@ -45,12 +48,26 @@ class ChatRoom extends Component {
       fire.database().ref('messages/'+nextMessage.id).set(nextMessage)
 
       this.setState({message: ''})
-      // var list = Object.assign([], this.state.messages)
-      //
-      // list.push(nextMessage)
-      // this.setState({
-      //   messages: list
-      // })
+    }
+
+    // mainNav = document.getElementById('js-menu');
+    // navBarToggle = document.getElementById('js-navbar-toggle');
+    // navBarToggle.addEventListener('click', function () {
+    //
+    //   mainNav.classList.toggle('active');
+    // });
+
+    chatToggle = () => {
+      this.setState({
+        showMenu: !this.state.showMenu
+      })
+    }
+
+    handleOnKeyDown = (e) => {
+      if (e.key === 'Escape') {
+          console.log('hi');
+          e.preventDefault();
+      }
     }
 
     render(){
@@ -59,16 +76,22 @@ class ChatRoom extends Component {
           <li key={message.id}>{message.text}</li>
         )
       })
+      const menuVis = this.state.showMenu ? 'active' : '';
 
     return(
-      <form onSubmit={this.submitMessage}>
-        <ol>
-          {currentMessage}
-        </ol>
-        <input value={this.state.message} onChange={this.updateMessage} type="text" placeholder="Message" />
-        <br />
-        <button type="submit" > Submit Message </button>
-      </form>
+      <div className="chat-bar">
+        <span class="chatbar-toggle" onClick={this.chatToggle}>
+          <div className="chat-bar-logo">##</div>
+        </span>
+        <form className={`main-chat ${menuVis}`} onSubmit={this.submitMessage}>
+          <ol>
+            <div className="chat-messages">{currentMessage}</div>
+          </ol>
+          <input value={this.state.message} onChange={this.updateMessage} type="text" placeholder="Message" class="chat-input"/>
+          <br />
+          <button type="submit"> Submit Message </button>
+        </form>
+      </div>
     )
   }
 }

@@ -20,10 +20,9 @@ class Home extends Component {
         fire.auth().signOut();
     }
 
-
     render() {
         return (
-					<div>
+					<div className="background">
 					<NavBar />
 					<h1 className="mrow">Simple Studio</h1>
 					<h2 className="mrow">Welcome &nbsp;{this.state.userName}</h2>
@@ -31,7 +30,6 @@ class Home extends Component {
 					<button onClick={this.logout}>Logout</button>
 					</div>
 				);
-
 		}
 }
 

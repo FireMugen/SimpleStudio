@@ -4,7 +4,6 @@ import fire from '../config/Fire';
 import '../css/login.scss'
 
 
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +18,13 @@ class Login extends Component {
     };
   }
 
+	mrow(m){
+	fire.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log(user)
+  }
+});
+}
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -52,7 +58,7 @@ class Login extends Component {
 
 render() {
 	return (
-		<div>
+		<div className="background">
 			<h1 className="title">Simple Studio</h1>
 		 	<form className="sign-form">
 				<div>
@@ -80,9 +86,9 @@ render() {
 									<input className="input-pop" value={this.state.email} onChange={this.handleChange} type="email" name="email" placeholder="Enter email" />
 								</div>
 								<div>
-									<label>Password</label>
+									<label className="label-form">Password</label>
 									<br/>
-									<input className="input-pop" value={this.state.password} onChange={this.handleChange} type="password" name="password" 	placeholder="Password" />
+									<input className="input-pop" value={this.state.password} onChange={this.handleChange} type="password" name="password"	placeholder="Password" />
 								</div>
 									<br/>
 									<button className="button" onClick={this.signup}>Sign Up</button>
