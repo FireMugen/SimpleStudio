@@ -8,7 +8,9 @@
     "react": "^16.8.6",
     "react-burger-menu": "^2.6.10",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
+    "react-scrollable-feed": "^1.0.3",
     "reactjs-popup": "^1.4.0",
     "tone": "^13.4.9"
   },

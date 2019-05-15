@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../config/Fire';
 import chatbar from '../css/chatbar.scss'
+import ScrollableFeed from 'react-scrollable-feed'
 
 
 class ChatRoom extends Component {
@@ -26,6 +27,7 @@ class ChatRoom extends Component {
           this.setState({
             messages: currentMessages
           })
+
         }
       })
     }
@@ -81,13 +83,15 @@ class ChatRoom extends Component {
     return(
       <div className="chat-bar">
         <span class="chatbar-toggle" onClick={this.chatToggle}>
-          <div className="chat-bar-logo">##</div>
+          <div className="chat-bar-logo">💬</div>
         </span>
         <form className={`main-chat ${menuVis}`} onSubmit={this.submitMessage}>
           <ol>
-            <div className="chat-messages">{currentMessage}</div>
+            <ScrollableFeed forceScroll='true'>
+              {currentMessage}
+            </ScrollableFeed>
           </ol>
-          <input value={this.state.message} onChange={this.updateMessage} type="text" placeholder="Message" class="chat-input"/>
+          <input value={this.state.message} onChange={this.updateMessage} type="text" placeholder="Send Message to Room" className="chat-input"/>
           <br />
         </form>
       </div>

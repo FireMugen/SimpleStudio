@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import fire from '../../config/Fire'
 import Tone from 'tone'
 import Sequencer from './Sequencer'
+import Chat from '../Chat'
+import NavBar from '../NavBar'
 
 class Room extends Component {
   constructor(props){
     super(props);
 
+    //this.props.match.params.room
     this.state = {
       id: "uNq7WsGborkMcbU6mxow",
       name: "",
@@ -14,6 +17,7 @@ class Room extends Component {
       transport: false,
       tempo: '',
     }
+
     console.log(this.state.tempo);
     this.createSequences = this.createSequences.bind(this);
     this._playMusic = this._playMusic.bind(this);
@@ -83,6 +87,7 @@ class Room extends Component {
   render(){
     return(
       <div className="roomBackground">
+        <NavBar />
         <h1>{this.state.name}</h1>
         {this.createSequences()}
         <div className="slidecontainer">
@@ -95,6 +100,7 @@ class Room extends Component {
             <button className="transport" onClick={this._playMusic}>◼</button> : <button className="transport" onClick={this._playMusic}>▶</button>
           }
         </div>
+        <Chat />
       </div>
     )
   }
