@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fire from '../config/Fire';
 import NavBar from './NavBar'
 import Room from './studio/Room'
+import RoomForm from './crudStuffTemp/RoomForm'
 import '../css/login.scss'
 
 
@@ -23,11 +24,16 @@ class Home extends Component {
     render() {
         return (
 					<div className="background">
-					<NavBar />
 					<h1 className="mrow">Simple Studio</h1>
+					<br/>
 					<h2 className="mrow">Welcome &nbsp;{this.state.userName}</h2>
-					<h2 className="mrow">Email: &nbsp;{this.state.email}</h2>
-					<button onClick={this.logout}>Logout</button>
+					<br/>
+					<button class="box-button">Create Room</button>
+					<button class="box-button">Join Room</button>
+					<button class="box-button">Spectate</button>
+					<br/>
+					<div><aside><RoomForm /></aside></div>
+					<button onClick={this.logout} className="button">Logout</button>
 					</div>
 				);
 		}
