@@ -44,6 +44,7 @@ class RoomForm extends Component {
     const rows = [];
     const userID = localStorage.getItem('user');
     const password = this.getPassword();
+    const roomName = this.state.roomName;
 
     // WHYYYYYYYY?????
     Promise.all(this.state.selectedRows.map( async(instrument) => {
@@ -70,7 +71,7 @@ class RoomForm extends Component {
 
 
           fire.firestore().collection('room').add({
-            name: this.state.roomName,
+            name: roomName,
             tempo: 90,
             collaborators: [userID],
             sequencers: [result.id],

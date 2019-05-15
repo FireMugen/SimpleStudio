@@ -1,31 +1,22 @@
 $backgroundcolour: #DFE0DC;
 $bordercolour: darkgrey;
 
-// button {
-//   border-radius: 1em;
-//   width: 2%;
-//   align-items: center;
-//   padding: 1em;
-// }
-//
-// button:hover {
-//   background-color: #4CAF50; /* Green */
-//   color: white;
-//   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.24), 0 7px 5px 0 rgba(0,0,0,0.19);
-// }
 .slidecontainer {
   width: 100%;
+  text-align: center;
   flex-grow: 1;
+  p {
+    display: inline;
+    font-weight: 400;
+  }
 }
 
 .slider {
-  margin-top: 20px;
-  // display: flex;
-  // align-items: right;
-  -webkit-appearance: none; /* Override default look */
+  margin: 20px;
+  display: inline;
+  -webkit-appearance: none;
   appearance: none;
-  width: 65%;
-  // width: 100%;
+  width: 28%;
   height: 5px;
   background-color: $backgroundcolour;
 }
@@ -44,28 +35,31 @@ $bordercolour: darkgrey;
 }
 
 .transport {
-  margin: 5px;
+  margin: 16px;
 	background-color:$backgroundcolour;
-	-moz-border-radius:12px;
-	-webkit-border-radius:12px;
-	border-radius:13px;
-	border:2px solid $bordercolour;
-	display:inline-block;
-	cursor:pointer;
+	border:1px solid $bordercolour;
+	display:inline;
+	cursor: pointer;
 	color: black;
 	font-family:Arial;
 	font-size:20px;
 	font-weight:bold;
-	padding:18px 31px;
+	padding:10px 20px;
+  width: 5%;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #2b665e;
 }
 .transport:hover {
 	background-color:#01FDF6;
 }
+
+.transport:focus {
+  outline: none;
+}
+
 .transport:active {
 	position:relative;
-	top:1px;
+	top: 1px;
 }
 
 .row-container {
@@ -75,16 +69,18 @@ $bordercolour: darkgrey;
 
 .row-title {
   background-color: $backgroundcolour;
+  color: black;
   border: 1px solid $bordercolour;
   border-collapse: collapse;
   padding: 1em;
-  width: 5%;
+  width: 7%;
   font-size: 10px;
   font-weight: bold;
   overflow: hidden;
 }
 
 .row-tile {
+  cursor: pointer;
   background-color: $backgroundcolour;
   border: 1px solid $bordercolour;
   border-collapse: collapse;
@@ -95,15 +91,10 @@ $bordercolour: darkgrey;
 
 .selected {
   background-color: #01FDF6;
-  // box-shadow: 1px 1px 5px black;
 }
 
 .active{
   border: solid #FCF7FF;
   border-width: 1px 2px ;
   border-collapse: collapse;
-}
-
-.roomBackground{
-  background-color: grey;
 }

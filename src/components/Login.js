@@ -40,7 +40,6 @@ class Login extends Component {
 
 	signup(e){
 	e.preventDefault();
-
 	fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(
   	(data)=>{
 			const { user } = data
@@ -59,7 +58,6 @@ class Login extends Component {
 
 render() {
 	return (
-
 		<div className="background">
 			<h1 className="title">Simple Studio</h1>
 		 	<form className="sign-form">

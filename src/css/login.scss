@@ -1,11 +1,5 @@
 $backgroundcolour: #DFE0DC;
 
-body {
-	height: 100%;
-}
-
-//change the h1s in popup
-
 .background {
 	background-color: $backgroundcolour;
 	height: 700px;
@@ -20,6 +14,14 @@ body {
 	margin: 5px;
 	width: 300px;
 	color: black;
+}
+
+body {
+	background-color: #2D2F30;
+	// background-image:
+	// 	linear-gradient(45deg, rgba(25, 15, 25, 0.4), rgba(0, 0, 0, 0.8)),
+	// 	url('../assets/waveform.jpg');
+	background-size: cover;
 }
 
 .input {
@@ -59,4 +61,17 @@ body {
 
 .mrow {
 	color: black;
+}
+
+.box-button {
+	border-radius: 10%;
+	width: 300px;
+	height: 100px;
+	background-color: white;
+	display: flex;
+	justify-content: space-around;
+	color: black;
+	margin: 20px 0px 0px 200px;
+	font-size: 25px;
+	background-color: darkgray;
 }
