@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import fire from './config/Fire';
 import Room from './components/studio/Room';
 import Chat from './components/Chat'
