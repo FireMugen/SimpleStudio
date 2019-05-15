@@ -64,6 +64,11 @@ class Room extends Component {
       fire.firestore().collection('room').doc(this.state.id).update({
         tempo: this.state.tempo
       })
+      // .then( (snapshot) => {
+      //   this.setState({
+      //     tempo: snapshot.data().tempo
+      //   })
+      // })
     }
 
     clearTimeout(this.time);
@@ -74,18 +79,18 @@ class Room extends Component {
   render(){
     return(
       <div>
-        <h1>{this.state.name}</h1>
-        {this.createSequences()}
         <div className="slidecontainer">
-          <input type="range" min="60" max="180" id='bpm' value={this.state.tempo} onChange={this._changeTempo} className="slider"/>
-        </div>
-        <p>Tempo: {this.state.tempo}</p>
-        <div>
+        <h1>{this.state.name}</h1>
           {
             this.state.transport ?
             <button className="transport" onClick={this._playMusic}>◼</button> : <button className="transport" onClick={this._playMusic}>▶</button>
           }
+          <p className="tempo">Tempo: {this.state.tempo} bpm</p>
+          <input type="range" min="60" max="180" id='bpm' value={this.state.tempo} onChange={this._changeTempo} className="slider"/>
         </div>
+        <div>
+        </div>
+        {this.createSequences()}
       </div>
     )
   }
