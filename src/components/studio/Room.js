@@ -29,7 +29,7 @@ class Room extends Component {
     //gets database and returns as snapshot (only once, no need to update)
     fire.firestore().collection('room').doc(this.state.id).get().then( (snapshot) => {
       if(!snapshot.exists){
-        
+
         this.setState({
             exists: false
         })

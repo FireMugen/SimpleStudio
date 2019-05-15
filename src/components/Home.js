@@ -3,6 +3,7 @@ import fire from '../config/Fire';
 import NavBar from './NavBar'
 import Room from './studio/Room'
 import RoomForm from './crudForms/RoomForm'
+import JoinRoom from './JoinRoom'
 import '../css/login.scss'
 
 
@@ -35,6 +36,7 @@ class Home extends Component {
 					<div><aside><RoomForm /></aside></div>
 					<button onClick={this.logout} className="button">Logout</button>
 					</div>
+
 				);
 		}
 }
