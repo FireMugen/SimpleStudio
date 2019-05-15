@@ -14,16 +14,16 @@ class ChatRoom extends Component {
         message: '',
         messages: [],
         showMenu: false,
-        userName: user.displayName
-        // roomID: '2IFPaXO6yFMXaeP8TmkJ'
-
+        userName: user.displayName,
         //a room state needs to be added.
+        roomID: this.props.roomID
+
       }
     }
 
     componentDidMount(){
       //messages needs to be turned into a variable based off room name.
-      fire.database().ref('messages/').on('value', (snapshot) =>{
+      fire.database().ref(`${this.state.roomID}/`).on('value', (snapshot) =>{
 
         const currentMessages = snapshot.val()
 
@@ -42,9 +42,7 @@ class ChatRoom extends Component {
       })
     }
     submitMessage(e){
-      console.log('submit '+ this.state.message);
       e.preventDefault()
-
 
       const nextMessage = {
         id: this.state.messages.length,
@@ -53,7 +51,7 @@ class ChatRoom extends Component {
       }
 
       //messages needs to be updated to include room id ie room state
-      fire.database().ref('messages/'+nextMessage.id).set(nextMessage)
+      fire.database().ref(`${this.state.roomID}/`+nextMessage.id).set(nextMessage)
 
       this.setState({message: ''})
     }
