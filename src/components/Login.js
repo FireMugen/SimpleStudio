@@ -33,7 +33,7 @@ class Login extends Component {
 	fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((u)=>{console.log(u)
 	})
 	fire.firestore().collection('user').doc(this.state.userName).update({
-		
+
 	})
 	.catch((error) => {
 			console.log(error);
@@ -43,7 +43,7 @@ class Login extends Component {
 
 render() {
 	return (
-		<div>
+		<div className="loginContainer">
 			<h1 className="title">Simple Studio</h1>
 		 	<form className="sign-form">
 				<div>
