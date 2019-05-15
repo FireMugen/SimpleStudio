@@ -89,7 +89,6 @@ class ChatRoom extends Component {
           </ol>
           <input value={this.state.message} onChange={this.updateMessage} type="text" placeholder="Message" class="chat-input"/>
           <br />
-          <button type="submit"> Submit Message </button>
         </form>
       </div>
     )
