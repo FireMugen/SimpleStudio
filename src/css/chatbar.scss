@@ -1,3 +1,43 @@
-ol {
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.chat-bar {
+  font-size: 18px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 10px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background-color: grey;
+}
+.main-chat {
   list-style-type: none;
+  text-align: left;
+  margin-top: 5em;
+  list-style-type: none;
+  display: none;
+}
+.chatbar-toggle {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.8);
+  font-size: 24px;
+}
+
+ol {
+list-style-type: none;
+
+}
+
+.chat-messages {
+color: black;
+}
+
+.active {
+  display: block;
 }

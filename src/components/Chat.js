@@ -47,12 +47,17 @@ class ChatRoom extends Component {
       fire.database().ref('messages/'+nextMessage.id).set(nextMessage)
 
       this.setState({message: ''})
-      // var list = Object.assign([], this.state.messages)
-      //
-      // list.push(nextMessage)
-      // this.setState({
-      //   messages: list
-      // })
+    }
+
+    // mainNav = document.getElementById('js-menu');
+    // navBarToggle = document.getElementById('js-navbar-toggle');
+    // navBarToggle.addEventListener('click', function () {
+    //
+    //   mainNav.classList.toggle('active');
+    // });
+
+    chatToggle = () => {
+      console.log("hi");
     }
 
     render(){
@@ -63,10 +68,13 @@ class ChatRoom extends Component {
       })
 
     return(
-      <div>
-        <form onSubmit={this.submitMessage}>
+      <div className="chat-bar">
+        <span class="chatbar-toggle" id="js-chatbar-toggle" onClick={this.chatToggle}>
+            <div className="chat-bar-logo">##</div>
+        </span>
+        <form className="main-chat" onSubmit={this.submitMessage}>
           <ol>
-            {currentMessage}
+            <div className="chat-messages">{currentMessage}</div>
           </ol>
           <input value={this.state.message} onChange={this.updateMessage} type="text" placeholder="Message" />
           <br />
