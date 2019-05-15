@@ -1,29 +1,43 @@
+$backgroundcolour: #DFE0DC;
+$bordercolour: darkgrey;
+
 .row-container {
   display: flex;
-  padding: 1em;
+  // align-items: center;
+  justify-content: center;
+  // padding: 1em;
 }
 
 .row-title {
-  border: 2px solid black;
+  background-color: $backgroundcolour;
+  border: 1px solid $bordercolour;
   padding: 1em;
   width: 5%;
-
+  font-size: 10px;
 }
 
 .row-tile {
   width: 2%;
-  border: 1px solid black;
+  border: 1px solid $bordercolour;
+  border-collapse: collapse;
   align-items: center;
   padding: 1em;
-  background-color: white;
+  background-color: $backgroundcolour;
 
 }
 
 .selected {
-  background-color: yellow;
-
+  background-color: #01FDF6;
 }
 
 .active{
-  border: 5px solid black;
+  border: solid white;
+  border-width: 1.5px;
+  box-shadow: 3px white;
+  border-collapse: collapse;
+
+}
+
+.roomBackground{
+  background-color: grey;
 }

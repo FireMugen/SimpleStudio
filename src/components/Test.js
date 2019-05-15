@@ -19,7 +19,7 @@ class Test extends Component{
     // fire.firestore().collection('room').get().then((snapshot) => {
     //   this.setState({
     //     id: snapshot.docs[0].id,
-    //     sequence: snapshot.docs[0].data().sequence,
+  //     sequence: snapshot.docs[0].data().sequence,
     //     other: snapshot.docs[0].data().other
     //   })
     //
