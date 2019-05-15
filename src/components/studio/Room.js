@@ -82,7 +82,7 @@ class Room extends Component {
 
   render(){
     return(
-      <div>
+      <div className="roomBackground">
         <h1>{this.state.name}</h1>
         {this.createSequences()}
         <div className="slidecontainer">

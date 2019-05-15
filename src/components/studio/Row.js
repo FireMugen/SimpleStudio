@@ -89,8 +89,11 @@ class Music extends Component {
 
 
   componentDidMount(){
-    console.log(this.props.instrument);
+
     const link = process.env.PUBLIC_URL + 'assets/' + this.props.instrument + '.mp3';
+
+    console.log(link);
+
     const drum = new Tone.Players({
       [this.props.instrument] : link
     }, {
