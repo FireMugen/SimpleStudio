@@ -72,7 +72,6 @@ class Row extends Component {
         {
           this.state.instrument ? <Music tone={this.state.tone} instrument={this.state.instrument} activate={this.lightCol}/> : ""
         }
-
       </div>
     )
   }
@@ -95,8 +94,7 @@ class Music extends Component {
     const drum = new Tone.Players({
       [this.props.instrument] : link
     }, {
-      // 'volume': -2,
-      // 'fadeOut': 1
+      'volume': -2,
     }).toMaster()
 
     const loop = new Tone.Sequence( (time, col) => {
