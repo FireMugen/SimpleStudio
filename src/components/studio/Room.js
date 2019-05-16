@@ -124,7 +124,6 @@ class Room extends Component {
 
     return(
       <div>
-        <NavBar />
         <div className="slidecontainer">
         <h1>{this.state.name}</h1>
           {
