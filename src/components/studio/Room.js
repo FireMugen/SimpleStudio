@@ -139,9 +139,10 @@ class Room extends Component {
 
     return(
       <div>
+        <h1 id="room-title">{this.state.name}</h1>
+
         <div className="room-container">
         <div className={chatVis}>
-          <h1 id="room-title">{this.state.name}</h1>
           <div className="slidecontainer">
             {
               this.state.transport ?

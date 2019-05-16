@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../css/navbar.scss'
 import { slide as Menu } from 'react-burger-menu'
 
 

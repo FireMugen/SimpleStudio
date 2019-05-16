@@ -59,18 +59,18 @@ render() {
 			<h1 className="title">Simple Studio</h1>
 		 	<form className="sign-form">
 				<div>
-		 			<label className="title" >Email address</label>
+		 			<label className="login-fields" >Email address</label>
 					<br/>
 		 			<input className="input" value={this.state.email} onChange={this.handleChange} type="email" name="email" placeholder="Enter email" />
 				</div>
 		 		<div>
-					<label className="title">Password</label>
+					<label className="login-fields">Password</label>
 					<br/>
 					<input className="input" value={this.state.password} onChange={this.handleChange} type="password" name="password" placeholder="Password" />
 				</div>
 					<button className="button" type="submit" onClick={this.login}>Login</button>
 			</form>
-				<p className="title">Not a member?</p>
+				<p className="login-fields">Not a member?</p>
 				  <Popup className="popup-box" id="signup-box" trigger={<button className="button">Sign Up</button>} position="center">
 				    <div>
 						<form className="sign-form">
