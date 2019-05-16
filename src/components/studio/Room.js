@@ -58,7 +58,9 @@ class Room extends Component {
     fire.firestore().collection('room').doc(this.state.id).onSnapshot( (snapshot) => {
       this.setState({
         tempo: snapshot.data().tempo,
-        sequencers: snapshot.data().sequencers
+        sequencers: snapshot.data().sequencers,
+        swing: snapshot.data().swing
+        
       })
     })
   }
@@ -138,9 +140,9 @@ class Room extends Component {
 
     return(
       <div>
+        <div className="room-container">
         <div className={chatVis}>
           <h1 id="room-title">{this.state.name}</h1>
-          <div className="room-container">
           <div className="slidecontainer">
             {
               this.state.transport ?

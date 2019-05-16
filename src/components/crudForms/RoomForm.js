@@ -105,7 +105,11 @@ class RoomForm extends Component {
                 scale: 'major',
                 octave: '4',
                 root: 'C',
-                type: this.state.type
+                type: this.state.type,
+                chorus: '0',
+                reverb: '0',
+                delay: '0',
+                volume: '-12'
 
               }).then( (result) => {
 
