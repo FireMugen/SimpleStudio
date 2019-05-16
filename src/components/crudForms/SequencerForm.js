@@ -13,14 +13,6 @@ class SequencerForm extends Component {
     this._handleChange = this._handleChange.bind(this);
   }
 
-  optionsSequence(){
-    const options = [];
-    return([
-      <option value="empty">Select A Sequencer</option>,
-      <option value="drum">Drum Sequencer</option>
-    ])
-  }
-
   _handleChange(e){
 
     this.setState({
@@ -39,11 +31,19 @@ class SequencerForm extends Component {
           "OPENHIHAT",
           "RIMSHOT"
         ],
-        "Drum Sequencer"
+        "Drum Sequencer",
+        "sample"
+      );
+    }else if (e.target.value === 'normal'){
+      this.props.sequenceSelect(
+        [],
+        "Sine Synth Sequencer",
+        'normal'
       );
     }else if ( e.target.value === 'empty' ){
       this.props.sequenceSelect(
         false,
+        "",
         ""
       )
     }
@@ -52,7 +52,9 @@ class SequencerForm extends Component {
   render(){
     return(
       <select onChange={this._handleChange} value={this.state.value}>
-        {this.optionsSequence()}
+        <option value="empty">Select A Sequencer</option>,
+        <option value="drum">Drum Sequencer</option>
+        <option value="normal">Sine Synth Sequencer</option>
       </select>
     )
   }
