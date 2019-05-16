@@ -103,7 +103,7 @@ class Music extends Component {
     const drum = new Tone.Players({
       [this.props.instrument] : link
     }, {
-      'volume': -2,
+      'volume': -5,
     }).toMaster()
 
     const loop = new Tone.Sequence( (time, col) => {

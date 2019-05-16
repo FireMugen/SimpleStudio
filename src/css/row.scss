@@ -17,6 +17,22 @@ $bordercolour: darkgrey;
   }
 }
 
+.effects-slider-container {
+  width: 100%;
+  text-align: center;
+  flex-grow: 1;
+  label {
+    display: inline;
+    font-weight: bold;
+    color: $backgroundcolour;
+  }
+  h1 {
+    text-shadow: 2px 2px #000000;
+    color: white;
+    padding-top: 5%;
+  }
+}
+
 .slider {
   margin: 20px;
   display: inline;

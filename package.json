@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "firebase": "^6.0.2",
+    "gh-pages": "^2.0.1",
+    "homepage": "https://firemugen.github.io/SimpleStudio/",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-burger-menu": "^2.6.10",
@@ -19,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

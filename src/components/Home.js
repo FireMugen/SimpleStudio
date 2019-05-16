@@ -5,11 +5,16 @@ import Room from './studio/Room'
 import RoomForm from './crudForms/RoomForm'
 import JoinRoom from './JoinRoom'
 import RoomLinks from './RoomLinks'
+import Tone from 'tone'
 import '../css/login.scss'
 
 class Home extends Component {
     constructor(props) {
         super(props);
+
+        Tone.Transport.stop();
+        Tone.Transport.cancel();
+
 				this.userNameShorten = this.userNameShorten.bind;
         this.logout = this.logout.bind(this);
 				const user = fire.auth().currentUser;
