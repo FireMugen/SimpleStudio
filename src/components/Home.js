@@ -24,12 +24,11 @@ class Home extends Component {
     render() {
         return (
 					<div className="background">
-					<br/>
 					<h1 className="mrow">Simple Studio</h1>
-					<br/>
 					<h2 className="mrow">Welcome &nbsp;{this.state.userName}</h2>
 					<br/>
 					<div className="container">
+					<div></div>
 					<div>
 						<a href="/Room"><button className="box-button">Create</button></a>
 						<br/>
@@ -38,10 +37,10 @@ class Home extends Component {
 						<a href="/Room"><button className="box-button">Spectate</button></a>
 					</div>
 					<RoomForm />
+					<div></div>
 					</div>
 					<button onClick={this.logout} className="button">Logout</button>
 					</div>
-
 				);
 		}
 }
