@@ -10,7 +10,7 @@ import '../css/login.scss'
 class Home extends Component {
     constructor(props) {
         super(props);
-				this.userNameShorten = this.userNameShorten.bind;
+				this.userNameShorten = this.userNameShorten.bind(this);
         this.logout = this.logout.bind(this);
 				const user = fire.auth().currentUser;
 				this.state = {
@@ -18,7 +18,7 @@ class Home extends Component {
 					email: user.email,
           roomForm: false,
           roomLinks: false,
-          joinRoom: false
+          joinRoom: false,
 		    };
 
         this._onCreate = this._onCreate.bind(this)
@@ -30,13 +30,12 @@ class Home extends Component {
         fire.auth().signOut();
     }
 
-		userNameShorten(u){
+		userNameShorten() {
 			const user = fire.auth().currentUser;
 			const name = this.state.userName;
 			if(user){
-				name.charAt(0).toUpperCase();
+				return name.charAt(0).toUpperCase();
 			}
-			return name;
 		};
 
     _onCreate(){

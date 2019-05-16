@@ -24,16 +24,16 @@ class Profile extends Component {
 		s.preventDefault();
 		const user = fire.auth().currentUser;
 		if(user){
-		user.updateProfile({
-  		displayName: this.state.userName,
-		}).then( (u) => {
-  		console.log("Update Successful")
-		}).catch( (error) => {
-			console.log(error)
-		});
+			user.updateEmail(this.state.email)
+			user.updateProfile({
+  			displayName: this.state.userName,
+			}).then( (u) => {
+  			console.log("Update Successful")
+			}).catch( (error) => {
+				console.log(error)
+			});
 	}
 }
-
 
 
 	render(){
