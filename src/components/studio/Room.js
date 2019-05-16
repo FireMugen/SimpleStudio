@@ -58,7 +58,9 @@ class Room extends Component {
     fire.firestore().collection('room').doc(this.state.id).onSnapshot( (snapshot) => {
       this.setState({
         tempo: snapshot.data().tempo,
-        sequencers: snapshot.data().sequencers
+        sequencers: snapshot.data().sequencers,
+        swing: snapshot.data().swing
+        
       })
     })
   }
