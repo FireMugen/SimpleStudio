@@ -21,7 +21,7 @@ class Synthesiser extends Component {
     fire.firestore().collection('synthesiser').doc(this.state.id).onSnapshot( (snapshot) => {
       const data = snapshot.data();
       this.setState({
-        noteArray: scale("major").map(transpose("C3")),
+        noteArray: scale("major").map(transpose("C3")).reverse(),
         tones: [
           data.row0,
           data.row1,
@@ -63,7 +63,7 @@ class Synthesiser extends Component {
 
     const loop = new Tone.Sequence( (time, col) => {
       for ( let i = 0; i < this.state.tones.length; i++ ){
-        if(this.props.rows[i][col]){
+        if(this.state.tones[i][col]){
           polySynth.triggerAttackRelease(this.state.noteArray[i], '16n')
         }
       }
