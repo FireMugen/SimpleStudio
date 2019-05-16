@@ -168,38 +168,48 @@ class Synthesiser extends Component {
 
   render(){
     return(
-      <div>
-        <label>Choose Scale</label>
-        <select onChange={this._onScale} value={this.state.scale}>
-          <option value="major">Major</option>
-          <option value="minor">Minor</option>
-          <option value="pentatonic">Pentatonic</option>
-        </select>
-        <label>Choose Octave</label>
-        <select onChange={this._onOctave} value={this.state.octave}>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-        <label>Choose Root Note</label>
-        <select onChange={this._onRoot} value={this.state.root}>
-          <option value="A">A</option>
-          <option value="Bb">Bb</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
-          <option value="Db">Db</option>
-          <option value="D">D</option>
-          <option value="Eb">Eb</option>
-          <option value="E">E</option>
-          <option value="F">F</option>
-          <option value="Gb">Gb</option>
-          <option value="G">G</option>
-        </select>
-        {this.createSynth()}
+      <>
+      <div className="scale-controls-container">
+        <div className="scale-controls">
+          <label>Choose Scale</label>
+          <select onChange={this._onScale} value={this.state.scale}>
+            <option value="major">Major</option>
+            <option value="minor">Minor</option>
+            <option value="pentatonic">Pentatonic</option>
+          </select>
+        </div>
+        <div className="scale-controls">
+          <label>Choose Octave</label>
+          <select onChange={this._onOctave} value={this.state.octave}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+        </div>
+        <div className="scale-controls">
+          <label>Choose Root Note</label>
+          <select onChange={this._onRoot} value={this.state.root}>
+            <option value="A">A</option>
+            <option value="Bb">Bb</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="Db">Db</option>
+            <option value="D">D</option>
+            <option value="Eb">Eb</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="Gb">Gb</option>
+            <option value="G">G</option>
+          </select>
+        </div>
       </div>
+      <div>
+      {this.createSynth()}
+      </div>
+      </>
     )
   }
 
