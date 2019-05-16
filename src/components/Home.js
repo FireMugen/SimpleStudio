@@ -68,7 +68,6 @@ class Home extends Component {
 					<div className="background">
 					<a href="/#/profile/:user"><div className="profile-link">{this.userNameShorten}</div></a>
 					<h1 className="mrow">Simple Studio</h1>
-					<h2 className="mrow">Welcome {this.state.userName}</h2>
 					<br/>
 					<div className="container">
 					<div></div>
