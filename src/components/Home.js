@@ -7,6 +7,7 @@ import JoinRoom from './JoinRoom'
 import RoomLinks from './RoomLinks'
 import Tone from 'tone'
 import '../css/login.scss'
+import { Link } from 'react-router-dom'
 
 class Home extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class Home extends Component {
         Tone.Transport.stop();
         Tone.Transport.cancel();
 
-				this.userNameShorten = this.userNameShorten.bind;
+
         this.logout = this.logout.bind(this);
 
 				const user = fire.auth().currentUser;
@@ -65,7 +66,7 @@ class Home extends Component {
     render() {
         return (
 					<div className="background">
-					<a href="/#/profile/:user"><div className="profile-link">{this.state.userName.charAt(0).toUpperCase()}</div></a>
+					<Link className="" to='/profile'><div className="profile-link">{this.state.userName.charAt(0).toUpperCase()}</div></Link>
 					<h1 className="mrow">Simple Studio</h1>
 					<br/>
 					<div className="container">
