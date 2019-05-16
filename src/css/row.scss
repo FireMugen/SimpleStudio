@@ -10,6 +10,11 @@ $bordercolour: darkgrey;
     font-weight: bold;
     color: $backgroundcolour;
   }
+  h1 {
+    text-shadow: 2px 2px #000000;
+    color: white;
+    padding-top: 5%;
+  }
 }
 
 .slider {
@@ -80,6 +85,12 @@ $bordercolour: darkgrey;
   font-weight: bold;
   overflow: hidden;
 }
+
+p.tempo{
+  text-shadow: 2px 2px #000000;
+  color: white;
+}
+
 
 .row-tile {
   cursor: pointer;
