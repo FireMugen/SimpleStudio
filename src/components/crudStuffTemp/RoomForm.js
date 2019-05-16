@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import fire from '../../config/Fire'
 import SequencerForm from './SequencerForm'
-import '.../css/login.scss'
 
 class RoomForm extends Component {
   constructor(){
@@ -31,10 +30,6 @@ class RoomForm extends Component {
     })
   }
 
-  getPassword(){
-    return [...Array(6)].map(i=>(~~(Math.random()*36)).toString(36)).join('').toUpperCase();
-  }
-
   _handleSubmit (e){
     e.preventDefault();
 
@@ -42,50 +37,47 @@ class RoomForm extends Component {
       return;
     }
 
-    const rows = [];
-    const userID = localStorage.getItem('user');
-    const password = this.getPassword();
+      const rows = [];
+      const userID = localStorage.getItem('user');
 
-    // WHYYYYYYYY?????
-    Promise.all(this.state.selectedRows.map( async(instrument) => {
+      // WHYYYYYYYY?????
+      Promise.all(this.state.selectedRows.map( async(instrument) => {
 
-      await fire.firestore().collection('row').add({
+        await fire.firestore().collection('row').add({
 
-        instrument: instrument,
-        tone: [false, false, false, false, false, false, false, false, false, false, false,false,  false, false, false, false]
-
-      }).then( (result) => {
-
-        rows.push( result.id )
-      })
-
-    })).then( () => {
-
-
-      fire.firestore().collection('sequencer').add({
-
-          name: this.state.sequName,
-          rows: rows
+          instrument: instrument,
+          tone: [false, false, false, false, false, false, false, false, false, false, false, false,  false, false, false, false]
 
         }).then( (result) => {
 
+          rows.push( result.id )
+        })
 
-          fire.firestore().collection('room').add({
-            name: this.state.roomName,
-            tempo: 90,
-            collaborators: [userID],
-            sequencers: [result.id],
-            password: password
+      })).then( () => {
 
+
+        fire.firestore().collection('sequencer').add({
+
+            name: this.state.sequName,
+            rows: rows
+
+          }).then( (result) => {
+
+
+            fire.firestore().collection('room').add({
+              name: this.state.roomName,
+              tempo: 90,
+              collaborators: [userID],
+              sequencers: [result.id]
+            })
           })
         })
-      })
 
-    this.setState({
-      roomName: "",
-      sequName: "",
-      selectedRows: false
-    })
+      this.setState({
+        roomName: "",
+        sequName: "",
+        selectedRows: false
+      })
 
   }
 
@@ -93,19 +85,10 @@ class RoomForm extends Component {
     return(
        <div>
           <form onSubmit={this._handleSubmit}>
-						<br/>
             <label>Room Name</label>
-						<br/>
-						<br/>
             <input type="text" onChange={this._handleName} value={this.state.roomName}/>
-						<br/>
-						<br/>
             <label>Starting Sequencer</label>
-						<br/>
-						<br/>
             <SequencerForm sequenceSelect={this._handleSequ} />
-						<br/>
-						<br/>
             <input type="submit" />
           </form>
        </div>
