@@ -55,7 +55,7 @@ class Synthesiser extends Component {
         octave: data.octave,
         root: data.root
       })
-      console.log(this.state.noteArray);
+
     })
 
     const polySynth = new Tone.PolySynth(7, Tone.Synth, {
