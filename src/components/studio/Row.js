@@ -98,12 +98,12 @@ class Music extends Component {
 
   componentDidMount(){
 
-    const link = process.env.PUBLIC_URL + 'assets/' + this.props.instrument + '.mp3';
+    const link = process.env.PUBLIC_URL + '/assets/' + this.props.instrument + '.mp3';
 
     const drum = new Tone.Players({
       [this.props.instrument] : link
     }, {
-      'volume': -2,
+      'volume': -5,
     }).toMaster()
 
     const loop = new Tone.Sequence( (time, col) => {

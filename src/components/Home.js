@@ -75,7 +75,7 @@ class Home extends Component {
 						<br/>
 						<button onClick={this._onJoin} className="box-button">Join Room</button>
 						<br/>
-						<button onClick={this._onCollab} className="box-button">Collaborate</button>
+						<button onClick={this._onCollab} className="box-button">Your Rooms</button>
 					</div>
 					{ this.state.roomForm ? <RoomForm /> : "" }
 					{ this.state.roomLinks ? <RoomLinks /> : "" }

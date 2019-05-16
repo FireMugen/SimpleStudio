@@ -14,13 +14,23 @@ class Synthesiser extends Component {
       scale: "",
       octave: "",
       root: "",
-      chorus: 0
+      chorus: "",
+      chorusAmount: 0,
+      reverb: "",
+      reverbAmount: 0,
+      delay: "",
+      delayAmount: 0,
+      vol: "",
+      volAmount: -12
     }
     this._updateTile = this._updateTile.bind(this);
     this._onScale = this._onScale.bind(this);
     this._onOctave = this._onOctave.bind(this);
     this._onRoot = this._onRoot.bind(this);
-    // this._changeChorus = this._changeChorus.bind(this)
+    this._handleChorus = this._handleChorus.bind(this)
+    this._handleReverb = this._handleReverb.bind(this)
+    this._handleDelay = this._handleDelay.bind(this)
+    this._handleVol = this._handleVol.bind(this)
   }
 
   componentDidMount() {
@@ -48,11 +58,36 @@ class Synthesiser extends Component {
 
     })
 
-
     const polySynth = new Tone.PolySynth(7, Tone.Synth, {
       "oscillator" : { "type" : "sine" },
-      "volume": -5
+      "volume": -6
+    })
+
+    var pingPong = new Tone.PingPongDelay({
+      "delayTime": "4n",
+      "feedback": 0.2,
+      "wet": 0
     }).toMaster();
+
+    var chorus = new Tone.Chorus({
+      "frequency": 2.5,
+      "delayTime": 0.5,
+      "depth": 1,
+      "feedback": 0.3,
+      "wet": 0
+    }).toMaster();
+
+    var reverb = new Tone.Freeverb({
+      "roomSize": 0.8,
+      "dampening": 12000,
+      "wet": 0
+    }).toMaster();
+
+    var vol = new Tone.Volume({
+      "volume": -12,
+    });
+
+    polySynth.chain(vol, chorus, pingPong, reverb, Tone.Master)
 
     const loop = new Tone.Sequence( (time, col) => {
       for ( let i = 0; i < this.state.tones.length; i++ ){
@@ -70,9 +105,42 @@ class Synthesiser extends Component {
     loop.start(0);
 
     this.setState({
-      loop: loop
+      loop: loop,
+      chorus: chorus,
+      reverb: reverb,
+      delay: pingPong,
+      vol: vol
     })
 
+  }
+
+  _handleChorus(e) {
+    this.setState({
+      chorusAmount: e.target.value
+    })
+    this.state.chorus.wet.value = (this.state.chorusAmount / 100);
+  }
+
+  _handleReverb(e) {
+    this.setState({
+      reverbAmount: e.target.value
+    })
+    this.state.reverb.wet.value = (this.state.reverbAmount / 100);
+  }
+
+  _handleDelay(e) {
+    this.setState({
+      delayAmount: e.target.value
+    })
+    this.state.delay.wet.value = (this.state.delayAmount / 100);
+  }
+
+  _handleVol(e) {
+    console.log(e.target.value);
+    this.setState({
+      volAmount: e.target.value
+    })
+    this.state.vol.volume.value = this.state.volAmount;
   }
 
   createSynth() {
@@ -129,19 +197,19 @@ class Synthesiser extends Component {
 
   _onScale(e){
     fire.firestore().collection('synthesiser').doc(this.state.id).update({
-        scale: e.target.value
+      scale: e.target.value
     })
   }
 
   _onOctave(e){
     fire.firestore().collection('synthesiser').doc(this.state.id).update({
-        octave: e.target.value
+      octave: e.target.value
     })
   }
 
   _onRoot(e){
     fire.firestore().collection('synthesiser').doc(this.state.id).update({
-        root: e.target.value
+      root: e.target.value
     })
   }
 
@@ -149,6 +217,22 @@ class Synthesiser extends Component {
     return(
       <>
         <div className="scale-controls-container">
+          <div className="scale-controls">
+            <label>Choose Root Note</label>
+            <select onChange={this._onRoot} value={this.state.root}>
+              <option value="A">A</option>
+              <option value="Bb">Bb</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="Db">Db</option>
+              <option value="D">D</option>
+              <option value="Eb">Eb</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="Gb">Gb</option>
+              <option value="G">G</option>
+            </select>
+          </div>
           <div className="scale-controls">
             <label>Choose Scale</label>
             <select onChange={this._onScale} value={this.state.scale}>
@@ -168,22 +252,19 @@ class Synthesiser extends Component {
               <option value="6">6</option>
             </select>
           </div>
-          <div className="scale-controls">
-            <label>Choose Root Note</label>
-            <select onChange={this._onRoot} value={this.state.root}>
-              <option value="A">A</option>
-              <option value="Bb">Bb</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="Db">Db</option>
-              <option value="D">D</option>
-              <option value="Eb">Eb</option>
-              <option value="E">E</option>
-              <option value="F">F</option>
-              <option value="Gb">Gb</option>
-              <option value="G">G</option>
-            </select>
-          </div>
+        </div>
+        <div className="effects-slider-container">
+          <label>Chorus Amount:</label>
+          <input type="range" min="0" max="100" value={this.state.chorusAmount} onChange={this._handleChorus} className="slider"/>
+          <label>Delay Amount:</label>
+          <input type="range" min="0" max="100" value={this.state.delayAmount} onChange={this._handleDelay} className="slider"/>
+        </div>
+        <div className="effects-slider-container">
+          <label>Reverb Amount:</label>
+          <input type="range" min="0" max="50" value={this.state.reverbAmount} onChange={this._handleReverb} className="slider"/>
+
+          <label>Volume Amount:</label>
+          <input type="range" min="-64" max="-6" value={this.state.volAmount} onChange={this._handleVol} className="slider"/>
         </div>
         <div>
         {this.createSynth()}

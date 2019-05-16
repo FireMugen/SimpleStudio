@@ -105,7 +105,11 @@ class RoomForm extends Component {
                 scale: 'major',
                 octave: '4',
                 root: 'C',
-                type: this.state.type
+                type: this.state.type,
+                chorus: '0',
+                reverb: '0',
+                delay: '0',
+                volume: '-12'
 
               }).then( (result) => {
 
@@ -159,15 +163,15 @@ class RoomForm extends Component {
     return(
        <div>
           <form className="form-style" onSubmit={this._handleSubmit}>
-            <label>Room Name</label>
+            <label id="room-name">Room Name</label>
 						<br/>
 						<br/>
             <input className="input-home" type="text" onChange={this._handleName} value={this.state.roomName}/>
 						<br/>
 						<br/>
-            <label>Default Drum Sampler</label>
+            <label>Drum Sampler added by Default</label>
             <br />
-            <label>Starting Sequencer</label>
+            <label>Choose Starting Sequencer</label>
 						<br/>
 						<br/>
             <SequencerForm sequenceSelect={this._handleSequ} />
