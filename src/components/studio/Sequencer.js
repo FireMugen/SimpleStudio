@@ -55,7 +55,7 @@ class Sequencer extends Component {
     }else{
       const rows = [];
       for (let i = 0; i < this.state.rows.length; i++ ){
-        rows.push( <Row key={i} rowID={this.state.rows[i]} /> )
+        rows.push( <Row key={i} rowID={this.state.rows[i]} collaborators={this.props.collaborators}/> )
       }
       return rows;
     }
