@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../../config/Fire'
 import SequencerForm from './SequencerForm'
-import '.../css/login.scss'
+
 
 class RoomForm extends Component {
   constructor(){
@@ -43,8 +43,9 @@ class RoomForm extends Component {
     }
 
     const rows = [];
-    const userID = localStorage.getItem('user');
+    const userID = fire.auth().currentUser.uid;
     const password = this.getPassword();
+    const roomName = this.state.roomName;
 
     // WHYYYYYYYY?????
     Promise.all(this.state.selectedRows.map( async(instrument) => {
@@ -71,22 +72,34 @@ class RoomForm extends Component {
 
 
           fire.firestore().collection('room').add({
-            name: this.state.roomName,
+            name: roomName,
             tempo: 90,
             collaborators: [userID],
             sequencers: [result.id],
             password: password
 
+          }).then( (result) => {
+
+            const roomID = result.id;
+            fire.firestore().collection('user').doc(userID).get().then( (result) => {
+
+              const roomArr = result.data().rooms.slice();
+              roomArr.push( roomID );
+
+              fire.firestore().collection('user').doc(userID).update({
+                rooms: roomArr
+            })
           })
         })
       })
+
+    })
 
     this.setState({
       roomName: "",
       sequName: "",
       selectedRows: false
     })
-
   }
 
   render(){

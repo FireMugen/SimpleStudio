@@ -45,12 +45,16 @@ class Login extends Component {
 			const { user } = data
     	if(user){
       	user.updateProfile({
-         displayName: this.state.userName
+         displayName: this.state.userName,
       }).then(function() {
-			console.log(user.displayName);
-		})
+
+        fire.firestore().collection('user').doc(user.uid).set({
+          rooms: []
+        })
+        console.log(user.displayName);
+		  })
     }
-}).catch((error) => {
+  }).catch((error) => {
 			console.log(error);
 		});
 	}

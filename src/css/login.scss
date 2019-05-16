@@ -17,6 +17,14 @@ $backgroundcolour: #DFE0DC;
 	color: black;
 }
 
+body {
+	background-color: #2D2F30;
+	// background-image:
+	// 	linear-gradient(45deg, rgba(25, 15, 25, 0.4), rgba(0, 0, 0, 0.8)),
+	// 	url('../assets/waveform.jpg');
+	background-size: cover;
+}
+
 .input {
 	padding: 5px;
 	margin: 5px;
