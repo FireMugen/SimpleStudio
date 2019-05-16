@@ -41,7 +41,6 @@ class Room extends Component {
 
         this.setState({
           name: snapshot.data().name,
-          sequencers: snapshot.data().sequencers,
           tempo: snapshot.data().tempo,
           collaborators: snapshot.data().collaborators,
           swing: snapshot.data().swing
@@ -52,7 +51,8 @@ class Room extends Component {
     })
     fire.firestore().collection('room').doc(this.state.id).onSnapshot( (snapshot) => {
       this.setState({
-        tempo: snapshot.data().tempo
+        tempo: snapshot.data().tempo,
+        sequencers: snapshot.data().sequencers
       })
     })
   }
@@ -115,6 +115,7 @@ class Room extends Component {
 
     this.time = setTimeout(updateSwing, 500);
   }
+
 
   render(){
     if(!this.state.exists){

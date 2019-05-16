@@ -18,13 +18,6 @@ class Login extends Component {
     };
   }
 
-	mrow(m){
-	fire.auth().onAuthStateChanged((user) => {
-  if (user) {
-    console.log(user)
-  }
-});
-}
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });

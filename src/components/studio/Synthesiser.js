@@ -48,6 +48,7 @@ class Synthesiser extends Component {
       console.log(this.state.noteArray);
     })
 
+
     const polySynth = new Tone.PolySynth(7, Tone.Synth, {
       "oscillator" : { "type" : "sine" },
       "volume": -5
