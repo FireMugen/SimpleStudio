@@ -4,6 +4,7 @@ import NavBar from './NavBar'
 import Room from './studio/Room'
 import RoomForm from './crudForms/RoomForm'
 import JoinRoom from './JoinRoom'
+import RoomLinks from './RoomLinks'
 import '../css/login.scss'
 
 class Home extends Component {
@@ -30,11 +31,11 @@ class Home extends Component {
 					<div className="container">
 					<div></div>
 					<div>
-						<a href="/Room"><button className="box-button">Create</button></a>
+						<button className="box-button">Create</button>
 						<br/>
-						<a href="/Room"><button className="box-button">Join Room</button></a>
+						<button className="box-button">Join Room</button>
 						<br/>
-						<a href="/Room"><button className="box-button">Spectate</button></a>
+						<button className="box-button">Spectate</button>
 					</div>
 					<RoomForm />
 					<div></div>

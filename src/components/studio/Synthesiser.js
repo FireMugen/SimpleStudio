@@ -11,17 +11,26 @@ class Synthesiser extends Component {
       id: this.props.synthID,
       loop: "",
       tones: this.props.rows,
-      noteArray: []
+      noteArray: [],
+      scale: "",
+      octave: "",
+      root: ""
     }
     this._updateTile = this._updateTile.bind(this);
+    this._onScale = this._onScale.bind(this);
+    this._onOctave = this._onOctave.bind(this);
+    this._onRoot = this._onRoot.bind(this);
   }
 
   componentDidMount() {
 
     fire.firestore().collection('synthesiser').doc(this.state.id).onSnapshot( (snapshot) => {
       const data = snapshot.data();
+      const scaleChoice = data.scale;
+      const note = data.root + data.octave;
+      console.log(note);
       this.setState({
-        noteArray: scale("major").map(transpose("C3")),
+        noteArray: scale(scaleChoice).map(transpose(note)).reverse(),
         tones: [
           data.row0,
           data.row1,
@@ -30,7 +39,10 @@ class Synthesiser extends Component {
           data.row4,
           data.row5,
           data.row6
-        ]
+        ],
+        scale: data.scale,
+        octave: data.octave,
+        root: data.root
       })
       console.log(this.state.noteArray);
     })
@@ -63,7 +75,7 @@ class Synthesiser extends Component {
 
     const loop = new Tone.Sequence( (time, col) => {
       for ( let i = 0; i < this.state.tones.length; i++ ){
-        if(this.props.rows[i][col]){
+        if(this.state.tones[i][col]){
           polySynth.triggerAttackRelease(this.state.noteArray[i], '16n')
         }
       }
@@ -86,6 +98,8 @@ class Synthesiser extends Component {
     const row = [];
     for( let j = 0; j < this.state.tones.length; j++ ){
       let column = [];
+
+      column.push(<div className="row-title"> {this.state.noteArray[j]} </div>)
 
       for (let i = 0; i < 16; i++) {
         column.push(<div onClick={this._updateTile} id={`${j}rowcol${i}`} key={i} className={this._getClassNames(i, j)}></div>)
@@ -134,9 +148,56 @@ class Synthesiser extends Component {
     })
   }
 
+  _onScale(e){
+    fire.firestore().collection('synthesiser').doc(this.state.id).update({
+        scale: e.target.value
+    })
+  }
+
+  _onOctave(e){
+    fire.firestore().collection('synthesiser').doc(this.state.id).update({
+        octave: e.target.value
+    })
+  }
+
+  _onRoot(e){
+    fire.firestore().collection('synthesiser').doc(this.state.id).update({
+        root: e.target.value
+    })
+  }
+
   render(){
     return(
       <div>
+        <label>Choose Scale</label>
+        <select onChange={this._onScale} value={this.state.scale}>
+          <option value="major">Major</option>
+          <option value="minor">Minor</option>
+          <option value="pentatonic">Pentatonic</option>
+        </select>
+        <label>Choose Octave</label>
+        <select onChange={this._onOctave} value={this.state.octave}>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+        <label>Choose Root Note</label>
+        <select onChange={this._onRoot} value={this.state.root}>
+          <option value="A">A</option>
+          <option value="Bb">Bb</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="Db">Db</option>
+          <option value="D">D</option>
+          <option value="Eb">Eb</option>
+          <option value="E">E</option>
+          <option value="F">F</option>
+          <option value="Gb">Gb</option>
+          <option value="G">G</option>
+        </select>
         {this.createSynth()}
       </div>
     )
