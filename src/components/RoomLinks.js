@@ -7,7 +7,8 @@ class RoomLinks extends Component{
   constructor(){
     super()
     this.state = {
-      roomIDs: []
+      roomIDs: [],
+      rooms: []
     }
   }
 
@@ -20,34 +21,35 @@ class RoomLinks extends Component{
         roomIDs: result.data().rooms
       })
 
-    })
+      this.generateLinks();
 
+    })
 
   }
 
   generateLinks(){
     const roomIDs = this.state.roomIDs
     const roomLinks = [];
-    console.log(1);
 
-    roomIDs.forEach( async (id) => {
-      console.log(2);
+    Promise.all(roomIDs.map( async (id) => {
 
       await fire.firestore().collection('room').doc(id).get().then( (result) => {
-        console.log(3);
-        roomLinks.push(<p><Link to={`/${result.id}`}>{result.data().name}</Link></p>)
+        roomLinks.push(<p><Link className="" to={`/${result.id}`}>{result.data().name}</Link></p>)
 
       })
-      console.log(4, roomLinks);
-      return roomLinks;
+
+    })).then( () => {
+      this.setState({
+        rooms: roomLinks
+      });
     })
 
   }
 
   render(){
     return(
-      <div>
-        {this.generateLinks()}
+      <div className="form-style">
+        {this.state.rooms}
       </div>
     )
   }

@@ -6,7 +6,12 @@ import Chat from './components/Chat';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Home from './components/Home';
+<<<<<<< HEAD
 import Profile from './components/Profile';
+=======
+import Profile from './components/Profile'
+
+>>>>>>> 4f3f1656527df3cbd2146e77790b41c73e011ce1
 
 class Routes extends Component{
   constructor() {
@@ -44,6 +49,7 @@ class Routes extends Component{
             </Switch> : <Switch>
 							<Route path='/profile/:user' component={ Profile } />,
               <Route exact path='/' component={ Home } />,
+              <Route path='/profile/:user' component={ Profile } />,
               <Route path='/:room' component={ Room } />
             </Switch>
           }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fire from '../config/Fire';
 import '../css/login.scss'
 import fire from '../config/Fire';
 
@@ -64,4 +65,8 @@ class Profile extends Component {
 	}
 }
 
+<<<<<<< HEAD
 export default Profile;
+=======
+export default Profile
+>>>>>>> 4f3f1656527df3cbd2146e77790b41c73e011ce1
