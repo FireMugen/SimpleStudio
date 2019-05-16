@@ -140,8 +140,8 @@ class Room extends Component {
     return(
       <div>
         <div className={chatVis}>
+          <h1 id="room-title">{this.state.name}</h1>
           <div className="slidecontainer">
-            <h1>{this.state.name}</h1>
             {
               this.state.transport ?
               <button className="transport" onClick={this._playMusic}>◼</button> : <button  className="transport" onClick={this._playMusic}>▶</button>

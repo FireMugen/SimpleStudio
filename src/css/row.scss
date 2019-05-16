@@ -4,27 +4,39 @@ $bordercolour: darkgrey;
 .slidecontainer {
   width: 100%;
   text-align: center;
+
   flex-grow: 1;
+  background: rgba(223, 224, 220, 0.7);
   p {
     display: inline;
     font-weight: bold;
-    color: $backgroundcolour;
+    color: black;
   }
-  h1 {
-    text-shadow: 2px 2px #000000;
-    color: white;
-    padding-top: 5%;
-  }
+}
+
+
+input::-webkit-slider-track { background: #01fdf6; }
+input::-moz-range-track { background: #01fdf6;/* common styles */ }
+input::-ms-track { background: #01fdf6;/* common styles */ }
+
+#room-title {
+  text-shadow: 2px 2px #000000;
+  color: white;
+  padding-top: 2%;
+  text-align: center;
+  font-size: 300%;
 }
 
 .effects-slider-container {
   width: 100%;
   text-align: center;
   flex-grow: 1;
+  background: rgba(223, 224, 220, 0.7);
+  text-shadow: 1px 1px #01fdf6;
   label {
     display: inline;
     font-weight: bold;
-    color: $backgroundcolour;
+    color: black;
   }
   h1 {
     text-shadow: 2px 2px #000000;
@@ -40,7 +52,7 @@ $bordercolour: darkgrey;
   appearance: none;
   width: 25%;
   height: 5px;
-  background-color: $backgroundcolour;
+  background-color: #01fdf6;
 }
 
 .slider:focus {
@@ -84,9 +96,7 @@ $bordercolour: darkgrey;
 	// top: 1px;
 }
 
-// .sequence-wrapper {
-//   background-color: #2D2F30;
-// }
+
 
 .row-container {
   display: flex;
@@ -107,8 +117,7 @@ $bordercolour: darkgrey;
 }
 
 .tempo{
-  text-shadow: 2px 2px #000000;
-  color: white;
+  text-shadow: 1px 1px #01fdf6;
 }
 
 
