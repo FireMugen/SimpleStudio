@@ -57,6 +57,8 @@ class ChatRoom extends Component {
     }
 
     chatToggle = () => {
+      this.props.shrinkRoom(!this.state.showMenu);
+      
       this.setState({
         showMenu: !this.state.showMenu
       })
@@ -68,7 +70,9 @@ class ChatRoom extends Component {
           <li key={message.id}>{message.user}: {message.text}</li>
         )
       })
+
       const chatVis = this.state.showMenu ? 'active' : '';
+
 
     return(
       <div className="chat-bar">

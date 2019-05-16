@@ -5,13 +5,19 @@ import Room from './studio/Room'
 import RoomForm from './crudForms/RoomForm'
 import JoinRoom from './JoinRoom'
 import RoomLinks from './RoomLinks'
+import Tone from 'tone'
 import '../css/login.scss'
 
 class Home extends Component {
     constructor(props) {
         super(props);
-				this.userNameShorten = this.userNameShorten.bind(this);
+
+        Tone.Transport.stop();
+        Tone.Transport.cancel();
+
+				this.userNameShorten = this.userNameShorten.bind;
         this.logout = this.logout.bind(this);
+
 				const user = fire.auth().currentUser;
 				this.state = {
 					userName: user.displayName,
@@ -19,6 +25,7 @@ class Home extends Component {
           roomForm: false,
           roomLinks: false,
           joinRoom: false,
+					initial: this.userNameShorten
 		    };
 
         this._onCreate = this._onCreate.bind(this)
@@ -30,13 +37,6 @@ class Home extends Component {
         fire.auth().signOut();
     }
 
-		userNameShorten() {
-			const user = fire.auth().currentUser;
-			const name = this.state.userName;
-			if(user){
-				return name.charAt(0).toUpperCase();
-			}
-		};
 
     _onCreate(){
       this.setState({
@@ -65,7 +65,7 @@ class Home extends Component {
     render() {
         return (
 					<div className="background">
-					<a href="/#/profile/:user"><div className="profile-link">{this.userNameShorten}</div></a>
+					<a href="/#/profile/:user"><div className="profile-link">{this.state.userName.charAt(0).toUpperCase()}</div></a>
 					<h1 className="mrow">Simple Studio</h1>
 					<br/>
 					<div className="container">
