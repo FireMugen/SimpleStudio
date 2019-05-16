@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Row from './Row'
 import fire from '../../config/Fire'
 import Tone from 'tone'
 import { transpose, scale } from "tonal";
@@ -14,12 +13,14 @@ class Synthesiser extends Component {
       noteArray: [],
       scale: "",
       octave: "",
-      root: ""
+      root: "",
+      chorus: 0
     }
     this._updateTile = this._updateTile.bind(this);
     this._onScale = this._onScale.bind(this);
     this._onOctave = this._onOctave.bind(this);
     this._onRoot = this._onRoot.bind(this);
+    // this._changeChorus = this._changeChorus.bind(this)
   }
 
   componentDidMount() {
@@ -51,27 +52,6 @@ class Synthesiser extends Component {
       "oscillator" : { "type" : "sine" },
       "volume": -5
     }).toMaster();
-
-    // var bitcrusher = new Tone.BitCrusher({
-    //   "bits": 8,
-    //   "wet": 0
-    // }).toMaster();
-    //
-    // var freeverb = new Tone.Freeverb({
-    //   "roomSize": 0.75,
-    //   "dampening": 2000,
-    //   "wet": 0
-    // }).toMaster();
-    //
-    // var chorus = new Tone.Chorus({
-    //   "frequency": 2.5,
-    //   "delayTime": 0.5,
-    //   "depth": 1,
-    //   "feedback": 0.3,
-    //   "wet": 0
-    // }).toMaster();
-    //
-    // polySynth.chain(bitcrusher, chorus, freeverb, Tone.Master);
 
     const loop = new Tone.Sequence( (time, col) => {
       for ( let i = 0; i < this.state.tones.length; i++ ){
@@ -129,7 +109,6 @@ class Synthesiser extends Component {
     changedNote[rownum][colnum] = !changedNote[rownum][colnum];
     //this pushes the change to firebase
     fire.firestore().collection('synthesiser').doc(this.state.id).update({
-
       row0: changedNote[0],
       row1: changedNote[1],
       row2: changedNote[2],
@@ -137,7 +116,6 @@ class Synthesiser extends Component {
       row4: changedNote[4],
       row5: changedNote[5],
       row6: changedNote[6]
-
     })
 
   }
@@ -169,50 +147,49 @@ class Synthesiser extends Component {
   render(){
     return(
       <>
-      <div className="scale-controls-container">
-        <div className="scale-controls">
-          <label>Choose Scale</label>
-          <select onChange={this._onScale} value={this.state.scale}>
-            <option value="major">Major</option>
-            <option value="minor">Minor</option>
-            <option value="pentatonic">Pentatonic</option>
-          </select>
+        <div className="scale-controls-container">
+          <div className="scale-controls">
+            <label>Choose Scale</label>
+            <select onChange={this._onScale} value={this.state.scale}>
+              <option value="major">Major</option>
+              <option value="minor">Minor</option>
+              <option value="pentatonic">Pentatonic</option>
+            </select>
+          </div>
+          <div className="scale-controls">
+            <label>Choose Octave</label>
+            <select onChange={this._onOctave} value={this.state.octave}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+          </div>
+          <div className="scale-controls">
+            <label>Choose Root Note</label>
+            <select onChange={this._onRoot} value={this.state.root}>
+              <option value="A">A</option>
+              <option value="Bb">Bb</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="Db">Db</option>
+              <option value="D">D</option>
+              <option value="Eb">Eb</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="Gb">Gb</option>
+              <option value="G">G</option>
+            </select>
+          </div>
         </div>
-        <div className="scale-controls">
-          <label>Choose Octave</label>
-          <select onChange={this._onOctave} value={this.state.octave}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-          </select>
+        <div>
+        {this.createSynth()}
         </div>
-        <div className="scale-controls">
-          <label>Choose Root Note</label>
-          <select onChange={this._onRoot} value={this.state.root}>
-            <option value="A">A</option>
-            <option value="Bb">Bb</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="Db">Db</option>
-            <option value="D">D</option>
-            <option value="Eb">Eb</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="Gb">Gb</option>
-            <option value="G">G</option>
-          </select>
-        </div>
-      </div>
-      <div>
-      {this.createSynth()}
-      </div>
       </>
     )
   }
-
 }
 
 export default Synthesiser;

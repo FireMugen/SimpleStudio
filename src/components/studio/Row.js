@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../../css/row.scss'
 import fire from '../../config/Fire'
 import Tone from 'tone'
-import Synthesiser from './Synthesiser'
 
 class Row extends Component {
   constructor(props){
