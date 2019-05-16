@@ -26,7 +26,6 @@ class Home extends Component {
         return (
 					<div className="background">
 					<h1 className="mrow">Simple Studio</h1>
-					<h2 className="mrow">Welcome &nbsp;{this.state.userName}</h2>
 					<br/>
 					<div className="container">
 					<div></div>
