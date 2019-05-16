@@ -51,7 +51,7 @@ class SequencerForm extends Component {
 
   render(){
     return(
-      <select onChange={this._handleChange} value={this.state.value}>
+      <select className="select-menu" onChange={this._handleChange} value={this.state.value}>
         {this.optionsSequence()}
       </select>
     )

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../../config/Fire'
 import SequencerForm from './SequencerForm'
-
+import '../../css/login.scss'
 
 class RoomForm extends Component {
   constructor(){
@@ -105,12 +105,11 @@ class RoomForm extends Component {
   render(){
     return(
        <div>
-          <form onSubmit={this._handleSubmit}>
-						<br/>
+          <form className="form-style" onSubmit={this._handleSubmit}>
             <label>Room Name</label>
 						<br/>
 						<br/>
-            <input type="text" onChange={this._handleName} value={this.state.roomName}/>
+            <input className="input-home" type="text" onChange={this._handleName} value={this.state.roomName}/>
 						<br/>
 						<br/>
             <label>Starting Sequencer</label>
@@ -119,7 +118,7 @@ class RoomForm extends Component {
             <SequencerForm sequenceSelect={this._handleSequ} />
 						<br/>
 						<br/>
-            <input type="submit" />
+            <input className="button" type="submit" />
           </form>
        </div>
     )
