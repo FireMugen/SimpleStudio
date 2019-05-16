@@ -46,6 +46,11 @@ class Room extends Component {
 
       }
     })
+    fire.firestore().collection('room').doc(this.state.id).onSnapshot( (snapshot) => {
+      this.setState({
+        tempo: snapshot.data().tempo
+      })
+    })
   }
 
   //helper function to create the sequencers based off ID.
@@ -79,12 +84,7 @@ class Room extends Component {
     const updateTempo = () => {
       fire.firestore().collection('room').doc(this.state.id).update({
         tempo: this.state.tempo
-      })
-      // .then( (snapshot) => {
-      //   this.setState({
-      //     tempo: snapshot.data().tempo
-      //   })
-      // })
+      });
     }
 
     clearTimeout(this.time);

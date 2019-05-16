@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../css/row.scss'
 import fire from '../../config/Fire'
 import Tone from 'tone'
+import Synthesiser from './Synthesiser'
 
 class Row extends Component {
   constructor(props){
@@ -46,12 +47,13 @@ class Row extends Component {
 
   _getClassNames(i){
     let result = "row-tile"
+
     if (this.state.tone[i]){
        result += " selected"
     }
 
     if (i === this.state.activeCol ){
-      result += " active"
+      result += " active-tile"
     }
     return result
   }
@@ -59,7 +61,6 @@ class Row extends Component {
   _updateTile(e) {
     const changedTone = this.state.tone.slice()
     changedTone[e.target.id] = !changedTone[e.target.id]
-
     //this pushes the change to firebase
     fire.firestore().collection('row').doc(this.state.id).update({
       tone: changedTone
@@ -96,12 +97,9 @@ class Music extends Component {
     }
   }
 
-
   componentDidMount(){
 
     const link = process.env.PUBLIC_URL + 'assets/' + this.props.instrument + '.mp3';
-
-    console.log(link);
 
     const drum = new Tone.Players({
       [this.props.instrument] : link
