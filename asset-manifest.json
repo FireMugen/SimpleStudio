@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/SimpleStudio/static/css/main.03891d97.chunk.css",
-    "main.js": "/SimpleStudio/static/js/main.1444b971.chunk.js",
-    "main.js.map": "/SimpleStudio/static/js/main.1444b971.chunk.js.map",
+    "main.css": "/SimpleStudio/static/css/main.e6f63a3d.chunk.css",
+    "main.js": "/SimpleStudio/static/js/main.6ecb6a2a.chunk.js",
+    "main.js.map": "/SimpleStudio/static/js/main.6ecb6a2a.chunk.js.map",
     "runtime~main.js": "/SimpleStudio/static/js/runtime~main.6d50b6b7.js",
     "runtime~main.js.map": "/SimpleStudio/static/js/runtime~main.6d50b6b7.js.map",
     "static/js/2.c67b7edc.chunk.js": "/SimpleStudio/static/js/2.c67b7edc.chunk.js",
     "static/js/2.c67b7edc.chunk.js.map": "/SimpleStudio/static/js/2.c67b7edc.chunk.js.map",
     "index.html": "/SimpleStudio/index.html",
-    "precache-manifest.17b40a63690bddf36f84b2cdbd2ed68d.js": "/SimpleStudio/precache-manifest.17b40a63690bddf36f84b2cdbd2ed68d.js",
+    "precache-manifest.91a4e33a836da4e209354f8e4050be9e.js": "/SimpleStudio/precache-manifest.91a4e33a836da4e209354f8e4050be9e.js",
     "service-worker.js": "/SimpleStudio/service-worker.js",
-    "static/css/main.03891d97.chunk.css.map": "/SimpleStudio/static/css/main.03891d97.chunk.css.map",
+    "static/css/main.e6f63a3d.chunk.css.map": "/SimpleStudio/static/css/main.e6f63a3d.chunk.css.map",
     "static/media/login.scss": "/SimpleStudio/static/media/audio-mixer.2b338699.jpg"
   }
 }
