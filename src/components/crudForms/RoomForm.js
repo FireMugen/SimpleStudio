@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fire from '../../config/Fire'
 import SequencerForm from './SequencerForm'
 
+
 class RoomForm extends Component {
   constructor(){
       super()
@@ -105,11 +106,20 @@ class RoomForm extends Component {
     return(
        <div>
           <form onSubmit={this._handleSubmit}>
+						<br/>
             <label>Room Name</label>
+						<br/>
+						<br/>
             <input type="text" onChange={this._handleName} value={this.state.roomName}/>
+						<br/>
+						<br/>
             <label>Starting Sequencer</label>
+						<br/>
+						<br/>
             <SequencerForm sequenceSelect={this._handleSequ} />
-            <input type="submit" value="Create Room"/>
+						<br/>
+						<br/>
+            <input type="submit" />
           </form>
        </div>
     )
