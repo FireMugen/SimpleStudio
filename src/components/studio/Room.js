@@ -9,6 +9,11 @@ class Room extends Component {
   constructor(props){
     super(props);
 
+   Tone.Transport.stop();
+   Tone.Transport.cancel();
+
+
+
     this.state = {
       id: this.props.match.params.room,
       name: "",

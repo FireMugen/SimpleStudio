@@ -45,7 +45,7 @@ class Synthesiser extends Component {
         octave: data.octave,
         root: data.root
       })
-      console.log(this.state.noteArray);
+
     })
 
 

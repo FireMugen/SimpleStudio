@@ -4,8 +4,6 @@ import SequencerForm from './SequencerForm'
 import { Redirect } from 'react-router-dom'
 import '../../css/login.scss'
 
-
-
 class RoomForm extends Component {
   constructor(){
       super()
