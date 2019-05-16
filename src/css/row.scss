@@ -7,7 +7,8 @@ $bordercolour: darkgrey;
   flex-grow: 1;
   p {
     display: inline;
-    font-weight: 400;
+    font-weight: bold;
+    color: $backgroundcolour;
   }
 }
 
@@ -59,12 +60,13 @@ $bordercolour: darkgrey;
 
 .transport:active {
 	position:relative;
-	top: 1px;
+	// top: 1px;
 }
 
 .row-container {
   display: flex;
   justify-content: center;
+  box-sizing: content-box;
 }
 
 .row-title {
@@ -93,8 +95,9 @@ $bordercolour: darkgrey;
   background-color: #01FDF6;
 }
 
-.active{
+.active-tile {
+  opacity: 0.8;
   border: solid #FCF7FF;
-  border-width: 1px 2px ;
+  border-width: 1px 1px;
   border-collapse: collapse;
 }

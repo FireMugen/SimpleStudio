@@ -3,6 +3,7 @@ $backgroundcolour: #DFE0DC;
 .background {
 	background-color: $backgroundcolour;
 	height: 700px;
+	text-align: center;
 }
 
 .sign-form {
@@ -63,15 +64,20 @@ body {
 	color: black;
 }
 
+.container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+
+	grid-template-rows: 400px;
+}
+
 .box-button {
 	border-radius: 10%;
 	width: 300px;
 	height: 100px;
 	background-color: white;
-	display: flex;
-	justify-content: space-around;
 	color: black;
-	margin: 20px 0px 0px 200px;
 	font-size: 25px;
 	background-color: darkgray;
+	margin: 15px;
 }

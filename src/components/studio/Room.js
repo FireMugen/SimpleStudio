@@ -16,8 +16,9 @@ class Room extends Component {
       sequencers: [],
       transport: false,
       tempo: '',
-      swing: '',
-      exists: true
+      exists: true,
+      collaborators: [],
+      swing: ''
     }
 
     this.createSequences = this.createSequences.bind(this);
@@ -42,10 +43,17 @@ class Room extends Component {
           name: snapshot.data().name,
           sequencers: snapshot.data().sequencers,
           tempo: snapshot.data().tempo,
+          collaborators: snapshot.data().collaborators,
           swing: snapshot.data().swing
+
         })
 
       }
+    })
+    fire.firestore().collection('room').doc(this.state.id).onSnapshot( (snapshot) => {
+      this.setState({
+        tempo: snapshot.data().tempo
+      })
     })
   }
 
@@ -53,7 +61,7 @@ class Room extends Component {
   createSequences(){
     const sequencer = [];
     for (let i = 0; i < this.state.sequencers.length; i++ ){
-      sequencer.push( <Sequencer key={i} seqID={this.state.sequencers[i]} /> )
+      sequencer.push( <Sequencer key={i} seqID={this.state.sequencers[i]} collaborators={this.state.collaborators}/> ) //add props to sequencer here.
     }
     return sequencer;
   }
@@ -94,7 +102,7 @@ class Room extends Component {
       swing: newSwing
     })
 
-    Tone.Transport.swing.value = this.state.swing / 100;
+    Tone.Transport.swing = this.state.swing / 100;
 
     const updateSwing = () => {
 
@@ -105,7 +113,7 @@ class Room extends Component {
 
     clearTimeout(this.time);
 
-    this.time = setTimeout(updateSwing, 1000);
+    this.time = setTimeout(updateSwing, 500);
   }
 
   render(){

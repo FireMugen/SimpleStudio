@@ -35,7 +35,7 @@ class RoomLinks extends Component{
 
       await fire.firestore().collection('room').doc(id).get().then( (result) => {
         console.log(3);
-        roomLinks.push(<Link to={`/${result.id}`}>{result.data().name}</Link>)
+        roomLinks.push(<p><Link to={`/${result.id}`}>{result.data().name}</Link></p>)
 
       })
       console.log(4, roomLinks);

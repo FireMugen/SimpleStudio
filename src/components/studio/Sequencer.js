@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Row from './Row'
 import fire from '../../config/Fire'
-import Tone from 'tone'
+import Synthesiser from './Synthesiser'
+// import Tone from 'tone'
 
 class Sequencer extends Component {
   constructor(props){
@@ -11,7 +12,7 @@ class Sequencer extends Component {
       id: this.props.seqID,
       name: "",
       rows: [],
-      synth: false
+      isSynth: false
     }
 
     this.createRows = this.createRows.bind(this);
@@ -21,7 +22,7 @@ class Sequencer extends Component {
   componentDidMount(){
     //gets database and returns as snapshot (only once, no need to update)
     fire.firestore().collection('sequencer').doc(this.state.id).get().then( (snapshot) => {
-      if( snapshot.present ){
+      if( snapshot.exists ){
         this.setState({
           name: snapshot.data().name,
           rows: snapshot.data().rows,
@@ -51,11 +52,11 @@ class Sequencer extends Component {
   //helper function to create the sequencer rows based off ID.
   createRows(){
     if(this.state.isSynth){
-      // return <Synthesiser synthID={this.state.id} rows={this.state.rows}/>
+      return <Synthesiser synthID={this.state.id} rows={this.state.rows}/>
     }else{
       const rows = [];
       for (let i = 0; i < this.state.rows.length; i++ ){
-        rows.push( <Row key={i} rowID={this.state.rows[i]} /> )
+        rows.push( <Row key={i} rowID={this.state.rows[i]} collaborators={this.props.collaborators}/> )
       }
       return rows;
     }
@@ -70,7 +71,5 @@ class Sequencer extends Component {
     )
   }
 };
-
-
 
 export default Sequencer;
