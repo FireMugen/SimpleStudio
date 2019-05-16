@@ -138,7 +138,9 @@ class Room extends Component {
         </div>
         <div>
         </div>
+        <div className="sequence-wrapper">
         {this.createSequences()}
+        </div>
         <Chat roomID={this.state.id}/>
       </div>
     )

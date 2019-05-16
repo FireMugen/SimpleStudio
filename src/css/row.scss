@@ -47,10 +47,10 @@ $bordercolour: darkgrey;
 	display:inline;
 	cursor: pointer;
 	color: black;
-	font-family:Arial;
-	font-size:20px;
+	font-family: Arial;
+	font-size: 20px;
 	font-weight:bold;
-	padding:10px 20px;
+	padding: 10px 20px;
   width: 5%;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #2b665e;
@@ -67,6 +67,10 @@ $bordercolour: darkgrey;
 	position:relative;
 	// top: 1px;
 }
+
+// .sequence-wrapper {
+//   background-color: #2D2F30;
+// }
 
 .row-container {
   display: flex;
