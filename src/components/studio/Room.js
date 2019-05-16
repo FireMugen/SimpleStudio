@@ -140,8 +140,9 @@ class Room extends Component {
     return(
       <div>
         <div className={chatVis}>
+          <h1 id="room-title">{this.state.name}</h1>
+          <div className="room-container">
           <div className="slidecontainer">
-            <h1>{this.state.name}</h1>
             {
               this.state.transport ?
               <button className="transport" onClick={this._playMusic}>◼</button> : <button  className="transport" onClick={this._playMusic}>▶</button>
@@ -154,6 +155,7 @@ class Room extends Component {
           <div className="sequence-wrapper">
             {this.createSequences()}
           </div>
+        </div>
         </div>
         <Chat roomID={this.state.id} shrinkRoom={this.shrinkRoom} />
       </div>

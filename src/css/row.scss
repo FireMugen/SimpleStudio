@@ -1,30 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai');
 $backgroundcolour: #DFE0DC;
 $bordercolour: darkgrey;
 
 .slidecontainer {
   width: 100%;
   text-align: center;
+
   flex-grow: 1;
+  // background: rgba(223, 224, 220, 0.7);
   p {
     display: inline;
     font-weight: bold;
-    color: $backgroundcolour;
+    color: black;
   }
-  h1 {
-    text-shadow: 2px 2px #000000;
-    color: white;
-    padding-top: 5%;
-  }
+}
+
+//Slider config.
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 20px;
+  width: 10px;
+  border-radius: 2px;
+  background: #000000;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -7px;
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 30px;
+  width: 14px;
+  border-radius: 2px;
+  background: #000000;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 30px;
+  width: 14px;
+  border-radius: 2px;
+  background: #000000;
+  cursor: pointer;
+  height: 8.4px;
+}
+
+
+.room-container {
+  background-color: rgba(255,191,203,0.95);
+  padding-bottom: 2%;
+}
+
+
+#room-title {
+  // text-shadow: 2px 2px #000000;
+  // text-shadow: -1px 0px 12px rgba(0,0,0,0.74);
+  text-shadow: -1px 0px 19px rgba(0,0,0,0.62);
+
+  color: white;
+  // padding-top: 2%;
+  text-align: center;
+  font-size: 350%;
+  font-family: 'Baloo Bhai';
 }
 
 .effects-slider-container {
   width: 100%;
   text-align: center;
   flex-grow: 1;
+  // background: rgba(223, 224, 220, 0.7);
+  text-shadow: 1px 1px #01fdf6;
   label {
     display: inline;
     font-weight: bold;
-    color: $backgroundcolour;
+    color: black;
   }
   h1 {
     text-shadow: 2px 2px #000000;
@@ -40,7 +93,7 @@ $bordercolour: darkgrey;
   appearance: none;
   width: 25%;
   height: 5px;
-  background-color: $backgroundcolour;
+  background-color: #01fdf6;
 }
 
 .slider:focus {
@@ -84,9 +137,7 @@ $bordercolour: darkgrey;
 	// top: 1px;
 }
 
-// .sequence-wrapper {
-//   background-color: #2D2F30;
-// }
+
 
 .row-container {
   display: flex;
@@ -107,8 +158,7 @@ $bordercolour: darkgrey;
 }
 
 .tempo{
-  text-shadow: 2px 2px #000000;
-  color: white;
+  text-shadow: 1px 1px #01fdf6;
 }
 
 
@@ -151,7 +201,9 @@ $bordercolour: darkgrey;
   width: 25%;
   height: 5px;
   label {
-    text-shadow: 2px 2px #000000;
+    color: black;
+    text-shadow: 1px 1px #01fdf6;
+
     margin: 1em;
   }
 }

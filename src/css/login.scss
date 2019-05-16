@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai');
+
 $lightgrey: #DFE0DC;
 $darkgrey: #373a47;
 
@@ -65,14 +67,18 @@ body {
 }
 
 .mrow {
-	color: white;
-	font-size: 350%;
-	// background-color: rgba(223, 224, 220, 0.7);
-	// width: 45%;
 	margin: auto;
 	border-radius: 10%;
 	padding: 1em;
-	text-shadow: 2px 2px #000000;
+	// text-shadow: 2px 2px #000000;
+	// text-shadow: 2px 2px #000000;
+	// text-shadow: -1px 0px 12px rgba(0,0,0,0.74);
+	text-shadow: -1px 0px 19px rgba(0,0,0,0.62);
+	color: white;
+	text-align: center;
+	font-size: 350%;
+	font-family: 'Baloo Bhai';
+
 }
 
 
