@@ -2,10 +2,10 @@
   "name": "simple-studio-client",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://firemugen.github.io/SimpleStudio/",
   "dependencies": {
     "firebase": "^6.0.2",
     "gh-pages": "^2.0.1",
-    "homepage": "https://firemugen.github.io/SimpleStudio/",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-burger-menu": "^2.6.10",
