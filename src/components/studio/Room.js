@@ -16,12 +16,14 @@ class Room extends Component {
       sequencers: [],
       transport: false,
       tempo: '',
+      swing: '',
       exists: true
     }
 
     this.createSequences = this.createSequences.bind(this);
     this._playMusic = this._playMusic.bind(this);
     this._changeTempo = this._changeTempo.bind(this);
+    this._changeSwing = this._changeSwing.bind(this);
   }
 
   //this is a lifestyle function called after constructor
@@ -39,7 +41,8 @@ class Room extends Component {
         this.setState({
           name: snapshot.data().name,
           sequencers: snapshot.data().sequencers,
-          tempo: snapshot.data().tempo
+          tempo: snapshot.data().tempo,
+          swing: snapshot.data().swing
         })
 
       }
@@ -64,30 +67,45 @@ class Room extends Component {
   }
 
   _changeTempo(e){
-    Tone.Transport.bpm.value = this.state.tempo;
-
     let newTempo = e.target.value;
 
     this.setState({
       tempo: newTempo
     })
 
-    console.log(e.target.value);
+    Tone.Transport.bpm.value = this.state.tempo;
 
     const updateTempo = () => {
+
       fire.firestore().collection('room').doc(this.state.id).update({
         tempo: this.state.tempo
       })
-      // .then( (snapshot) => {
-      //   this.setState({
-      //     tempo: snapshot.data().tempo
-      //   })
-      // })
     }
 
     clearTimeout(this.time);
 
     this.time = setTimeout(updateTempo, 1000);
+  }
+
+  _changeSwing(e){
+    let newSwing = e.target.value;
+
+    this.setState({
+      swing: newSwing
+    })
+
+    Tone.Transport.swing.value = this.state.swing / 100;
+
+    const updateSwing = () => {
+
+      fire.firestore().collection('room').doc(this.state.id).update({
+        swing: this.state.swing
+      })
+    }
+
+    clearTimeout(this.time);
+
+    this.time = setTimeout(updateSwing, 1000);
   }
 
   render(){
@@ -106,6 +124,8 @@ class Room extends Component {
           }
           <p className="tempo">Tempo: {this.state.tempo} bpm</p>
           <input type="range" min="60" max="180" id='bpm' value={this.state.tempo} onChange={this._changeTempo} className="slider"/>
+          <p className="tempo">Swing Amount: {this.state.swing}</p>
+          <input type="range" min="0" max="100" id='bpm' value={this.state.swing} onChange={this._changeSwing} className="slider"/>
         </div>
         <div>
         </div>

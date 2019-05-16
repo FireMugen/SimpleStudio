@@ -51,7 +51,7 @@ class Sequencer extends Component {
   //helper function to create the sequencer rows based off ID.
   createRows(){
     if(this.state.isSynth){
-      return <Synthesiser synthID={this.state.id} rows={this.state.rows}/>
+      // return <Synthesiser synthID={this.state.id} rows={this.state.rows}/>
     }else{
       const rows = [];
       for (let i = 0; i < this.state.rows.length; i++ ){

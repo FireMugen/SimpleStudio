@@ -4,6 +4,7 @@ import NavBar from './NavBar'
 import Room from './studio/Room'
 import RoomForm from './crudForms/RoomForm'
 import JoinRoom from './JoinRoom'
+import RoomLinks from './RoomLinks'
 import '../css/login.scss'
 
 
@@ -35,6 +36,7 @@ class Home extends Component {
 					<br/>
 					<div><aside><RoomForm /></aside></div>
 					<div><aside><JoinRoom /></aside></div>
+          <div><aside><RoomLinks /></aside></div>
 					<button onClick={this.logout} className="button">Logout</button>
 					</div>
 
