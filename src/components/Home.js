@@ -22,6 +22,16 @@ class Home extends Component {
         fire.auth().signOut();
     }
 
+    joinRoom() {
+      console.log("join room");
+    }
+
+    spectate() {
+      console.log("spectate");
+    }
+
+
+
     render() {
         return (
 					<div className="background">
@@ -32,9 +42,9 @@ class Home extends Component {
 					<div>
 						<button className="box-button">Create</button>
 						<br/>
-						<button className="box-button">Join Room</button>
+						<button onClick={this.joinRoom} className="box-button">Join Room</button>
 						<br/>
-						<button className="box-button">Spectate</button>
+						<button onClick={this.spectate} className="box-button">Spectate</button>
 					</div>
 					<RoomForm />
 					<div></div>
