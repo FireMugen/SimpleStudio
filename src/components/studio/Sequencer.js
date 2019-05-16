@@ -65,7 +65,7 @@ class Sequencer extends Component {
   render(){
     return(
       <div>
-        <h3>{this.state.name}</h3>
+      
         {this.createRows()}
       </div>
     )
