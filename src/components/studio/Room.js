@@ -16,7 +16,8 @@ class Room extends Component {
       sequencers: [],
       transport: false,
       tempo: '',
-      exists: true
+      exists: true,
+      collaborators: []
     }
 
     this.createSequences = this.createSequences.bind(this);
@@ -39,7 +40,8 @@ class Room extends Component {
         this.setState({
           name: snapshot.data().name,
           sequencers: snapshot.data().sequencers,
-          tempo: snapshot.data().tempo
+          tempo: snapshot.data().tempo,
+          collaborators: snapshot.data().collaborators
         })
 
       }
@@ -55,7 +57,7 @@ class Room extends Component {
   createSequences(){
     const sequencer = [];
     for (let i = 0; i < this.state.sequencers.length; i++ ){
-      sequencer.push( <Sequencer key={i} seqID={this.state.sequencers[i]} /> )
+      sequencer.push( <Sequencer key={i} seqID={this.state.sequencers[i]} collaborators={this.state.collaborators}/> ) //add props to sequencer here.
     }
     return sequencer;
   }

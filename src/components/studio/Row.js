@@ -7,11 +7,15 @@ import Synthesiser from './Synthesiser'
 class Row extends Component {
   constructor(props){
     super(props);
+    const user=fire.auth().currentUser;
+
     this.state = {
       id: this.props.rowID,
       instrument: '',
       tone: [],
-      activeCol: -1
+      activeCol: -1,
+      collaborators: this.props.collaborators,
+      userID: user.uid
     };
     this._updateTile = this._updateTile.bind(this)
     this._getClassNames = this._getClassNames.bind(this)
@@ -31,7 +35,12 @@ class Row extends Component {
   buildRow() {
     const row = [];
       for (let i = 0; i < 16; i++) {
-        row.push(<div onClick={this._updateTile} id={i} key={i} className={this._getClassNames(i)}></div>)
+
+        //add ternery here for the onclick, if true user auth on this room, calls this._updateTile otherwise do nothing.
+
+        // this.state.collaborators.includes(this.state.userID) ? true : false
+        //if room colaborators is equal to current user
+        row.push(<div onClick={this.state.collaborators.includes(this.state.userID) ? this._updateTile : "" } id={i} key={i} className={this._getClassNames(i)}></div>)
       }
     return row
   }
