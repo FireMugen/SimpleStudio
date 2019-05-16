@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import JoinRoom from './JoinRoom';
 import fire from '../config/Fire';
 import { Link } from 'react-router-dom'
 
@@ -51,7 +50,6 @@ class RoomLinks extends Component{
     return(
       <div className="form-style">
         {this.state.rooms}
-        <JoinRoom />
       </div>
     )
   }

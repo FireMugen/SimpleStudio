@@ -7,6 +7,7 @@ import Chat from './components/Chat';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Home from './components/Home';
+import Profile from './components/Profile'
 
 
 class Routes extends Component{
@@ -44,6 +45,7 @@ class Routes extends Component{
               <Redirect from='/:room' to='/' />
             </Switch> : <Switch>
               <Route exact path='/' component={ Home } />,
+              <Route path='/profile/:user' component={ Profile } />,
               <Route path='/:room' component={ Room } />
             </Switch>
           }

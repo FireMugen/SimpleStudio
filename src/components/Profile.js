@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import fire from '../config/Fire';
 import '../css/login.scss'
 
 
@@ -38,3 +39,5 @@ class Profile extends Component {
 		)
 	}
 }
+
+export default Profile

@@ -91,14 +91,14 @@ class JoinRoom extends Component{
     }
 
     return(
-      <form>
+      <form className="form-style">
         <label>Room Name</label>
-        <input type="text" onChange={ this._handleName } value={ this.state.roomName } />
-
+        <input type="text" className="input-home" onChange={ this._handleName } value={ this.state.roomName } />
+        <br/>
         <label>Pin Code</label>
-        <input type="text" onChange={ this._handlePassword } value={ this.state.password } />
+        <input type="text" className="input-home" onChange={ this._handlePassword } value={ this.state.password } />
 
-        <input type="submit" onClick={this._handleSubmit} value="Join Room" />
+        <input type="submit" className="button" onClick={this._handleSubmit} value="Join Room" />
       </form>
     )
   }

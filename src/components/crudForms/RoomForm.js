@@ -47,7 +47,6 @@ class RoomForm extends Component {
   _handleSubmit (e){
     e.preventDefault();
 
-    console.log(this.state)
 
     if( !this.state.selectedRows){
       return;
@@ -56,14 +55,23 @@ class RoomForm extends Component {
     const userID = fire.auth().currentUser.uid;
     const password = this.getPassword();
     const roomName = this.state.roomName;
-    console.log(this.state.type);
 
-    if(this.state.type === 'sample'){
+
+      const drumRows = [
+        "CLAP",
+        "CLOSEDHAT",
+        "SNARE",
+        "COWBELL",
+        "CYMBAL",
+        "KICK",
+        "OPENHIHAT",
+        "RIMSHOT"
+      ];
 
       const rows = [];
 
       // WHYYYYYYYY?????
-      Promise.all(this.state.selectedRows.map( async(instrument) => {
+      Promise.all(drumRows.map( async(instrument) => {
 
         await fire.firestore().collection('row').add({
 
@@ -80,86 +88,60 @@ class RoomForm extends Component {
 
         fire.firestore().collection('sequencer').add({
 
-            name: this.state.sequName,
+            name: "Drum Sequencer",
             rows: rows
 
           }).then( (result) => {
+            const sequID = result.id;
+
+            fire.firestore().collection('synthesiser').add({
+
+                name: this.state.sequName,
+                row0: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+                row1: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+                row2: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+                row3: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+                row4: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+                row5: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+                row6: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
+                scale: 'major',
+                octave: '4',
+                root: 'C',
+                type: this.state.type
+
+              }).then( (result) => {
 
 
-            fire.firestore().collection('room').add({
-              name: roomName,
-              tempo: '90',
-              swing: '0',
-              collaborators: [userID],
-              sequencers: [result.id],
-              password: password
+                fire.firestore().collection('room').add({
+                  name: roomName,
+                  tempo: '90',
+                  swing: '0',
+                  collaborators: [userID],
+                  sequencers: [sequID, result.id],
+                  password: password
 
-            }).then( (result) => {
+                }).then( (result) => {
 
-              const roomID = result.id;
-              fire.firestore().collection('user').doc(userID).get().then( (result) => {
+                  const roomID = result.id;
+                  fire.firestore().collection('user').doc(userID).get().then( (result) => {
 
-                const roomArr = result.data().rooms.slice();
-                roomArr.push( roomID );
+                    const roomArr = result.data().rooms.slice();
+                    roomArr.push( roomID );
 
-                fire.firestore().collection('user').doc(userID).update({
-                  rooms: roomArr
-              }).then( () => {
-                this.setState({
-                  redirectLink: roomID
+                    fire.firestore().collection('user').doc(userID).update({
+                      rooms: roomArr
+                    }).then( () => {
+                      this.setState({
+                        redirectLink: roomID
+                      })
+                    })
+                  })
                 })
               })
+
             })
           })
-        })
 
-      })
-    }else if(this.state.type === 'normal'){
-      fire.firestore().collection('synthesiser').add({
-
-          name: this.state.sequName,
-          row0: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-          row1: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-          row2: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-          row3: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-          row4: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-          row5: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-          row6: [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
-          scale: 'major',
-          octave: '4',
-          root: 'C',
-          type: 'normal'
-
-        }).then( (result) => {
-
-
-          fire.firestore().collection('room').add({
-            name: roomName,
-            tempo: '90',
-            swing: '0',
-            collaborators: [userID],
-            sequencers: [result.id],
-            password: password
-
-          }).then( (result) => {
-
-            const roomID = result.id;
-            fire.firestore().collection('user').doc(userID).get().then( (result) => {
-
-              const roomArr = result.data().rooms.slice();
-              roomArr.push( roomID );
-
-              fire.firestore().collection('user').doc(userID).update({
-                rooms: roomArr
-            }).then( () => {
-              this.setState({
-                redirectLink: roomID
-              })
-          })
-        })
-      })
-    })
-    }
 
 
     this.setState({
@@ -185,6 +167,8 @@ class RoomForm extends Component {
             <input className="input-home" type="text" onChange={this._handleName} value={this.state.roomName}/>
 						<br/>
 						<br/>
+            <label>Default Drum Sampler</label>
+            <br />
             <label>Starting Sequencer</label>
 						<br/>
 						<br/>

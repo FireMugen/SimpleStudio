@@ -19,22 +19,7 @@ class SequencerForm extends Component {
       value: e.target.value
     })
 
-    if( e.target.value === 'drum' ){
-      this.props.sequenceSelect(
-        [
-          "CLAP",
-          "CLOSEDHAT",
-          "SNARE",
-          "COWBELL",
-          "CYMBAL",
-          "KICK",
-          "OPENHIHAT",
-          "RIMSHOT"
-        ],
-        "Drum Sequencer",
-        "sample"
-      );
-    }else if (e.target.value === 'normal'){
+    if (e.target.value === 'normal'){
       this.props.sequenceSelect(
         [],
         "Sine Synth Sequencer",
@@ -53,7 +38,6 @@ class SequencerForm extends Component {
     return(
       <select onChange={this._handleChange} value={this.state.value}>
         <option value="empty">Select A Sequencer</option>,
-        <option value="drum">Drum Sequencer</option>
         <option value="normal">Sine Synth Sequencer</option>
       </select>
     )
