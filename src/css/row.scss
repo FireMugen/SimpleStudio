@@ -22,7 +22,7 @@ $bordercolour: darkgrey;
   display: inline;
   -webkit-appearance: none;
   appearance: none;
-  width: 28%;
+  width: 25%;
   height: 5px;
   background-color: $backgroundcolour;
 }
@@ -111,4 +111,26 @@ p.tempo{
   border: solid #FCF7FF;
   border-width: 1px 1px;
   border-collapse: collapse;
+}
+
+.scale-controls-container {
+  margin: 2em;
+  width: 93%;
+  text-align: center;
+  flex-grow: 1;
+  align-items: center;
+  font-weight: bold;
+  color: $backgroundcolour;
+}
+
+.scale-controls {
+  margin: 2em;
+  display: inline;
+  // -webkit-appearance: none;
+  // appearance: none;
+  width: 25%;
+  height: 5px;
+  label {
+    margin: 1em;
+  }
 }
