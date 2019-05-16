@@ -44,7 +44,7 @@ class Row extends Component {
     }
 
     if (i === this.state.activeCol ){
-      result += " active"
+      result += " active-tile"
     }
     return result
   }
@@ -73,7 +73,6 @@ class Row extends Component {
         {
           this.state.instrument ? <Music tone={this.state.tone} instrument={this.state.instrument} activate={this.lightCol}/> : ""
         }
-        <Synthesiser />
       </div>
     )
   }
