@@ -4,7 +4,6 @@ import fire from '../../config/Fire'
 import Tone from 'tone'
 import Sequencer from './Sequencer'
 import Chat from '../Chat'
-import NavBar from '../NavBar'
 
 class Room extends Component {
   constructor(props){
@@ -18,13 +17,15 @@ class Room extends Component {
       tempo: '',
       exists: true,
       collaborators: [],
-      swing: ''
+      swing: '',
+      showMenu: false
     }
 
     this.createSequences = this.createSequences.bind(this);
     this._playMusic = this._playMusic.bind(this);
     this._changeTempo = this._changeTempo.bind(this);
     this._changeSwing = this._changeSwing.bind(this);
+    this.shrinkRoom = this.shrinkRoom.bind(this);
   }
 
   //this is a lifestyle function called after constructor
@@ -116,32 +117,40 @@ class Room extends Component {
     this.time = setTimeout(updateSwing, 500);
   }
 
+  shrinkRoom(b){
+    this.setState({
+      showMenu: b
+    })
+  }
+
 
   render(){
+
+    const chatVis = this.state.showMenu ? 'shrink-room' : '';
+
     if(!this.state.exists){
       return <Redirect to='/' />
     }
 
     return(
       <div>
-        <NavBar />
-        <div className="slidecontainer">
-        <h1>{this.state.name}</h1>
-          {
-            this.state.transport ?
-            <button className="transport" onClick={this._playMusic}>◼</button> : <button className="transport" onClick={this._playMusic}>▶</button>
-          }
-          <p className="tempo">Tempo: {this.state.tempo} bpm</p>
-          <input type="range" min="60" max="180" id='bpm' value={this.state.tempo} onChange={this._changeTempo} className="slider"/>
-          <p className="tempo">Swing Amount: {this.state.swing}</p>
-          <input type="range" min="0" max="100" id='bpm' value={this.state.swing} onChange={this._changeSwing} className="slider"/>
+        <div className={chatVis}>
+          <div className="slidecontainer">
+            <h1>{this.state.name}</h1>
+            {
+              this.state.transport ?
+              <button className="transport" onClick={this._playMusic}>◼</button> : <button  className="transport" onClick={this._playMusic}>▶</button>
+            }
+            <p className="tempo">Tempo: {this.state.tempo} bpm</p>
+            <input type="range" min="60" max="180" id='bpm' value={this.state.tempo}  onChange={this._changeTempo} className="slider"/>
+            <p className="tempo">Swing Amount: {this.state.swing}</p>
+            <input type="range" min="0" max="100" id='bpm' value={this.state.swing}   onChange={this._changeSwing} className="slider"/>
+          </div>
+          <div className="sequence-wrapper">
+            {this.createSequences()}
+          </div>
         </div>
-        <div>
-        </div>
-        <div className="sequence-wrapper">
-        {this.createSequences()}
-        </div>
-        <Chat roomID={this.state.id}/>
+        <Chat roomID={this.state.id} shrinkRoom={this.shrinkRoom} />
       </div>
     )
   }
