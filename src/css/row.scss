@@ -90,7 +90,7 @@ $bordercolour: darkgrey;
   overflow: hidden;
 }
 
-p.tempo{
+.tempo{
   text-shadow: 2px 2px #000000;
   color: white;
 }
@@ -135,6 +135,7 @@ p.tempo{
   width: 25%;
   height: 5px;
   label {
+    text-shadow: 2px 2px #000000;
     margin: 1em;
   }
 }
