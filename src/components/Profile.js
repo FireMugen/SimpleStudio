@@ -27,7 +27,6 @@ class Profile extends Component {
 		s.preventDefault();
 		const user = fire.auth().currentUser;
 		if(user){
-			user.updateEmail(this.state.email)
 			user.updateProfile({
   			displayName: this.state.userName,
 			}).then( (u) => {
@@ -40,6 +39,7 @@ class Profile extends Component {
 
 	authUser(c){
 		c.preventDefault();
+
 		const user = fire.auth().currentUser;
 		// Prompt the user to re-provide their sign-in credentials
 		user.reauthenticateWithCredential(this.state.email, this.state.password).then( () => {
@@ -50,7 +50,6 @@ class Profile extends Component {
 		});
 	}
 
-
 	deleteUser(d){
 		d.preventDefault()
 		const user = fire.auth().currentUser;
@@ -60,8 +59,6 @@ class Profile extends Component {
 		  // An error happened.
 		});
 	}
-
-
 
 	render(){
 		return(
@@ -86,12 +83,10 @@ class Profile extends Component {
 				</div>
 					<button className="button" type="submit">Update Profile</button>
 			</form>
-				<button className="button" value="submit">Delete Account</button>
+				<button className="button" onClick={this.deleteUser}>Delete Account</button>
 			</div>
 		)
 	}
 }
-
-
 
 export default Profile;

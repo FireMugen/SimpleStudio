@@ -58,10 +58,10 @@ body {
 	padding: 5px;
 	color: white;
 	font-family: 'Baloo Bhai', sans-serif;
-	font-size: 380%;
+	font-size: 200%;
 	text-shadow: -1px 0px 19px rgba(0,0,0,0.62);
 	padding-top: 7%;
-
+	font-family: 'Roboto', sans-serif;;
 }
 
 .login-fields {
@@ -87,7 +87,7 @@ body {
 .mrow {
 	margin: auto;
 	border-radius: 10%;
-	padding: 1em;
+	padding: 0.5em;
 	// text-shadow: 2px 2px #000000;
 	// text-shadow: 2px 2px #000000;
 	// text-shadow: -1px 0px 12px rgba(0,0,0,0.74);
@@ -188,7 +188,7 @@ a {
 	justify-content: space-around;
 	text-align: center;
 	text-decoration: none;
-	margin: 5px 0px 0px 5px;
+	margin: 3px 0px 0px 3px;
 }
 
 .home-link {

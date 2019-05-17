@@ -148,10 +148,9 @@ class Room extends Component {
 
     return(
       <div>
-        <h1 id="room-title">{this.state.name}</h1>
-
-        <div className="room-container">
 				<a href="/#/"><div className="home-link">⏮️</div></a>
+        <h1 id="room-title">{this.state.name}</h1>
+        <div className="room-container">
         <div className={chatVis}>
           <div className="slidecontainer">
             {
