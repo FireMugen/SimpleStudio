@@ -28,7 +28,9 @@ class Profile extends Component {
 	submit(s){
 		s.preventDefault();
 		const user = fire.auth().currentUser;
-		if(user){
+		if(this.state.userName === ''){
+			alert('You must input a user name')
+		} if(user){
 			user.updateProfile({
   			displayName: this.state.userName,
 			}).then( (u) => {
