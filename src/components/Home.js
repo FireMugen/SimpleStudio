@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import fire from '../config/Fire';
-import NavBar from './NavBar'
-import Room from './studio/Room'
 import RoomForm from './crudForms/RoomForm'
 import JoinRoom from './JoinRoom'
 import RoomLinks from './RoomLinks'
@@ -13,10 +11,10 @@ class Home extends Component {
     constructor(props) {
         super(props);
 
+        //stops the song from a potential previous room from playing and cancel the loop attached
         Tone.Transport.stop();
         Tone.Transport.cancel();
 
-        this.logout = this.logout.bind(this);
 
 				const user = fire.auth().currentUser;
 				this.state = {
@@ -28,16 +26,19 @@ class Home extends Component {
 					initial: this.userNameShorten
 		    };
 
+        this.logout = this.logout.bind(this);
+
         this._onCreate = this._onCreate.bind(this)
         this._onJoin = this._onJoin.bind(this)
         this._onCollab = this._onCollab.bind(this)
     }
 
+    //logout
     logout() {
         fire.auth().signOut();
     }
 
-
+    //_on buttons open a different React Component
     _onCreate(){
       this.setState({
         roomForm: true,

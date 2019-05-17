@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import fire from '../../config/Fire'
 
-
 class SequencerForm extends Component {
   constructor(props){
     super(props)
@@ -33,7 +32,7 @@ class SequencerForm extends Component {
       )
     }
   }
-
+//Uses a drop down menu to select which step sequencer object to use. If we add more this is where the options would go. Passes the results to the RoomForm Component
   render(){
     return(
       <select className="select-menu" onChange={this._handleChange} value={this.state.value}>
