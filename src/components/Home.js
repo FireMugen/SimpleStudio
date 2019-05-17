@@ -68,13 +68,11 @@ class Home extends Component {
 			let letter = '';
 			if (this.state.userName){
 				 letter = this.state.userName.charAt(0).toUpperCase()
-				 console.log(1, letter);
 			}
-			console.log(2, letter);
 
         return (
 					<div className="background">
-					<Link className="" to='/profile'><div className="profile-link">
+					<Link to='/profile'><div className="profile-link">
 						{ letter }</div></Link>
 					<h1 className="mrow">Simple Studio</h1>
 					<br/>

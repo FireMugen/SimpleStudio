@@ -36,12 +36,17 @@ body {
 
 .button {
 	padding: 10px;
-	width: 60px;
+	width: 100px;
 	margin: 5px;
 	background-color: darkgray;
 	border-radius: 10%;
 	border: none;
 	color: black;
+}
+
+.button:hover {
+	background-color: rgba(1, 253, 246, 0.7);
+
 }
 
 .popup-box {
@@ -52,7 +57,20 @@ body {
 .title {
 	padding: 5px;
 	color: white;
+	font-family: 'Baloo Bhai', sans-serif;
+	font-size: 380%;
+	text-shadow: -1px 0px 19px rgba(0,0,0,0.62);
+	padding-top: 7%;
+
+}
+
+.login-fields {
+	color: white;
+	text-shadow: -1px 0px 19px rgba(0,0,0,0.62);
 	font-family: 'Roboto', sans-serif;
+	font-size: 150%
+
+
 }
 
 .popup-box-content{
@@ -77,7 +95,7 @@ body {
 	color: white;
 	text-align: center;
 	font-size: 350%;
-	font-family: 'Baloo Bhai';
+	font-family: 'Baloo Bhai', sans-serif;;
 
 }
 
@@ -106,6 +124,14 @@ body {
 	background-color: rgba(1, 253, 246, 0.7);
 }
 
+.room-wrapper {
+	overflow-y: scroll;
+	max-height: 400px;
+}
+
+.join-room-wrapper{
+
+}
 
 
 
@@ -119,7 +145,7 @@ body {
 
 	a{
 		text-decoration: none;
-		color: white;
+		color: black;
 	}
 
 	a:hover{
@@ -148,8 +174,11 @@ body {
 	linear-gradient(to bottom, #ffffff 0%,darkgray 100%);
 }
 
+a {
+	text-decoration: none;
+}
 
-a .profile-link {
+.profile-link {
 	height: 50px;
 	width: 50px;
 	background-color: white;
@@ -159,18 +188,14 @@ a .profile-link {
 	justify-content: space-around;
 	text-align: center;
 	text-decoration: none;
+	margin: 5px 0px 0px 5px;
 }
 
-a .home-link {
-	height: 50px;
-	width: 50px;
-	background-color: white;
-	border-radius: 50%;
+.home-link {
 	color: black;
-	font-size: 20px;
-	justify-content: space-around;
-	text-align: center;
-	text-decoration: none;
+	font-size: 45px;
+	text-align: left;
+	margin: 0px 0px 0px 5px;
 }
 
 .add-more{

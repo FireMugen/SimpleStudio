@@ -7,6 +7,7 @@ class Profile extends Component {
 	constructor(props) {
 			super(props);
 
+			this.deleteUser = this.deleteUser.bind(this);
 			this.handleChange = this.handleChange.bind(this);
 			this.submit = this.submit.bind(this);
 			this.authUser = this.authUser.bind(this);
@@ -49,10 +50,23 @@ class Profile extends Component {
 		});
 	}
 
+
+	deleteUser(d){
+		d.preventDefault()
+		const user = fire.auth().currentUser;
+		user.delete().then( () => {
+		  // User deleted.
+		}).catch(function(error) {
+		  // An error happened.
+		});
+	}
+
+
+
 	render(){
 		return(
 			<div className="background">
-			<a href="/#/"><div className="home-link">Home</div></a>
+			<a href="/#/"><div className="home-link">⏮️</div></a>
 			<h1 className="mrow">Update Profile &nbsp;</h1>
 			<form className="sign-form" onSubmit={this.submit}>
 				<div>
@@ -72,27 +86,7 @@ class Profile extends Component {
 				</div>
 					<button className="button" type="submit">Update Profile</button>
 			</form>
-					<Popup className="popup-box" id="signup-box" trigger={<button className="button">Delete Account</button>} position="center">
-					 <div>
-					 <form className="sign-form"  onSubmit={this.authUser}>
-							 <div>
-								 <label className="label-form">You must enter<br/> your credentials<br/> to proceed</label>
-								 <br/>
-								 <label className="label-form">Email address</label>
-								 <br/>
-								 <input className="input-pop" value={this.state.email} onChange={this.handleChange} type="email" name="email" placeholder="Enter email" />
-							 </div>
-							 <div>
-								 <label className="label-form">Password</label>
-								 <br/>
-								 <input className="input-pop" value={this.state.password} onChange={this.handleChange} type="password" name="password"	placeholder="Password" />
-							 </div>
-								 <br/>
-								 <button className="button" value="submit" >Delete Account</button>
-					 </form>
-						 <br/>
-					 </div>
-				 </Popup>
+				<button className="button" value="submit">Delete Account</button>
 			</div>
 		)
 	}
