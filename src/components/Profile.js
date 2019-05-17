@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fire from '../config/Fire';
 import '../css/login.scss'
+import Popup from "reactjs-popup";
 
 class Profile extends Component {
 	constructor(props) {
@@ -8,6 +9,7 @@ class Profile extends Component {
 
 			this.handleChange = this.handleChange.bind(this);
 			this.submit = this.submit.bind(this);
+			this.authUser = this.authUser.bind(this);
 
 			this.state = {
 				userName: '',
@@ -24,17 +26,28 @@ class Profile extends Component {
 		s.preventDefault();
 		const user = fire.auth().currentUser;
 		if(user){
-		user.updateProfile({
-  		displayName: this.state.userName,
-		}).then( (u) => {
-  		console.log("Update Successful")
-		}).catch( (error) => {
-			console.log(error)
+			user.updateEmail(this.state.email)
+			user.updateProfile({
+  			displayName: this.state.userName,
+			}).then( (u) => {
+  			console.log("Update Successful")
+			}).catch( (error) => {
+				console.log(error)
+			});
+		}
+	}
+
+	authUser(c){
+		c.preventDefault();
+		const user = fire.auth().currentUser;
+		// Prompt the user to re-provide their sign-in credentials
+		user.reauthenticateWithCredential(this.state.email, this.state.password).then( () => {
+			// User re-authenticated.
+				user.delete()
+		}).catch(function(error) {
+			// An error happened.
 		});
 	}
-}
-
-
 
 	render(){
 		return(
@@ -59,9 +72,32 @@ class Profile extends Component {
 				</div>
 					<button className="button" type="submit">Update Profile</button>
 			</form>
+					<Popup className="popup-box" id="signup-box" trigger={<button className="button">Delete Account</button>} position="center">
+					 <div>
+					 <form className="sign-form"  onSubmit={this.authUser}>
+							 <div>
+								 <label className="label-form">You must enter<br/> your credentials<br/> to proceed</label>
+								 <br/>
+								 <label className="label-form">Email address</label>
+								 <br/>
+								 <input className="input-pop" value={this.state.email} onChange={this.handleChange} type="email" name="email" placeholder="Enter email" />
+							 </div>
+							 <div>
+								 <label className="label-form">Password</label>
+								 <br/>
+								 <input className="input-pop" value={this.state.password} onChange={this.handleChange} type="password" name="password"	placeholder="Password" />
+							 </div>
+								 <br/>
+								 <button className="button" value="submit" >Delete Account</button>
+					 </form>
+						 <br/>
+					 </div>
+				 </Popup>
 			</div>
 		)
 	}
 }
+
+
 
 export default Profile;
