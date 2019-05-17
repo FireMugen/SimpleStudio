@@ -40,7 +40,6 @@ class Login extends Component {
       	user.updateProfile({
          displayName: this.state.userName,
       }).then(function() {
-
         fire.firestore().collection('user').doc(user.uid).set({
           rooms: []
         })
