@@ -74,7 +74,7 @@ class Synthesiser extends Component {
       "delayTime": "4n",
       "feedback": 0.2,
       "wet": 0
-    }).toMaster();
+    })
 
     var chorus = new Tone.Chorus({
       "frequency": 2.5,
@@ -82,17 +82,17 @@ class Synthesiser extends Component {
       "depth": 1,
       "feedback": 0.3,
       "wet": 0
-    }).toMaster();
+    })
 
     var reverb = new Tone.Freeverb({
       "roomSize": 0.8,
       "dampening": 12000,
       "wet": 0
-    }).toMaster();
+    })
 
     var vol = new Tone.Volume({
       "volume": -12,
-    });
+    })
 
     //Chain them to the synth
     polySynth.chain(vol, chorus, pingPong, reverb, Tone.Master)
@@ -126,7 +126,7 @@ class Synthesiser extends Component {
 
   componentDidUpdate(prevProps, prevState){
     //When the state changes, change the ToneJS Object (while you shouldnt do this normally, the Tone JS objects are always listening for changes so changing a value of the object in this way works)
-    if(prevState.data !== this.state.data){
+    if(prevState !== this.state){
       this.state.chorus.wet.value = (this.state.chorusAmount / 100);
       this.state.reverb.wet.value = (this.state.reverbAmount / 100);
       this.state.delay.wet.value = (this.state.delayAmount / 100);

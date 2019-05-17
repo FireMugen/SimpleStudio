@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-Simple Studio
-
-Simple Studio is a way to collaborate on music on the web.
-=======
 ## Simple Studio
 
 A Music Collaboration Web App
@@ -69,4 +64,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
->>>>>>> d61ebd9fcd61cd11bf306dc38d7466d6d7fc9931
