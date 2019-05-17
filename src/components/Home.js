@@ -65,7 +65,7 @@ class Home extends Component {
     render() {
         return (
 					<div className="background">
-					<a href="/#/profile/:user"><div className="profile-link">{this.state.userName.charAt(0).toUpperCase()}</div></a>
+					<Link className="" to='/profile'><div className="profile-link">{this.state.userName.charAt(0).toUpperCase()}</div></Link>
 					<h1 className="mrow">Simple Studio</h1>
 					<br/>
 					<div className="container">
