@@ -12,7 +12,6 @@ SimpleStudio was a group project completed and presented on 17th May 2019 as par
 
 Simple Studio is an online Music collaboration space where you can work with other users in real time to create simple music using a drum sequencer and synthesiser in a 16 step loop.
 
-
 ## Primary technologies used
 - bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 - Browser Audio Framework - [ToneJS](https://tonejs.github.io/)
