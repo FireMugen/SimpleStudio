@@ -16,7 +16,6 @@ class Home extends Component {
         Tone.Transport.stop();
         Tone.Transport.cancel();
 
-				this.userNameShorten = this.userNameShorten.bind;
         this.logout = this.logout.bind(this);
 
 				const user = fire.auth().currentUser;
