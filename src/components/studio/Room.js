@@ -148,7 +148,7 @@ class Room extends Component {
 
     return(
       <div>
-			<Link to='/#/'><div className="home-link">
+			<Link to='/'><div className="home-link">
 				⏮️</div></Link>
         <h1 id="room-title">{this.state.name}</h1>
         <div className="room-container">
