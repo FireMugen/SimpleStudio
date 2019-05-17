@@ -6,19 +6,19 @@ import '../../css/login.scss'
 
 class RoomForm extends Component {
   constructor(){
-      super()
+    super()
 
-      this.state = {
-        roomName: "",
-        sequName: "",
-        selectedRows: false,
-        type: "",
-        redirectLink: ""
-      }
+    this.state = {
+      roomName: "",
+      sequName: "",
+      selectedRows: false,
+      type: "",
+      redirectLink: ""
+    }
 
-      this._handleSubmit = this._handleSubmit.bind(this);
-      this._handleName = this._handleName.bind(this);
-      this._handleSequ = this._handleSequ.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleName = this._handleName.bind(this);
+    this._handleSequ = this._handleSequ.bind(this);
   }
 
   _handleName(e){
@@ -28,14 +28,11 @@ class RoomForm extends Component {
   }
 
   _handleSequ(rows, name, type){
-
-      this.setState({
-        sequName: name,
-        selectedRows: rows,
-        type: type
-      })
-
-
+    this.setState({
+      sequName: name,
+      selectedRows: rows,
+      type: type
+    })
   }
 
   //Returns random Pin Code for the room
