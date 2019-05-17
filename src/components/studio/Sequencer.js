@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Row from './Row'
 import fire from '../../config/Fire'
 import Synthesiser from './Synthesiser'
-// import Tone from 'tone'
 
 class Sequencer extends Component {
   constructor(props){
@@ -18,9 +17,10 @@ class Sequencer extends Component {
     this.createRows = this.createRows.bind(this);
 
   }
+
   //this is a lifestyle function called after constructor
   componentDidMount(){
-    //gets database and returns as snapshot (only once, no need to update)
+    //If the id is a sequencer ID then set the State to create one, otherwise check if it a synthesiser id and set the state for that
     fire.firestore().collection('sequencer').doc(this.state.id).get().then( (snapshot) => {
       if( snapshot.exists ){
         this.setState({
@@ -49,7 +49,7 @@ class Sequencer extends Component {
     })
   }
 
-  //helper function to create the sequencer rows based off ID.
+  //helper function to create the sequencer rows based off ID. It checks if it is a Synth or not and creates accordingly, passing in the appropriate values
   createRows(){
     if(this.state.isSynth){
       return <Synthesiser synthID={this.state.id} rows={this.state.rows}/>
@@ -65,7 +65,7 @@ class Sequencer extends Component {
   render(){
     return(
       <div>
-      
+
         {this.createRows()}
       </div>
     )

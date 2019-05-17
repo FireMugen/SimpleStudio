@@ -115,6 +115,7 @@ body {
 	width: 100%;
 	height: 100%;
 	color: black;
+	overflow-y: scroll;
 
 	a{
 		text-decoration: none;
@@ -148,16 +149,28 @@ body {
 }
 
 
-.profile-link {
-	height: 75px;
-	width: 75px;
+a .profile-link {
+	height: 50px;
+	width: 50px;
 	background-color: white;
 	border-radius: 50%;
 	color: black;
-	font-size: 10px;
+	font-size: 40px;
 	justify-content: space-around;
 	text-align: center;
-	margin: 20px;
+	text-decoration: none;
+}
+
+a .home-link {
+	height: 50px;
+	width: 50px;
+	background-color: white;
+	border-radius: 50%;
+	color: black;
+	font-size: 20px;
+	justify-content: space-around;
+	text-align: center;
+	text-decoration: none;
 }
 
 .add-more{
