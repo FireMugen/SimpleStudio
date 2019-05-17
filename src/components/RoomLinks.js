@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import fire from '../config/Fire';
 import { Link } from 'react-router-dom'
 
-//TODO inefficient to loop through all room documents looking for userid, need roomIDs in users too
 class RoomLinks extends Component{
   constructor(){
     super()
@@ -31,14 +30,17 @@ class RoomLinks extends Component{
     const roomIDs = this.state.roomIDs
     const roomLinks = [];
 
+    //Get all rooms and store them
     Promise.all(roomIDs.map( async (id) => {
 
       await fire.firestore().collection('room').doc(id).get().then( (result) => {
+        //create the links to store them as
         roomLinks.push(<p><Link className="" to={`/${result.id}`}>{result.data().name}</Link></p>)
 
       })
 
     })).then( () => {
+      //pass them through state
       this.setState({
         rooms: roomLinks
       });
@@ -49,7 +51,9 @@ class RoomLinks extends Component{
   render(){
     return(
       <div className="form-style">
-        {this.state.rooms}
+        <div className="room-wrapper">
+          {this.state.rooms}
+        </div>
       </div>
     )
   }

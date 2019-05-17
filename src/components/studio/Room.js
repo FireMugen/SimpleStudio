@@ -10,6 +10,7 @@ class Room extends Component {
   constructor(props){
     super(props);
 
+    //stops the song from a potential previous room from playing and cancel the loop attached
    Tone.Transport.stop();
    Tone.Transport.cancel();
 
@@ -39,7 +40,7 @@ class Room extends Component {
     //gets database and returns as snapshot (only once, no need to update)
     fire.firestore().collection('room').doc(this.state.id).get().then( (snapshot) => {
       if(!snapshot.exists){
-
+        //If the room ID isnt valid, leave
         this.setState({
             exists: false
         })
@@ -57,6 +58,8 @@ class Room extends Component {
 
       }
     })
+
+    // same as above but this is a listener that will update when the database changes
     fire.firestore().collection('room').doc(this.state.id).onSnapshot( (snapshot) => {
       this.setState({
         tempo: snapshot.data().tempo,
@@ -76,6 +79,7 @@ class Room extends Component {
     return sequencer;
   }
 
+//The Play Button
   _playMusic(){
     Tone.Transport.toggle();
     let changeTransport = this.state.transport;
@@ -84,6 +88,7 @@ class Room extends Component {
     })
   }
 
+//The BPM and Swing values that talk to the databse
   _changeTempo(e){
     let newTempo = e.target.value;
 
@@ -126,6 +131,7 @@ class Room extends Component {
     this.time = setTimeout(updateSwing, 500);
   }
 
+  //When the Chat is opened in its component, add this class which lessens the width the rest of the room
   shrinkRoom(b){
     this.setState({
       showMenu: b
@@ -133,19 +139,20 @@ class Room extends Component {
   }
 
   render(){
-
     const chatVis = this.state.showMenu ? 'shrink-room' : '';
 
+    //Leave the fake room
     if(!this.state.exists){
       return <Redirect to='/' />
     }
 
     return(
       <div>
+        <h1 id="room-title">{this.state.name}</h1>
+
         <div className="room-container">
 				<a href="/#/"><div className="home-link">⏮️</div></a>
         <div className={chatVis}>
-          <h1 id="room-title">{this.state.name}</h1>
           <div className="slidecontainer">
             {
               this.state.transport ?

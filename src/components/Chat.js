@@ -3,7 +3,6 @@ import fire from '../config/Fire';
 import chatbar from '../css/chatbar.scss'
 import ScrollableFeed from 'react-scrollable-feed'
 
-
 class ChatRoom extends Component {
     constructor(props, context){
       super(props, context);
@@ -58,7 +57,7 @@ class ChatRoom extends Component {
 
     chatToggle = () => {
       this.props.shrinkRoom(!this.state.showMenu);
-      
+
       this.setState({
         showMenu: !this.state.showMenu
       })
