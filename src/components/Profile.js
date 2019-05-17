@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fire from '../config/Fire';
 import '../css/login.scss'
 import Popup from "reactjs-popup";
+import { Link } from 'react-router-dom'
 
 class Profile extends Component {
 	constructor(props) {
@@ -27,7 +28,6 @@ class Profile extends Component {
 		s.preventDefault();
 		const user = fire.auth().currentUser;
 		if(user){
-			user.updateEmail(this.state.email)
 			user.updateProfile({
   			displayName: this.state.userName,
 			}).then( (u) => {
@@ -40,6 +40,7 @@ class Profile extends Component {
 
 	authUser(c){
 		c.preventDefault();
+
 		const user = fire.auth().currentUser;
 		// Prompt the user to re-provide their sign-in credentials
 		user.reauthenticateWithCredential(this.state.email, this.state.password).then( () => {
@@ -49,7 +50,6 @@ class Profile extends Component {
 			// An error happened.
 		});
 	}
-
 
 	deleteUser(d){
 		d.preventDefault()
@@ -61,12 +61,11 @@ class Profile extends Component {
 		});
 	}
 
-
-
 	render(){
 		return(
 			<div className="background">
-			<a href="/#/"><div className="home-link">⏮️</div></a>
+			<Link to='/#/'><div className="home-link">
+				⏮️</div></Link>
 			<h1 className="mrow">Update Profile &nbsp;</h1>
 			<form className="sign-form" onSubmit={this.submit}>
 				<div>
@@ -86,12 +85,10 @@ class Profile extends Component {
 				</div>
 					<button className="button" type="submit">Update Profile</button>
 			</form>
-				<button className="button" value="submit">Delete Account</button>
+				<button className="button" onClick={this.deleteUser}>Delete Account</button>
 			</div>
 		)
 	}
 }
-
-
 
 export default Profile;
