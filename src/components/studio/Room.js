@@ -70,6 +70,13 @@ class Room extends Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState){
+    if (prevState !== this.state){
+      Tone.Transport.bpm.value = this.state.tempo;
+      Tone.Transport.swing = this.state.swing / 100;
+    }
+  }
+
   //helper function to create the sequencers based off ID.
   createSequences(){
     const sequencer = [];
@@ -96,8 +103,6 @@ class Room extends Component {
       tempo: newTempo
     })
 
-    Tone.Transport.bpm.value = this.state.tempo;
-
     const updateTempo = () => {
 
       fire.firestore().collection('room').doc(this.state.id).update({
@@ -116,8 +121,6 @@ class Room extends Component {
     this.setState({
       swing: newSwing
     })
-
-    Tone.Transport.swing = this.state.swing / 100;
 
     const updateSwing = () => {
 

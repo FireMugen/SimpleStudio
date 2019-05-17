@@ -82,6 +82,10 @@ class JoinRoom extends Component{
 
           fire.firestore().collection('user').doc(userID).update({
             rooms: roomArr
+          }).then( () => {
+            this.setState({
+              redirectLink: id
+            });
           })
         })
 
