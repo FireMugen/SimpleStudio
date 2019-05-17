@@ -42,9 +42,8 @@ class Routes extends Component{
               <Route exact path='/' component={ Login } />,
               <Redirect from='/:room' to='/' />
             </Switch> : <Switch>
-							<Route path='/profile/:user' component={ Profile } />,
               <Route exact path='/' component={ Home } />,
-              <Route path='/profile/:user' component={ Profile } />,
+              <Route path='/profile' component={ Profile } />,
               <Route path='/:room' component={ Room } />
             </Switch>
           }

@@ -23,7 +23,8 @@ class Room extends Component {
       exists: true,
       collaborators: [],
       swing: '',
-      showMenu: false
+      showMenu: false,
+      pincode: ""
     }
 
     this.createSequences = this.createSequences.bind(this);
@@ -47,6 +48,7 @@ class Room extends Component {
 
         this.setState({
           name: snapshot.data().name,
+          pincode: snapshot.data().password,
           tempo: snapshot.data().tempo,
           collaborators: snapshot.data().collaborators,
           swing: snapshot.data().swing
@@ -58,7 +60,9 @@ class Room extends Component {
     fire.firestore().collection('room').doc(this.state.id).onSnapshot( (snapshot) => {
       this.setState({
         tempo: snapshot.data().tempo,
-        sequencers: snapshot.data().sequencers
+        sequencers: snapshot.data().sequencers,
+        swing: snapshot.data().swing
+
       })
     })
   }
@@ -128,7 +132,6 @@ class Room extends Component {
     })
   }
 
-
   render(){
 
     const chatVis = this.state.showMenu ? 'shrink-room' : '';
@@ -156,6 +159,7 @@ class Room extends Component {
           <div className="sequence-wrapper">
             {this.createSequences()}
           </div>
+          <h4 id="room-pincode">Room Code: {this.state.pincode}</h4>
         </div>
         </div>
         <Chat roomID={this.state.id} shrinkRoom={this.shrinkRoom} />
