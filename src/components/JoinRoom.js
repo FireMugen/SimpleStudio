@@ -37,11 +37,13 @@ class JoinRoom extends Component{
   _handleSubmit(e){
     e.preventDefault();
 
+    //When the password and room name are entered
     fire.firestore().collection('room').get().then( (rooms) => {
       rooms.docs.forEach( (doc) => {
+        //Check all rooms to see if a room has the same name and password
         if(doc.data().name === this.state.roomName){
           if(doc.data().password === this.state.password){
-
+            //if it does, join it
             this.joinRoom(doc.id, doc.data().collaborators);
 
           }
@@ -50,6 +52,8 @@ class JoinRoom extends Component{
     })
   }
 
+
+  //if it does add user to room list and add room to user list
   joinRoom(id, collab){
     const userID = this.state.uid
 

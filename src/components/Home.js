@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import fire from '../config/Fire';
-import Room from './studio/Room'
 import RoomForm from './crudForms/RoomForm'
 import JoinRoom from './JoinRoom'
 import RoomLinks from './RoomLinks'
@@ -12,12 +11,13 @@ class Home extends Component {
     constructor(props) {
         super(props);
 
+        //stops the song from a potential previous room from playing and cancel the loop attached
         Tone.Transport.stop();
         Tone.Transport.cancel();
 
-        this.logout = this.logout.bind(this);
 
 				const user = fire.auth().currentUser;
+				console.log(user);
 				this.state = {
 					userName: user.displayName,
 					email: user.email,
@@ -27,16 +27,19 @@ class Home extends Component {
 					initial: this.userNameShorten
 		    };
 
+        this.logout = this.logout.bind(this);
+
         this._onCreate = this._onCreate.bind(this)
         this._onJoin = this._onJoin.bind(this)
         this._onCollab = this._onCollab.bind(this)
     }
 
+    //logout
     logout() {
         fire.auth().signOut();
     }
 
-
+    //_on buttons open a different React Component
     _onCreate(){
       this.setState({
         roomForm: true,
@@ -62,9 +65,17 @@ class Home extends Component {
     }
 
     render() {
+			let letter = '';
+			if (this.state.userName){
+				 letter = this.state.userName.charAt(0).toUpperCase()
+				 console.log(1, letter);
+			}
+			console.log(2, letter);
+
         return (
 					<div className="background">
-					<Link className="" to='/profile'><div className="profile-link">{this.state.userName.charAt(0).toUpperCase()}</div></Link>
+					<Link className="" to='/profile'><div className="profile-link">
+						{ letter }</div></Link>
 					<h1 className="mrow">Simple Studio</h1>
 					<br/>
 					<div className="container">
@@ -84,6 +95,7 @@ class Home extends Component {
 					<button onClick={this.logout} className="button">Logout</button>
 					</div>
 				);
+
 		}
 }
 

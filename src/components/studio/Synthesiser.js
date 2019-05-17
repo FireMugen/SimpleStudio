@@ -34,7 +34,7 @@ class Synthesiser extends Component {
   }
 
   componentDidMount() {
-
+    //Listen for all changes to the DB
     fire.firestore().collection('synthesiser').doc(this.state.id).onSnapshot( (snapshot) => {
       const data = snapshot.data();
       const scaleChoice = data.scale;
@@ -63,11 +63,13 @@ class Synthesiser extends Component {
 
     })
 
+    //Create the Synth
     const polySynth = new Tone.PolySynth(7, Tone.Synth, {
       "oscillator" : { "type" : "sine" },
       "volume": -6
     })
 
+    //Create all Effects
     var pingPong = new Tone.PingPongDelay({
       "delayTime": "4n",
       "feedback": 0.2,
@@ -92,8 +94,10 @@ class Synthesiser extends Component {
       "volume": -12,
     });
 
+    //Chain them to the synth
     polySynth.chain(vol, chorus, pingPong, reverb, Tone.Master)
 
+    //Add synth to the loop
     const loop = new Tone.Sequence( (time, col) => {
       for ( let i = 0; i < this.state.tones.length; i++ ){
         if(this.state.tones[i][col]){
@@ -102,6 +106,7 @@ class Synthesiser extends Component {
       }
 
       Tone.Draw.schedule( () => {
+        //Shows which tiles are being played
         this.lightCol(col);
       }, time);
 
@@ -119,12 +124,21 @@ class Synthesiser extends Component {
 
   }
 
+  componentDidUpdate(prevProps, prevState){
+    //When the state changes, change the ToneJS Object (while you shouldnt do this normally, the Tone JS objects are always listening for changes so changing a value of the object in this way works)
+    if(prevState.data !== this.state.data){
+      this.state.chorus.wet.value = (this.state.chorusAmount / 100);
+      this.state.reverb.wet.value = (this.state.reverbAmount / 100);
+      this.state.delay.wet.value = (this.state.delayAmount / 100);
+      this.state.vol.volume.value = this.state.volAmount;
+    }
+  }
+
+  //_handles get changes to the inputs and send them to the DB to be read by the snapshot avoce and change the state amount to match
   _handleChorus(e) {
     this.setState({
       chorusAmount: e.target.value
     })
-
-    this.state.chorus.wet.value = (this.state.chorusAmount / 100);
 
     const updateChorus = () => {
 
@@ -143,8 +157,6 @@ class Synthesiser extends Component {
       reverbAmount: e.target.value
     })
 
-    this.state.reverb.wet.value = (this.state.reverbAmount / 100);
-
     const updateReverb = () => {
 
       fire.firestore().collection('synthesiser').doc(this.state.id).update({
@@ -161,8 +173,6 @@ class Synthesiser extends Component {
     this.setState({
       delayAmount: e.target.value
     })
-
-    this.state.delay.wet.value = (this.state.delayAmount / 100);
 
     const updateDelay = () => {
 
@@ -181,8 +191,6 @@ class Synthesiser extends Component {
       volAmount: e.target.value
     })
 
-    this.state.vol.volume.value = this.state.volAmount;
-
     const updateVolume = () => {
 
       fire.firestore().collection('synthesiser').doc(this.state.id).update({
@@ -195,6 +203,7 @@ class Synthesiser extends Component {
     this.time = setTimeout(updateVolume, 500);
   }
 
+  //Create the tiles to be played with
   createSynth() {
     const row = [];
     for( let j = 0; j < this.state.tones.length; j++ ){
@@ -210,6 +219,7 @@ class Synthesiser extends Component {
     return row
   }
 
+  //Gets the appropriate CSS for the tile
   _getClassNames(i, j){
     let result = "row-tile"
 
@@ -223,6 +233,7 @@ class Synthesiser extends Component {
     return result
   }
 
+  //When clicked make it active or inactive
   _updateTile(e) {
     const rownum = e.target.id[0];
     const colnum = e.target.id.slice(e.target.id.indexOf('l') + 1)
@@ -247,6 +258,7 @@ class Synthesiser extends Component {
     })
   }
 
+//Change the Notes to be played
   _onScale(e){
     fire.firestore().collection('synthesiser').doc(this.state.id).update({
       scale: e.target.value

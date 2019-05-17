@@ -38,14 +38,16 @@ class RoomForm extends Component {
 
   }
 
+  //Returns random Pin Code for the room
   getPassword(){
     return [...Array(6)].map(i=>(~~(Math.random()*36)).toString(36)).join('').toUpperCase();
   }
 
+  //Alot of asynch requests incoming
   _handleSubmit (e){
     e.preventDefault();
 
-
+    //If a synth isnt selected return
     if( !this.state.selectedRows){
       return;
     }
@@ -67,10 +69,12 @@ class RoomForm extends Component {
       ];
 
       const rows = [];
-
-      // WHYYYYYYYY?????
+      //All requests are to Firebase
+      //Need to create a row document for each drum instrument and store their ids
+      //Promise.all allows waits until all promises are done inside
       Promise.all(drumRows.map( async(instrument) => {
 
+        //By calling asynch above you can get this function to make one asynch request at a time, and pushing them to the array
         await fire.firestore().collection('row').add({
 
           instrument: instrument,
@@ -82,7 +86,7 @@ class RoomForm extends Component {
         })
 
         })).then( () => {
-
+          //After the array is full of the rows create the drum sequencer model in firebase
 
         fire.firestore().collection('sequencer').add({
 
@@ -90,6 +94,7 @@ class RoomForm extends Component {
             rows: rows
 
           }).then( (result) => {
+            //store the sequencer ID and crate a Synthesiser
             const sequID = result.id;
 
             fire.firestore().collection('synthesiser').add({
@@ -113,7 +118,8 @@ class RoomForm extends Component {
 
               }).then( (result) => {
 
-
+                //Create a room and include both the synthesiser and sequencer ids
+                //Add current user as a collaborator
                 fire.firestore().collection('room').add({
                   name: roomName,
                   tempo: '90',
@@ -123,7 +129,7 @@ class RoomForm extends Component {
                   password: password
 
                 }).then( (result) => {
-
+                  //Then update the user with the new roomID
                   const roomID = result.id;
                   fire.firestore().collection('user').doc(userID).get().then( (result) => {
 
@@ -133,6 +139,7 @@ class RoomForm extends Component {
                     fire.firestore().collection('user').doc(userID).update({
                       rooms: roomArr
                     }).then( () => {
+                      //When everything is done set the redirectLink
                       this.setState({
                         redirectLink: roomID
                       })
@@ -156,6 +163,7 @@ class RoomForm extends Component {
   }
 
   render(){
+    //if there is a redirectLink redirect to it
     if(this.state.redirectLink !== ""){
       return <Redirect to={`/${this.state.redirectLink}`} />
     }

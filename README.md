@@ -1,4 +1,3 @@
-
 ## Simple Studio
 #### Creators:
 - [Adrian](https://github.com/nivvyart)
@@ -6,7 +5,11 @@
 - [Hugh](https://github.com/hluscombe)
 - [Max](https://github.com/FireMugen)
 
-SimpleStudio was a group project completed and presented on 17th May 2019 as part of General assemblies WDI 31 course curriculum. 
+SimpleStudio was a group project completed and presented on 17th May 2019 as part of General assemblies WDI 31 course curriculum.
+
+Simple Studio is a way to collaborate on music on the web.
+
+A Music Collaboration Web App
 
 
 ## Primary technologies used

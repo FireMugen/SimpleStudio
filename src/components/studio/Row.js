@@ -35,15 +35,13 @@ class Row extends Component {
     const row = [];
       for (let i = 0; i < 16; i++) {
 
-        //add ternery here for the onclick, if true user auth on this room, calls this._updateTile otherwise do nothing.
-
-        // this.state.collaborators.includes(this.state.userID) ? true : false
-        //if room colaborators is equal to current user
+        // if use is in the room colaborators they can edit the room, otherwise they cant
         row.push(<div onClick={this.state.collaborators.includes(this.state.userID) ? this._updateTile : "" } id={i} key={i} className={this._getClassNames(i)}></div>)
       }
     return row
   }
 
+  //Gets the appropriate CSS for the tile
   _getClassNames(i){
     let result = "row-tile"
 
@@ -57,6 +55,7 @@ class Row extends Component {
     return result
   }
 
+  //When clicked make it active or inactive
   _updateTile(e) {
     const changedTone = this.state.tone.slice()
     changedTone[e.target.id] = !changedTone[e.target.id]
@@ -67,6 +66,7 @@ class Row extends Component {
 
   }
 
+  //helper that is passed down to the Music Component
   lightCol(i){
     this.setState({
       activeCol: i
@@ -98,6 +98,7 @@ class Music extends Component {
 
   componentDidMount(){
 
+    //On mount get the music asset, create the sequqncer and play it according to the beat
     const link = process.env.PUBLIC_URL + '/assets/' + this.props.instrument + '.mp3';
 
     const drum = new Tone.Players({
@@ -114,6 +115,7 @@ class Music extends Component {
       }
 
       Tone.Draw.schedule( () => {
+        //Passes which tiles are played above
         this.props.activate(col);
       }, time);
 
