@@ -4,6 +4,7 @@ import fire from '../../config/Fire'
 import Tone from 'tone'
 import Sequencer from './Sequencer'
 import Chat from '../Chat'
+import { Link } from 'react-router-dom'
 
 class Room extends Component {
   constructor(props){
@@ -12,6 +13,7 @@ class Room extends Component {
     //stops the song from a potential previous room from playing and cancel the loop attached
    Tone.Transport.stop();
    Tone.Transport.cancel();
+
 
     this.state = {
       id: this.props.match.params.room,
@@ -138,7 +140,7 @@ class Room extends Component {
 
   render(){
     const chatVis = this.state.showMenu ? 'shrink-room' : '';
-    
+
     //Leave the fake room
     if(!this.state.exists){
       return <Redirect to='/' />
@@ -149,6 +151,7 @@ class Room extends Component {
         <h1 id="room-title">{this.state.name}</h1>
 
         <div className="room-container">
+				<a href="/#/"><div className="home-link">⏮️</div></a>
         <div className={chatVis}>
           <div className="slidecontainer">
             {
