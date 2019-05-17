@@ -21,6 +21,7 @@ class Profile extends Component {
 	}
 
 	handleChange(e) {
+		console.log(e)
 		this.setState({ [e.target.name]: e.target.value });
 	}
 
@@ -64,7 +65,7 @@ class Profile extends Component {
 	render(){
 		return(
 			<div className="background">
-			<Link to='/#/'><div className="home-link">
+			<Link to='/'><div className="home-link">
 				⏮️</div></Link>
 			<h1 className="mrow">Update Profile &nbsp;</h1>
 			<form className="sign-form" onSubmit={this.submit}>
@@ -85,7 +86,7 @@ class Profile extends Component {
 				</div>
 					<button className="button" type="submit">Update Profile</button>
 			</form>
-				<button className="button" onClick={this.deleteUser}>Delete Account</button>
+					<button className="button" type="submit" onClick={this.deleteUser}>Delete Profile</button>
 			</div>
 		)
 	}

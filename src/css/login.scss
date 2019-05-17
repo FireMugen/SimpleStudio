@@ -60,7 +60,7 @@ body {
 	font-family: 'Baloo Bhai', sans-serif;
 	font-size: 200%;
 	text-shadow: -1px 0px 19px rgba(0,0,0,0.62);
-	padding-top: 7%;
+	padding-top: 0%;
 	font-family: 'Roboto', sans-serif;;
 }
 
@@ -69,8 +69,6 @@ body {
 	text-shadow: -1px 0px 19px rgba(0,0,0,0.62);
 	font-family: 'Roboto', sans-serif;
 	font-size: 150%
-
-
 }
 
 .popup-box-content{
@@ -98,7 +96,6 @@ body {
 	font-family: 'Baloo Bhai', sans-serif;;
 
 }
-
 
 .container {
 	display: grid;
@@ -189,6 +186,7 @@ a {
 	text-align: center;
 	text-decoration: none;
 	margin: 3px 0px 0px 3px;
+	position: fixed;
 }
 
 .home-link {
@@ -196,6 +194,7 @@ a {
 	font-size: 45px;
 	text-align: left;
 	margin: 0px 0px 0px 5px;
+	position: fixed;
 }
 
 .add-more{
