@@ -8,7 +8,6 @@ import RoomLinks from './RoomLinks'
 import Tone from 'tone'
 import { Link } from 'react-router-dom'
 import '../css/login.scss'
-import { Link } from 'react-router-dom'
 
 class Home extends Component {
     constructor(props) {
