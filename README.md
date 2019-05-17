@@ -1,4 +1,7 @@
 ## Simple Studio
+### [Link](https://firemugen.github.io/SimpleStudio/#/)
+
+
 #### Creators:
 - [Adrian](https://github.com/nivvyart)
 - [Anthony](https://github.com/AnthonyGDoueihi)
@@ -19,10 +22,16 @@ Simple Studio is an online Music collaboration space where you can work with oth
 
 ## Main Components:
 - Sequencer - 16 step drum sequencer
-- Synthesiser
-- Effects
-- User System
+- Synthesiser - Major, Minor & Pentatonic scales with octaves
+- Effects - BPM, Swing, Chorus, Reverb, Delay
+- User System - Login, profile etc
 - Room management
 - Room chatrooms
-- spectator mode
-- Collaborate
+- Collaborate - Authorised user can make changes to drum and Synthesiser which will update in real time to other connected users.
+
+
+
+
+
+## Future/Semi Working
+- spectator mode - Can listen to room but not change synthesiser or sequencer (effects useable)
