@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import fire from '../config/Fire';
-import NavBar from './NavBar'
 import Room from './studio/Room'
 import RoomForm from './crudForms/RoomForm'
 import JoinRoom from './JoinRoom'
