@@ -132,7 +132,6 @@ class Room extends Component {
     })
   }
 
-
   render(){
 
     const chatVis = this.state.showMenu ? 'shrink-room' : '';

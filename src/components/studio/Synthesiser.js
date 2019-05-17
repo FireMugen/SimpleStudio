@@ -53,7 +53,12 @@ class Synthesiser extends Component {
         ],
         scale: data.scale,
         octave: data.octave,
-        root: data.root
+        root: data.root,
+        chorusAmount: data.chorus,
+        delayAmount: data.delay,
+        reverbAmount: data.reverb,
+        volAmount: data.volume
+
       })
 
     })
@@ -118,29 +123,76 @@ class Synthesiser extends Component {
     this.setState({
       chorusAmount: e.target.value
     })
+
     this.state.chorus.wet.value = (this.state.chorusAmount / 100);
+
+    const updateChorus = () => {
+
+      fire.firestore().collection('synthesiser').doc(this.state.id).update({
+        chorus: this.state.chorusAmount
+      })
+    }
+
+    clearTimeout(this.time);
+
+    this.time = setTimeout(updateChorus, 500);
   }
 
   _handleReverb(e) {
     this.setState({
       reverbAmount: e.target.value
     })
+
     this.state.reverb.wet.value = (this.state.reverbAmount / 100);
+
+    const updateReverb = () => {
+
+      fire.firestore().collection('synthesiser').doc(this.state.id).update({
+        reverb: this.state.reverbAmount
+      })
+    }
+
+    clearTimeout(this.time);
+
+    this.time = setTimeout(updateReverb, 500);
   }
 
   _handleDelay(e) {
     this.setState({
       delayAmount: e.target.value
     })
+
     this.state.delay.wet.value = (this.state.delayAmount / 100);
+
+    const updateDelay = () => {
+
+      fire.firestore().collection('synthesiser').doc(this.state.id).update({
+        delay: this.state.delayAmount
+      })
+    }
+
+    clearTimeout(this.time);
+
+    this.time = setTimeout(updateDelay, 500);
   }
 
   _handleVol(e) {
-    console.log(e.target.value);
     this.setState({
       volAmount: e.target.value
     })
+
     this.state.vol.volume.value = this.state.volAmount;
+
+    const updateVolume = () => {
+
+      fire.firestore().collection('synthesiser').doc(this.state.id).update({
+        volume: this.state.volAmount
+      })
+    }
+
+    clearTimeout(this.time);
+
+    this.time = setTimeout(updateVolume, 500);
   }
 
   createSynth() {
