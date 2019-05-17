@@ -95,15 +95,21 @@ class JoinRoom extends Component{
     }
 
     return(
+      <div className="join-room-wrapper">
       <form className="form-style">
+        <br />
+        <br />
+        <br />
         <label>Room Name</label>
         <input type="text" className="input-home" onChange={ this._handleName } value={ this.state.roomName } />
+        <br/>
         <br/>
         <label>Pin Code</label>
         <input type="text" className="input-home" onChange={ this._handlePassword } value={ this.state.password } />
 
         <input type="submit" className="button" onClick={this._handleSubmit} value="Join Room" />
       </form>
+      </div>
     )
   }
 }
