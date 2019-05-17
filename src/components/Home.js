@@ -17,6 +17,7 @@ class Home extends Component {
 
 
 				const user = fire.auth().currentUser;
+				console.log(user);
 				this.state = {
 					userName: user.displayName,
 					email: user.email,
@@ -64,9 +65,17 @@ class Home extends Component {
     }
 
     render() {
+			let letter = '';
+			if (this.state.userName){
+				 letter = this.state.userName.charAt(0).toUpperCase()
+				 console.log(1, letter);
+			}
+			console.log(2, letter);
+
         return (
 					<div className="background">
-					<Link className="" to='/profile'><div className="profile-link">{this.state.userName.charAt(0).toUpperCase()}</div></Link>
+					<Link className="" to='/profile'><div className="profile-link">
+						{ letter }</div></Link>
 					<h1 className="mrow">Simple Studio</h1>
 					<br/>
 					<div className="container">
@@ -86,6 +95,7 @@ class Home extends Component {
 					<button onClick={this.logout} className="button">Logout</button>
 					</div>
 				);
+
 		}
 }
 
