@@ -4,6 +4,7 @@ import fire from '../../config/Fire'
 import Tone from 'tone'
 import Sequencer from './Sequencer'
 import Chat from '../Chat'
+import { Link } from 'react-router-dom'
 
 class Room extends Component {
   constructor(props){
@@ -11,7 +12,6 @@ class Room extends Component {
 
    Tone.Transport.stop();
    Tone.Transport.cancel();
-
 
 
     this.state = {
@@ -143,6 +143,7 @@ class Room extends Component {
     return(
       <div>
         <div className="room-container">
+				<a href="/#/"><div className="home-link">⏮️</div></a>
         <div className={chatVis}>
           <h1 id="room-title">{this.state.name}</h1>
           <div className="slidecontainer">
