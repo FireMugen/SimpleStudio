@@ -171,8 +171,9 @@ class RoomForm extends Component {
 						<br/>
             <label>Drum Sampler added by Default</label>
             <br />
+            <br />
             <label>Choose Starting Sequencer</label>
-						<br/>
+						
 						<br/>
             <SequencerForm sequenceSelect={this._handleSequ} />
 						<br/>

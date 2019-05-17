@@ -3,7 +3,6 @@ import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import fire from './config/Fire';
 import Room from './components/studio/Room';
 import Chat from './components/Chat';
-import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Home from './components/Home';
 import Profile from './components/Profile';

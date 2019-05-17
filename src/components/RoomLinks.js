@@ -49,7 +49,9 @@ class RoomLinks extends Component{
   render(){
     return(
       <div className="form-style">
-        {this.state.rooms}
+        <div className="room-wrapper">
+          {this.state.rooms}
+        </div>
       </div>
     )
   }

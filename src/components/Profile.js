@@ -52,7 +52,7 @@ class Profile extends Component {
 	render(){
 		return(
 			<div className="background">
-			<a href="/#/"><div className="profile-link">Home</div></a>
+			<a href="/#/"><div className="home-link">Home</div></a>
 			<h1 className="mrow">Update Profile &nbsp;</h1>
 			<form className="sign-form" onSubmit={this.submit}>
 				<div>
