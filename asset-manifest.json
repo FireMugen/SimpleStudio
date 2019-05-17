@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/SimpleStudio/static/css/main.079a408c.chunk.css",
-    "main.js": "/SimpleStudio/static/js/main.51c2ea93.chunk.js",
-    "main.js.map": "/SimpleStudio/static/js/main.51c2ea93.chunk.js.map",
+    "main.css": "/SimpleStudio/static/css/main.da208aef.chunk.css",
+    "main.js": "/SimpleStudio/static/js/main.621ac915.chunk.js",
+    "main.js.map": "/SimpleStudio/static/js/main.621ac915.chunk.js.map",
     "runtime~main.js": "/SimpleStudio/static/js/runtime~main.6d50b6b7.js",
     "runtime~main.js.map": "/SimpleStudio/static/js/runtime~main.6d50b6b7.js.map",
-    "static/js/2.2977c53d.chunk.js": "/SimpleStudio/static/js/2.2977c53d.chunk.js",
-    "static/js/2.2977c53d.chunk.js.map": "/SimpleStudio/static/js/2.2977c53d.chunk.js.map",
+    "static/js/2.91b1b083.chunk.js": "/SimpleStudio/static/js/2.91b1b083.chunk.js",
+    "static/js/2.91b1b083.chunk.js.map": "/SimpleStudio/static/js/2.91b1b083.chunk.js.map",
     "index.html": "/SimpleStudio/index.html",
-    "precache-manifest.633fed08ad1d398c1da9af59f9869bad.js": "/SimpleStudio/precache-manifest.633fed08ad1d398c1da9af59f9869bad.js",
+    "precache-manifest.702519cb7754e53af2a3f6f5663697e2.js": "/SimpleStudio/precache-manifest.702519cb7754e53af2a3f6f5663697e2.js",
     "service-worker.js": "/SimpleStudio/service-worker.js",
-    "static/css/main.079a408c.chunk.css.map": "/SimpleStudio/static/css/main.079a408c.chunk.css.map",
+    "static/css/main.da208aef.chunk.css.map": "/SimpleStudio/static/css/main.da208aef.chunk.css.map",
     "static/media/login.scss": "/SimpleStudio/static/media/audio-mixer.2b338699.jpg"
   }
 }
