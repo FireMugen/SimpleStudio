@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/SimpleStudio/static/css/main.ed123178.chunk.css",
+    "main.css": "/SimpleStudio/static/css/main.f7324571.chunk.css",
     "main.js": "/SimpleStudio/static/js/main.6b6e49fb.chunk.js",
     "main.js.map": "/SimpleStudio/static/js/main.6b6e49fb.chunk.js.map",
     "runtime~main.js": "/SimpleStudio/static/js/runtime~main.6d50b6b7.js",
@@ -8,9 +8,9 @@
     "static/js/2.91b1b083.chunk.js": "/SimpleStudio/static/js/2.91b1b083.chunk.js",
     "static/js/2.91b1b083.chunk.js.map": "/SimpleStudio/static/js/2.91b1b083.chunk.js.map",
     "index.html": "/SimpleStudio/index.html",
-    "precache-manifest.889a0813077e32f0fc5151b1d9fccb7f.js": "/SimpleStudio/precache-manifest.889a0813077e32f0fc5151b1d9fccb7f.js",
+    "precache-manifest.703867b0c2b97af36842af59ba88b2ea.js": "/SimpleStudio/precache-manifest.703867b0c2b97af36842af59ba88b2ea.js",
     "service-worker.js": "/SimpleStudio/service-worker.js",
-    "static/css/main.ed123178.chunk.css.map": "/SimpleStudio/static/css/main.ed123178.chunk.css.map",
+    "static/css/main.f7324571.chunk.css.map": "/SimpleStudio/static/css/main.f7324571.chunk.css.map",
     "static/media/login.scss": "/SimpleStudio/static/media/audio-mixer.2b338699.jpg"
   }
 }
