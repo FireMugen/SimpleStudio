@@ -50,10 +50,12 @@ class RoomLinks extends Component{
 
   render(){
     return(
+      <div>
       <div className="form-style">
         <div className="room-wrapper">
           {this.state.rooms}
         </div>
+      </div>
       </div>
     )
   }

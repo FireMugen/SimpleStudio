@@ -134,7 +134,7 @@ class Synthesiser extends Component {
     }
   }
 
-  //_handles get changes to the inputs and send them to the DB to be read by the snapshot avoce and change the state amount to match
+  //_handles get changes to the inputs and send them to the DB to be read by the snapshot and change the state amount to match
   _handleChorus(e) {
     this.setState({
       chorusAmount: e.target.value

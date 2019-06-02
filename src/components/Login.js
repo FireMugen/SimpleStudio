@@ -32,6 +32,7 @@ class Login extends Component {
 
 	signup(e) {
 	e.preventDefault();
+	if(this.state.userName !== ''){
 	fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then(
   	(data)=>{
 			const { user } = data
@@ -39,7 +40,6 @@ class Login extends Component {
       	user.updateProfile({
          displayName: this.state.userName,
       }).then(function() {
-
         fire.firestore().collection('user').doc(user.uid).set({
           rooms: []
         })
@@ -50,6 +50,7 @@ class Login extends Component {
 			console.log(error);
 		});
 	}
+}
 
 
 render() {
