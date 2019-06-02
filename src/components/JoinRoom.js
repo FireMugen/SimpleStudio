@@ -106,7 +106,7 @@ class JoinRoom extends Component{
         <br/>
         <label>Pin Code</label>
         <input type="text" className="input-home" onChange={ this._handlePassword } value={ this.state.password } />
-
+        <br />
         <input type="submit" className="button" onClick={this._handleSubmit} value="Join Room" />
       </form>
       </div>
